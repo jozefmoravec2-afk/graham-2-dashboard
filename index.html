@@ -9,28 +9,72 @@
 <meta name="referrer" content="no-referrer">
 <title>XTB Graham 2.0 Dashboard</title>
 <style>
-body{margin:0;background:#0f1115;color:#f3f5f7;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;display:grid;place-items:center;min-height:100vh}
-.box{padding:24px;text-align:center}.muted{color:#9da7b3;font-size:14px}
+:root{--bg:#0f1115;--card:#171a21;--card2:#1d222b;--text:#f3f5f7;--muted:#9da7b3;--green:#39d98a;--blue:#5da9ff;--border:#2a313c;--red:#ff5c5c}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#0c0f13,#12161c 45%,#0f1115);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;display:grid;place-items:center;min-height:100vh;padding:20px}
+.login-card{width:min(420px,100%);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.logo{font-size:28px;margin-bottom:8px}.title{font-size:24px;font-weight:800;margin:0 0 6px}.sub{color:var(--muted);font-size:13px;line-height:1.5;margin-bottom:20px}
+label{display:block;font-size:12px;color:var(--muted);margin-bottom:7px}input{width:100%;background:var(--card2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:13px 14px;font:inherit;outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(93,169,255,.12)}
+button{width:100%;margin-top:12px;border:0;border-radius:12px;padding:13px 14px;background:linear-gradient(90deg,var(--green),var(--blue));color:#08120d;font-weight:900;cursor:pointer;font:inherit}.err{color:var(--red);font-size:12px;min-height:18px;margin-top:9px}.hint{color:var(--muted);font-size:11px;margin-top:12px;text-align:center}
+.loader{display:none;text-align:center;color:var(--muted)}
 </style>
 </head>
 <body>
-<div class="box"><h1>Graham 2.0 Dashboard</h1><div class="muted">Načítavam dashboard…</div></div>
+<div id="login" class="login-card">
+  <div class="logo">🔐</div>
+  <h1 class="title">Graham 2.0 Dashboard</h1>
+  <div class="sub">Súkromný vstup do investičného dashboardu.</div>
+  <form id="loginForm">
+    <label for="password">Heslo</label>
+    <input id="password" type="password" autocomplete="current-password" autofocus>
+    <button type="submit">Odomknúť dashboard</button>
+    <div id="err" class="err"></div>
+  </form>
+  <div class="hint">Po úspešnom prihlásení zostane dashboard odomknutý počas tejto relácie prehliadača.</div>
+</div>
+<div id="loader" class="loader">Načítavam dashboard…</div>
 <script>
-(async()=>{
-  const files=[1,2,3,4,5,6].map(n=>`dashboard_b64/part${n}.txt`);
-  const parts=await Promise.all(files.map(f=>fetch(f,{cache:'no-store'}).then(r=>{
-    if(!r.ok) throw new Error(`${f}: ${r.status}`);
-    return r.text();
-  })));
-  const b64=parts.join('').replace(/\s+/g,'');
-  const raw=atob(b64);
-  const bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));
-  const html=new TextDecoder('utf-8').decode(bytes);
-  document.open();
-  document.write(html);
-  document.close();
-})().catch(err=>{
-  document.body.innerHTML='<div class="box"><h1>Dashboard sa nepodarilo načítať</h1><div class="muted">'+err.message+'</div></div>';
+const PASSWORD_HASH='f16769726413abe4c606c64f4a6b99e65ebd995ef3ceac74a9d889a2519b537c';
+
+async function sha256(value){
+  const data=new TextEncoder().encode(value);
+  const digest=await crypto.subtle.digest('SHA-256',data);
+  return [...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+async function loadDashboard(){
+  document.getElementById('login').style.display='none';
+  document.getElementById('loader').style.display='block';
+  try{
+    const files=[1,2,3,4,5,6].map(n=>`dashboard_b64/part${n}.txt`);
+    const parts=await Promise.all(files.map(f=>fetch(f,{cache:'no-store'}).then(r=>{
+      if(!r.ok) throw new Error(`${f}: ${r.status}`);
+      return r.text();
+    })));
+    const b64=parts.join('').replace(/\s+/g,'');
+    const raw=atob(b64);
+    const bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));
+    const html=new TextDecoder('utf-8').decode(bytes);
+    document.open();
+    document.write(html);
+    document.close();
+  }catch(err){
+    document.body.innerHTML='<div class="login-card"><h1>Dashboard sa nepodarilo načítať</h1><div class="sub">'+err.message+'</div></div>';
+  }
+}
+
+if(sessionStorage.getItem('g2_auth')==='ok') loadDashboard();
+
+document.getElementById('loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const input=document.getElementById('password').value;
+  const hash=await sha256(input);
+  if(hash===PASSWORD_HASH){
+    sessionStorage.setItem('g2_auth','ok');
+    loadDashboard();
+  }else{
+    document.getElementById('err').textContent='Nesprávne heslo.';
+  }
 });
 </script>
 </body>
