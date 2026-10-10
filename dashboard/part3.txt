@@ -1,0 +1,76 @@
+:76.83%"></span></div>
+      <div class="kpis"><span>15 366 €</span><span>76,8 %</span><span>20 000 €</span></div>
+      <div style="height:16px"></div>
+      <div class="label">Hlavný cieľ — 300 000 €</div>
+      <div class="progress"><span style="width:5.12%"></span></div>
+      <div class="kpis"><span>15 366 €</span><span>5,1 %</span><span>300 000 €</span></div>
+    </div>
+
+    <div class="card">
+      <h2>🧩 Detailná alokácia</h2>
+      <div class="label">Každá pozícia ako % celého XTB účtu.</div>
+      <div class="alloc-list">
+        <div class="alloc-row"><div class="alloc-name">VGWD</div><div class="bar etf"><span style="width:39.86%"></span></div><div class="alloc-val"><b>39.9%</b> · 6 125 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">SPYD</div><div class="bar etf"><span style="width:14.94%"></span></div><div class="alloc-val"><b>14.9%</b> · 2 296 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">MSFT</div><div class="bar "><span style="width:10.85%"></span></div><div class="alloc-val"><b>10.8%</b> · 1 667 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">ADI</div><div class="bar "><span style="width:5.93%"></span></div><div class="alloc-val"><b>5.9%</b> · 911 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">SAN</div><div class="bar "><span style="width:5.78%"></span></div><div class="alloc-val"><b>5.8%</b> · 888 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">AIT</div><div class="bar "><span style="width:5.15%"></span></div><div class="alloc-val"><b>5.2%</b> · 791 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">O</div><div class="bar "><span style="width:3.50%"></span></div><div class="alloc-val"><b>3.5%</b> · 538 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">ELE</div><div class="bar "><span style="width:2.61%"></span></div><div class="alloc-val"><b>2.6%</b> · 400 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">WM</div><div class="bar "><span style="width:2.59%"></span></div><div class="alloc-val"><b>2.6%</b> · 398 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">AGS</div><div class="bar "><span style="width:2.41%"></span></div><div class="alloc-val"><b>2.4%</b> · 370 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">NDA</div><div class="bar "><span style="width:2.36%"></span></div><div class="alloc-val"><b>2.4%</b> · 363 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">V</div><div class="bar "><span style="width:1.07%"></span></div><div class="alloc-val"><b>1.1%</b> · 165 €</div></div>
+        <div class="alloc-row"><div class="alloc-name">CASH</div><div class="bar cash"><span style="width:2.95%"></span></div><div class="alloc-val"><b>3.0%</b> · 453 €</div></div>
+      </div>
+      <div class="note-box"><b>Sumár:</b> ETF 54,8 % · jednotlivé akcie 42,3 % · cash 3,0 %.</div>
+    </div>
+  </div>
+
+
+
+  <div class="section row2">
+    <div class="card">
+      <h2>📅 Zisk podľa rokov</h2>
+      <div class="label">Rozlišujeme realizovaný ročný zisk od celkového rastu účtu.</div>
+      <div class="year-bars">
+        <div class="year-row">
+          <div class="year-label">2025</div>
+          <div class="bar"><span style="width:32%"></span></div>
+          <div class="year-value"><b class="good">+258,52 €</b> realizované P/L</div>
+        </div>
+        <div class="year-row">
+          <div class="year-label">2026 YTD</div>
+          <div class="bar"><span style="width:0%"></span></div>
+          <div class="year-value"><b class="warn">doplníme</b> po cashflow reconciliation</div>
+        </div>
+      </div>
+      <div class="note-box">Celkový rozdiel hodnoty účtu oproti čistým vkladom je dnes približne <b>+2 649 € / +20,8 %</b>, ale to nie je to isté ako kalendárny zisk za rok 2026.</div>
+    </div>
+
+    <div class="card">
+      <h2>💸 Dividendy</h2>
+      <div class="div-grid" style="grid-template-columns:repeat(2,1fr)">
+        <div class="div-stat"><div class="label">All-time gross</div><div class="big">300,38 €</div></div>
+        <div class="div-stat"><div class="label">All-time net</div><div class="big good">269,51 €</div></div>
+        <div class="div-stat"><div class="label">Withholding tax</div><div class="big">−30,87 €</div></div>
+        <div class="div-stat"><div class="label">2025 net</div><div class="big">44,74 €</div></div>
+      </div>
+      <div class="note-box">Dividendy sledujeme oddelene od cenového zisku. Pri ďalšom exporte doplníme aj presný <b>2026 YTD</b> a graf rastu dividendového príjmu po rokoch.</div>
+    </div>
+  </div>
+
+  <div class="section card">
+    <h2>🏢 Pozície — veľkosť a koncentrácia</h2>
+    <div class="label">Graf ukazuje relatívnu veľkosť každej pozície; tabuľka presnú hodnotu a váhu.</div>
+    <div class="pos-grid">
+      <div class="pos-list">
+        <div class="pos-row"><div class="pos-name">VGWD</div><div class="bar"><span style="width:87.69%"></span></div><div class="pos-val"><b>39.9%</b> · 6 125 €</div></div>
+        <div class="pos-row"><div class="pos-name">SPYD</div><div class="bar"><span style="width:32.88%"></span></div><div class="pos-val"><b>14.9%</b> · 2 296 €</div></div>
+        <div class="pos-row"><div class="pos-name">MSFT</div><div class="bar"><span style="width:23.87%"></span></div><div class="pos-val"><b>10.8%</b> · 1 667 €</div></div>
+        <div class="pos-row"><div class="pos-name">ADI</div><div class="bar"><span style="width:13.04%"></span></div><div class="pos-val"><b>5.9%</b> · 911 €</div></div>
+        <div class="pos-row"><div class="pos-name">SAN</div><div class="bar"><span style="width:12.72%"></span></div><div class="pos-val"><b>5.8%</b> · 888 €</div></div>
+        <div class="pos-row"><div class="pos-name">AIT</div><div class="bar"><span style="width:11.33%"></span></div><div class="pos-val"><b>5.2%</b> · 791 €</div></div>
+        <div class="pos-row"><div class="pos-name">O</div><div class="bar"><span style="width:7.70%"></span></div><div class="pos-val"><b>3.5%</b> · 538 €</div></div>
+        <div class="pos-row"><div class="pos-name">ELE</div><div class="bar"><span style="width:5.73%"></s
