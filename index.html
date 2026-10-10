@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XTB Graham 2.0 Dashboard</title>
+<style>
+body{margin:0;background:#0f1115;color:#f3f5f7;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;display:grid;place-items:center;min-height:100vh}
+.box{padding:24px;text-align:center}.muted{color:#9da7b3;font-size:14px}
+</style>
+</head>
+<body>
+<div class="box"><h1>Graham 2.0 Dashboard</h1><div class="muted">Načítavam dashboard…</div></div>
+<script>
+(async()=>{
+  const files=[1,2,3,4,5,6].map(n=>`dashboard_b64/part${n}.txt`);
+  const parts=await Promise.all(files.map(f=>fetch(f,{cache:'no-store'}).then(r=>{
+    if(!r.ok) throw new Error(`${f}: ${r.status}`);
+    return r.text();
+  })));
+  const b64=parts.join('').replace(/\s+/g,'');
+  const raw=atob(b64);
+  const bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));
+  const html=new TextDecoder('utf-8').decode(bytes);
+  document.open();
+  document.write(html);
+  document.close();
+})().catch(err=>{
+  document.body.innerHTML='<div class="box"><h1>Dashboard sa nepodarilo načítať</h1><div class="muted">'+err.message+'</div></div>';
+});
+</script>
+</body>
+</html>
