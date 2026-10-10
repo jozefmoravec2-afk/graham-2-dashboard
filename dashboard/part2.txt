@@ -1,0 +1,111 @@
+xt)}
+.alloc-list,.pos-list{display:grid;gap:10px;margin-top:14px}
+.alloc-row,.pos-row{display:grid;grid-template-columns:100px 1fr 90px;gap:10px;align-items:center}
+.alloc-name,.pos-name{font-size:12px;font-weight:800}
+.bar{height:12px;border-radius:999px;background:#242a33;border:1px solid #303846;overflow:hidden}
+.bar > span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--green))}
+.bar.etf > span{background:linear-gradient(90deg,var(--blue),var(--purple))}
+.bar.cash > span{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.alloc-val,.pos-val{text-align:right;font-size:12px;color:var(--muted)}
+.alloc-val b,.pos-val b{color:var(--text)}
+.pos-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}
+.position-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:12px}
+.position-table th,.position-table td{padding:9px 8px;border-bottom:1px solid var(--border);text-align:right}
+.position-table th:first-child,.position-table td:first-child{text-align:left}
+.position-table th{color:var(--muted);font-weight:700}
+.div-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.div-stat{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:13px}
+.div-stat .big{font-size:21px;font-weight:900;margin-top:4px}
+.note-box{margin-top:12px;padding:11px 12px;border:1px dashed #3c4654;border-radius:12px;color:var(--muted);font-size:12px}
+.year-bars{display:grid;gap:10px;margin-top:13px}
+.year-row{display:grid;grid-template-columns:70px 1fr 140px;gap:10px;align-items:center}
+.year-label{font-weight:800}
+.year-value{text-align:right;font-size:12px}
+@media(max-width:900px){.pos-grid{grid-template-columns:1fr}.div-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.alloc-row,.pos-row,.year-row{grid-template-columns:75px 1fr 75px}.div-grid{grid-template-columns:1fr}}
+
+
+.pos-cards{display:grid;gap:10px;margin-top:16px}
+.pos-card{background:var(--card2);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.pos-head{width:100%;display:grid;grid-template-columns:90px 1fr 110px 24px;gap:10px;align-items:center;
+background:transparent;border:0;color:var(--text);padding:13px 14px;cursor:pointer;text-align:left;font:inherit}
+.pos-head:hover{background:rgba(255,255,255,.025)}
+.pos-ticker{font-weight:900}
+.pos-role{color:var(--muted);font-size:12px}
+.pos-action{font-size:11px;font-weight:800;padding:5px 8px;border-radius:999px;text-align:center}
+.action-core{color:var(--green);background:rgba(57,217,138,.12)}
+.action-hold{color:var(--blue);background:rgba(93,169,255,.12)}
+.action-review{color:var(--yellow);background:rgba(255,209,102,.12)}
+.chev{transition:.18s ease;color:var(--muted)}
+.pos-card.open .chev{transform:rotate(180deg)}
+.pos-body{display:none;padding:0 14px 14px}
+.pos-card.open .pos-body{display:block}
+.pos-report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.pos-report-box{background:#151920;border:1px solid var(--border);border-radius:12px;padding:11px}
+.pos-report-box .rtitle{font-size:11px;color:var(--muted);margin-bottom:5px}
+.pos-report-box .rtext{font-size:12px;line-height:1.45}
+.pos-summary{font-size:13px;line-height:1.5;color:#d9e0e8}
+@media(max-width:760px){.pos-head{grid-template-columns:70px 1fr 95px 20px}.pos-report-grid{grid-template-columns:1fr}}
+
+
+.achievements{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.achievement{background:linear-gradient(180deg,#202631,#181d25);border:1px solid var(--border);
+border-radius:16px;padding:14px;min-height:132px;position:relative}
+.achievement.done{border-color:rgba(57,217,138,.30)}
+.achievement.next{border-color:rgba(255,209,102,.30)}
+.achievement.locked{opacity:.72}
+.ach-icon{font-size:24px;margin-bottom:8px}
+.ach-title{font-size:13px;font-weight:900}
+.ach-value{font-size:21px;font-weight:900;margin:5px 0}
+.achievement.done .ach-value{color:var(--green)}
+.achievement.next .ach-value{color:var(--yellow)}
+.ach-desc{font-size:11px;color:var(--muted);line-height:1.35}
+.ach-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:800;padding:4px 7px;border-radius:999px}
+.achievement.done .ach-badge{color:var(--green);background:rgba(57,217,138,.12)}
+.achievement.next .ach-badge{color:var(--yellow);background:rgba(255,209,102,.12)}
+.achievement.locked .ach-badge{color:var(--muted);background:rgba(157,167,179,.10)}
+@media(max-width:900px){.achievements{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.achievements{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📊 XTB — Graham 2.0 Dashboard</h1>
+  <div class="sub">Stav k 10. 10. 2026 · cieľ: 300 000 € približne do 50 rokov · filozofiu nemeníme, iba dolaďujeme systém</div>
+
+  <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card">
+      <div class="label">Hodnota XTB</div><div class="metric">15 366 €</div>
+      <div class="good">▲ +20,8 % vs. čisté vklady</div>
+    </div>
+    <div class="card">
+      <div class="label">Zisk / rast kapitálu</div><div class="metric good">+2 649 €</div>
+      <div class="profit-mini">
+        <span class="mini-pill"><b>2025:</b> +258,52 € realizované</span>
+        <span class="mini-pill"><b>2026 YTD:</b> cashflow výpočet doplníme</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="label">Čisté vklady</div><div class="metric">12 717 €</div>
+      <div class="label">historické net contributions</div>
+    </div>
+    <div class="card">
+      <div class="label">Dividendy — all time</div><div class="metric">269,51 €</div>
+      <div class="label">netto · hrubé 300,38 €</div>
+    </div>
+    <div class="card">
+      <div class="label">Cash</div><div class="metric">453 €</div>
+      <div class="info">2,95 % portfólia</div>
+    </div>
+    <div class="card">
+      <div class="label">Pozície</div><div class="metric">12</div>
+      <div class="label">2 ETF + 10 akcií</div>
+    </div>
+  </div>
+
+  <div class="section row2">
+    <div class="card">
+      <h2>🎯 Progress</h2>
+      <div class="label">Prvý míľnik — 20 000 €</div>
+      <div class="progress"><span style="width
