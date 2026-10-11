@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>XTB Graham 2.0 Dashboard</title>
+<style>
+:root{
+  --bg:#0f1115; --card:#171a21; --card2:#1d222b; --text:#f3f5f7; --muted:#9da7b3;
+  --green:#39d98a; --lime:#9be564; --yellow:#ffd166; --orange:#ff9f43; --red:#ff5c5c;
+  --blue:#5da9ff; --purple:#a78bfa; --border:#2a313c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#0c0f13,#12161c 40%,#0f1115);color:var(--text);
+font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:28px}
+h1{font-size:30px;margin:0 0 6px}.sub{color:var(--muted);margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.metric{font-size:28px;font-weight:800;margin-top:8px}.label{color:var(--muted);font-size:13px}
+.good{color:var(--green)} .warn{color:var(--yellow)} .info{color:var(--blue)} .risk{color:var(--orange)}
+.section{margin-top:18px}
+.section h2{font-size:19px;margin:0 0 12px}
+.row2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+.progress{height:12px;background:#242a33;border-radius:999px;overflow:hidden;border:1px solid #2f3743}
+.progress > span{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--blue))}
+.kpis{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:7px}
+.donut-wrap{display:flex;gap:22px;align-items:center}
+.donut{width:175px;height:175px;border-radius:50%;
+background:conic-gradient(var(--blue) 0 54.8%, var(--green) 54.8% 97.05%, var(--yellow) 97.05% 100%);
+position:relative;flex:0 0 auto}
+.donut:after{content:"";position:absolute;inset:27px;background:var(--card);border-radius:50%}
+.legend{display:grid;gap:9px}.legend div{display:flex;gap:9px;align-items:center;color:#d8dee6}
+.dot{width:11px;height:11px;border-radius:50%}
+.strategy{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tag{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700;margin:3px 5px 3px 0}
+.core{background:rgba(57,217,138,.14);color:var(--green);border:1px solid rgba(57,217,138,.35)}
+.sat{background:rgba(93,169,255,.14);color:var(--blue);border:1px solid rgba(93,169,255,.35)}
+.review{background:rgba(255,209,102,.14);color:var(--yellow);border:1px solid rgba(255,209,102,.35)}
+.checklist{display:grid;gap:9px}
+.item{display:flex;align-items:flex-start;gap:11px;background:var(--card2);border:1px solid var(--border);border-radius:13px;padding:12px}
+.item input{width:19px;height:19px;margin-top:2px;accent-color:var(--green)}
+.item b{display:block;margin-bottom:2px}.item small{color:var(--muted)}
+.status{margin-left:auto;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px}
+.done{color:var(--green);background:rgba(57,217,138,.12)}
+.todo{color:var(--yellow);background:rgba(255,209,102,.12)}
+.critical{color:var(--orange);background:rgba(255,159,67,.12)}
+.footer{color:var(--muted);font-size:12px;margin:18px 0 4px}
+
+.timeline-card{overflow:hidden}
+.timeline{position:relative;margin:18px 0 8px;padding:18px 0 6px}
+.timeline:before{content:"";position:absolute;left:5%;right:5%;top:49px;height:4px;border-radius:999px;
+background:linear-gradient(90deg,var(--muted) 0%,var(--green) 36%,var(--blue) 58%,var(--purple) 100%);opacity:.8}
+.timeline-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative;z-index:2}
+.tnode{text-align:center;min-width:0}
+.tdot{width:20px;height:20px;border-radius:50%;margin:22px auto 10px;border:4px solid var(--card);
+box-shadow:0 0 0 2px currentColor;background:currentColor}
+.tnode.past{color:#87919d}.tnode.done{color:var(--green)}.tnode.now{color:var(--blue)}.tnode.future{color:var(--purple)}
+.tnode.now .tdot{width:28px;height:28px;margin-top:18px;box-shadow:0 0 0 3px rgba(93,169,255,.25),0 0 18px rgba(93,169,255,.35)}
+.tyear{font-weight:800;font-size:14px}.tvalue{font-size:13px;color:var(--text);font-weight:700;margin-top:3px}
+.tdesc{font-size:11px;color:var(--muted);line-height:1.35;margin:5px auto 0;max-width:150px}
+.timeline-note{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.timeline-note div{font-size:12px;color:var(--muted)}
+.timeline-note b{color:var(--text)}
+
+
+.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.milestone{position:relative;background:linear-gradient(180deg,#202631,#181d25);border:1px solid var(--border);
+border-radius:16px;padding:14px;cursor:pointer;transition:.18s ease;min-height:118px}
+.milestone:hover{transform:translateY(-3px);border-color:#4a5666;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+.milestone.active{outline:2px solid var(--blue);box-shadow:0 0 0 4px rgba(93,169,255,.12)}
+.milestone .mval{font-size:23px;font-weight:900;margin-top:3px}
+.milestone .mname{font-size:12px;color:var(--muted);margin-top:5px}
+.milestone .mstatus{font-size:11px;font-weight:800;margin-top:10px}
+.milestone.done .mstatus{color:var(--green)}
+.milestone.next .mstatus{color:var(--yellow)}
+.milestone.future .mstatus{color:var(--purple)}
+.milestone-detail{margin-top:12px;background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:14px}
+.milestone-detail b{color:var(--text)}
+.milestone-detail span{color:var(--muted);font-size:13px}
+@media(max-width:900px){.milestones{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.milestones{grid-template-columns:1fr}}
+
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.row2,.strategy{grid-template-columns:1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.wrap{padding:16px}.donut-wrap{flex-direction:column;align-items:flex-start}.timeline{overflow-x:auto}.timeline-grid{min-width:760px}}
+
+.profit-mini{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.mini-pill{padding:5px 8px;border-radius:999px;background:var(--card2);border:1px solid var(--border);font-size:11px;color:var(--muted)}
+.mini-pill b{color:var(--text)}
+.alloc-list,.pos-list{display:grid;gap:10px;margin-top:14px}
+.alloc-row,.pos-row{display:grid;grid-template-columns:100px 1fr 90px;gap:10px;align-items:center}
+.alloc-name,.pos-name{font-size:12px;font-weight:800}
+.bar{height:12px;border-radius:999px;background:#242a33;border:1px solid #303846;overflow:hidden}
+.bar > span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--green))}
+.bar.etf > span{background:linear-gradient(90deg,var(--blue),var(--purple))}
+.bar.cash > span{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.alloc-val,.pos-val{text-align:right;font-size:12px;color:var(--muted)}
+.alloc-val b,.pos-val b{color:var(--text)}
+.pos-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}
+.position-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:12px}
+.position-table th,.position-table td{padding:9px 8px;border-bottom:1px solid var(--border);text-align:right}
+.position-table th:first-child,.position-table td:first-child{text-align:left}
+.position-table th{color:var(--muted);font-weight:700}
+.div-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.div-stat{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:13px}
+.div-stat .big{font-size:21px;font-weight:900;margin-top:4px}
+.note-box{margin-top:12px;padding:11px 12px;border:1px dashed #3c4654;border-radius:12px;color:var(--muted);font-size:12px}
+.year-bars{display:grid;gap:10px;margin-top:13px}
+.year-row{display:grid;grid-template-columns:70px 1fr 140px;gap:10px;align-items:center}
+.year-label{font-weight:800}
+.year-value{text-align:right;font-size:12px}
+@media(max-width:900px){.pos-grid{grid-template-columns:1fr}.div-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.alloc-row,.pos-row,.year-row{grid-template-columns:75px 1fr 75px}.div-grid{grid-template-columns:1fr}}
+
+
+.pos-cards{display:grid;gap:10px;margin-top:16px}
+.pos-card{background:var(--card2);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.pos-head{width:100%;display:grid;grid-template-columns:90px 1fr 110px 24px;gap:10px;align-items:center;
+background:transparent;border:0;color:var(--text);padding:13px 14px;cursor:pointer;text-align:left;font:inherit}
+.pos-head:hover{background:rgba(255,255,255,.025)}
+.pos-ticker{font-weight:900}
+.pos-role{color:var(--muted);font-size:12px}
+.pos-action{font-size:11px;font-weight:800;padding:5px 8px;border-radius:999px;text-align:center}
+.action-core{color:var(--green);background:rgba(57,217,138,.12)}
+.action-hold{color:var(--blue);background:rgba(93,169,255,.12)}
+.action-review{color:var(--yellow);background:rgba(255,209,102,.12)}
+.chev{transition:.18s ease;color:var(--muted)}
+.pos-card.open .chev{transform:rotate(180deg)}
+.pos-body{display:none;padding:0 14px 14px}
+.pos-card.open .pos-body{display:block}
+.pos-report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.pos-report-box{background:#151920;border:1px solid var(--border);border-radius:12px;padding:11px}
+.pos-report-box .rtitle{font-size:11px;color:var(--muted);margin-bottom:5px}
+.pos-report-box .rtext{font-size:12px;line-height:1.45}
+.pos-summary{font-size:13px;line-height:1.5;color:#d9e0e8}
+@media(max-width:760px){.pos-head{grid-template-columns:70px 1fr 95px 20px}.pos-report-grid{grid-template-columns:1fr}}
+
+
+.achievements{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.achievement{background:linear-gradient(180deg,#202631,#181d25);border:1px solid var(--border);
+border-radius:16px;padding:14px;min-height:132px;position:relative}
+.achievement.done{border-color:rgba(57,217,138,.30)}
+.achievement.next{border-color:rgba(255,209,102,.30)}
+.achievement.locked{opacity:.72}
+.ach-icon{font-size:24px;margin-bottom:8px}
+.ach-title{font-size:13px;font-weight:900}
+.ach-value{font-size:21px;font-weight:900;margin:5px 0}
+.achievement.done .ach-value{color:var(--green)}
+.achievement.next .ach-value{color:var(--yellow)}
+.ach-desc{font-size:11px;color:var(--muted);line-height:1.35}
+.ach-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:800;padding:4px 7px;border-radius:999px}
+.achievement.done .ach-badge{color:var(--green);background:rgba(57,217,138,.12)}
+.achievement.next .ach-badge{color:var(--yellow);background:rgba(255,209,102,.12)}
+.achievement.locked .ach-badge{color:var(--muted);background:rgba(157,167,179,.10)}
+@media(max-width:900px){.achievements{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.achievements{grid-template-columns:1fr}}
+
+.div-expand{margin-top:14px;background:var(--card2);border:1px solid var(--border);border-radius:14px;overflow:hidden}.div-expand button{width:100%;background:transparent;border:0;color:var(--text);padding:13px 14px;text-align:left;font:inherit;font-weight:800;cursor:pointer;display:flex;justify-content:space-between}.div-detail{display:none;padding:0 14px 14px}.div-expand.open .div-detail{display:block}.div-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:5px}.div-table th,.div-table td{padding:8px;border-bottom:1px solid var(--border);text-align:right}.div-table th:first-child,.div-table td:first-child,.div-table th:nth-child(2),.div-table td:nth-child(2){text-align:left}.strategy-v2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.strategy-rule{background:var(--card2);border:1px solid var(--border);border-radius:13px;padding:12px;display:flex;gap:10px}.strategy-rule .tick{color:var(--green);font-weight:900}.strategy-rule b{display:block;font-size:13px}.strategy-rule small{color:var(--muted);line-height:1.4}@media(max-width:700px){.strategy-v2{grid-template-columns:1fr}.div-table{font-size:11px}}.deep-tag{font-size:10px;font-weight:900;padding:4px 7px;border-radius:999px;background:rgba(91,192,235,.12);color:#8bd8ff;margin-left:7px}.deep-extra{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);font-size:12px;line-height:1.5;color:#d9e0e8}.deep-extra b{color:var(--text)}.year-toggle{cursor:pointer}.month-ledger{display:none;margin-top:10px}.year-box.open .month-ledger{display:block}.month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.month-item,.monthly-card,.gloss-item{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:11px}.month-item b,.monthly-card b,.gloss-item b{display:block;margin-bottom:4px}.monthly-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.glossary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.miniwin{border-color:rgba(91,192,235,.30)!important}.miniwin .ach-value{color:#8bd8ff!important}@media(max-width:850px){.month-grid,.monthly-grid,.glossary{grid-template-columns:1fr 1fr}}@media(max-width:560px){.month-grid,.monthly-grid,.glossary{grid-template-columns:1fr}}
+.top-detail-card{padding:0!important}.top-detail-card>summary{list-style:none;cursor:pointer;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:12px}.top-detail-card>summary::-webkit-details-marker{display:none}.top-detail-card[open]{grid-column:1/-1}.top-detail-card[open] .top-chev{transform:rotate(180deg)}.top-chev{font-size:20px;transition:.2s}.top-detail-content{padding:0 18px 18px;border-top:1px solid rgba(255,255,255,.08);margin-top:2px}.top-detail-content h2{margin-top:18px}
+.score-strip{margin:0 0 14px;padding:12px 14px;background:var(--card2);border:1px solid var(--border);border-radius:12px}.score-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}.score-head span{font-weight:800;color:var(--green);font-size:16px}.score-strip .label{margin-top:7px}.strategy-rule .tick{font-size:11px}
+.score-strip{margin:0 0 14px;padding:12px 14px;background:var(--card2);border:1px solid var(--border);border-radius:12px}.score-head{display:flex;justify-content:space-between}.achievements{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}@media(max-width:900px){.achievements{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:600px){.achievements{grid-template-columns:1fr!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📊 XTB — Graham 2.0 Dashboard</h1>
+  <div class="sub">Stav k 10. 10. 2026 · cieľ: 300 000 € približne do 50 rokov · filozofiu nemeníme, iba dolaďujeme systém</div>
+
+  <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card">
+      <div class="label">Hodnota XTB</div><div class="metric">15 366 €</div>
+      <div class="good">▲ +20,8 % vs. čisté vklady</div>
+    </div>
+    <div class="card">
+      <div class="label">Zisk / rast kapitálu</div><div class="metric good">+2 649 €</div>
+      <div class="profit-mini">
+        <span class="mini-pill"><b>2025:</b> +258,52 € realizované</span>
+        <span class="mini-pill"><b>2026 YTD:</b> cashflow výpočet doplníme</span>
+      </div>
+    </div>
+    <details class="card top-detail-card"><summary><div><div class="label">Čisté vklady</div><div class="metric">12 717 €</div><div class="label">historické net contributions · klikni pre detail</div></div><span class="top-chev">⌄</span></summary><div class="top-detail-content"><h2>📥 Vklady a čistý vložený kapitál</h2><div class="div-grid" style="grid-template-columns:repeat(3,1fr)"><div class="div-stat"><div class="label">Vklady spolu</div><div class="big">12 805 €</div></div><div class="div-stat"><div class="label">Výbery / odpočty</div><div class="big">−88 €</div></div><div class="div-stat"><div class="label">Čisté vklady</div><div class="big good">12 717 €</div></div></div><div class="note-box"><b>Reconciliation:</b> 12 805 € vložených peňazí − 88 € výberov/odpočtov = <b>12 717 € čistý vložený kapitál</b>. Toto je základ, voči ktorému meriame rast hodnoty účtu.</div><div class="div-expand open"><button type="button" onclick="this.parentElement.classList.toggle('open')"><span>📋 História vkladov</span><span>⌄</span></button><div class="div-detail"><table class="div-table"><thead><tr><th>Dátum</th><th>Typ</th><th>Suma</th><th>Stav overenia</th></tr></thead><tbody><tr><td>07.10.2026</td><td><b>Vklad</b></td><td class="good"><b>+200 €</b></td><td>potvrdené zo snapshotu účtu</td></tr></tbody></table><div class="label" style="margin-top:9px">Súhrnné historické čísla 12 805 € / −88 € / 12 717 € máme reconciled. V dostupnom exportovanom podklade však nie sú všetky staršie jednotlivé cash-operácie s dátumami, preto ich sem nevymýšľame. Keď získame kompletný cash-operations ledger, tabuľku doplníme a použijeme ju aj na presný XIRR.</div></div></div></div></details>
+    <details class="card top-detail-card"><summary><div><div class="label">Dividendy — all time</div><div class="metric">269,51 €</div><div class="label">netto · hrubé 300,38 € · klikni pre detail</div></div><span class="top-chev">⌄</span></summary><div class="top-detail-content">
+      <h2>💸 Dividendy</h2>
+      <div class="div-grid" style="grid-template-columns:repeat(2,1fr)">
+        <div class="div-stat"><div class="label">All-time gross</div><div class="big">300,38 €</div></div>
+        <div class="div-stat"><div class="label">All-time net</div><div class="big good">269,51 €</div></div>
+        <div class="div-stat"><div class="label">Withholding tax</div><div class="big">−30,87 €</div></div>
+        <div class="div-stat"><div class="label">2025 net</div><div class="big">44,74 €</div></div>
+      </div>
+      <div class="note-box">Dividendy sledujeme oddelene od cenového zisku. Pri ďalšom exporte doplníme aj presný <b>2026 YTD</b> a graf rastu dividendového príjmu po rokoch.</div>
+    <div class="div-expand"><button type="button" onclick="this.parentElement.classList.toggle('open')"><span>📋 Pripísané dividendy podľa tickerov</span><span>⌄</span></button><div class="div-detail"><div class="label">Presný detail z dostupného XTB fiscal reportu 2025. Fragmentované pripísania v rovnaký deň sú zlúčené podľa tickeru.</div><table class="div-table"><thead><tr><th>Dátum</th><th>Ticker</th><th>Hrubá</th><th>Daň</th><th>Netto</th></tr></thead><tbody><tr><td>17.09.2025</td><td><b>EQIX</b></td><td>3,81 €</td><td>-1,15 €</td><td><b>2,66 €</b></td></tr><tr><td>30.09.2025</td><td><b>SPYD</b></td><td>2,11 €</td><td>0,00 €</td><td><b>2,11 €</b></td></tr><tr><td>01.10.2025</td><td><b>VGWD</b></td><td>11,62 €</td><td>0,00 €</td><td><b>11,62 €</b></td></tr><tr><td>05.12.2025</td><td><b>AGS</b></td><td>7,75 €</td><td>-2,33 €</td><td><b>5,42 €</b></td></tr><tr><td>22.12.2025</td><td><b>ADI</b></td><td>1,46 €</td><td>-0,44 €</td><td><b>1,02 €</b></td></tr><tr><td>31.12.2025</td><td><b>SPYD</b></td><td>7,26 €</td><td>0,00 €</td><td><b>7,26 €</b></td></tr><tr><td>31.12.2025</td><td><b>VGWD</b></td><td>14,65 €</td><td>0,00 €</td><td><b>14,65 €</b></td></tr></tbody><tfoot><tr><th colspan="2">2025 spolu</th><th>48,66 €</th><th>-3,92 €</th><th>44,74 €</th></tr></tfoot></table><div class="label" style="margin-top:9px">All-time netto je 269,51 €. Detail 2026 podľa jednotlivých pripísaní doplníme až z presného XTB cashflow/exportu — nič neodhadujeme.</div></div></div><div style="height:18px"></div>
+    <h2>🔎 Rozklikávacie mini-reporty pozícií</h2>
+    <div class="label">Klikni na ticker a zobrazí sa krátka správa: čo firma robí, prečo ju držíme, aktuálny status a čo sledujeme.</div>
+    <div class="pos-cards">
+
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">VGWD</div>
+          <div class="pos-role">ETF CORE</div>
+          <div class="pos-action action-core">CORE</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>88/100</span></div><div class="progress"><span style="width:88%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Globálne dividendové ETF; hlavná diverzifikačná poistka XTB.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Znižuje riziko stock-pickingu a drží portfólio široké.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP / CORE</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Sledujeme len váhu v portfóliu a či sa zbytočne neprekrýva s ďalšími ETF.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Nie je potrebné časovať; prikupovanie je vhodné hlavne pri nedostatku lepších individuálnych príležitostí.<div class="deep-extra"><span class="deep-tag">ETF CORE</span> Hlavná diverzifikačná poistka XTB a protiváha stock-pickingu. UCITS ETF, ISIN IE00B8GKDB10. Nečasujeme ho ako jednotlivú akciu; nové peniaze sem majú zmysel najmä vtedy, keď nemáme kvalitnejšiu individuálnu príležitosť s MOS.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">SPYD</div>
+          <div class="pos-role">ETF</div>
+          <div class="pos-action action-review">REVIEW</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>72/100</span></div><div class="progress"><span style="width:72%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">US dividendové ETF; dopĺňa income časť, ale má väčší overlap s VGWD.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Druhý ETF pilier, no jeho pridaná hodnota je menšia než pri VGWD.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>HOLD / REVIEW</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Otázka je, či ho dlhodobo potrebujeme vedľa VGWD; zatiaľ bez impulzívneho predaja.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Nové peniaze zatiaľ skôr nie, kým neurčíme jeho finálnu úlohu.<div class="deep-extra"><span class="deep-tag">STRATEGIC REVIEW</span> Druhý dividendový ETF pilier. Nie je problém kvalita samotného ETF, ale otázka pridanej hodnoty vedľa VGWD. <b>Záver:</b> HOLD / REVIEW; bez impulzívneho predaja a zatiaľ skôr bez nových peňazí.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">MSFT</div>
+          <div class="pos-role">CORE</div>
+          <div class="pos-action action-core">CORE</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>91/100</span></div><div class="progress"><span style="width:91%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Špičkový software/cloud/AI compounder s veľmi silným moat a cashflow.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Rastový motor portfólia; zároveň jedna z najväčších individuálnych pozícií.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Hlavné riziko je valuácia a koncentrácia, nie kvalita biznisu.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Prikupovať len pri atraktívnej cene; váhu už netlačiť agresívne vyššie.<div class="deep-extra"><span class="deep-tag">DEEP DATA</span> <b>Posledné overené výsledky:</b> Q4 FY2026 tržby $90,0 mld (+18 %), GAAP EPS $4,81 (+32 %), Azure +43 %, Microsoft Cloud $59,3 mld (+27 %), Q4 FCF $19,6 mld. FY2026 tržby $331,8 mld; FY EPS $17,95. <b>Valuačný kontext 12.8.2026:</b> cena $493,64, trailing P/E 27,49. <b>Riziko:</b> masívny AI/cloud capex (~$175 mld CY2026 guidance) a vysoké očakávania. Záver ostáva KEEP / CORE.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">ADI</div>
+          <div class="pos-role">CORE</div>
+          <div class="pos-action action-core">CORE</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>86/100</span></div><div class="progress"><span style="width:86%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Kvalitný analog semiconductor biznis s vysokými switching costs.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Tech expozícia, ale odlišná od klasických megacapov.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Cyklickosť polovodičov a vyššia valuácia v silných fázach cyklu.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Prikupovať na slabosti, ak fundament ostáva zdravý.<div class="deep-extra"><span class="deep-tag">RESULTS</span> <b>Posledný overený kontext:</b> Q2 FY2026 tržby $3,62 mld; Q3 guidance $3,9 mld ±$100 mil. a adj. EPS $3,30 ±$0,15. Dividenda 2026 $1,10/štvrťrok. <b>Riziko:</b> cyklickosť polovodičov a valuácia. <b>Záver:</b> KEEP / CORE, prikupovať skôr pri slabosti.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">SAN</div>
+          <div class="pos-role">CORE</div>
+          <div class="pos-action action-core">CORE</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>84/100</span></div><div class="progress"><span style="width:84%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Defenzívny healthcare biznis s veľkým cashflow a dividendou.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Znižuje cyklickosť a pridáva európsku expozíciu.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Pipeline, patentové expirácie a exekúcia nových produktov.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Dobrá kandidátka na prikupovanie pri valuácii s MOS.<div class="deep-extra"><span class="deep-tag">RESULTS</span> <b>Q2 2026:</b> tržby €11,597 mld (+16,0 % actual), business EPS €2,09 (+31,4 %), gross margin 81,2 %. Dupixent €5,15 mld (+38 %); 2026 guidance bola zvýšená. Trh po výsledkoch reagoval poklesom pre obavy z pipeline. <b>Záver:</b> KEEP / CORE; pipeline a patentové riziko ostávajú kľúčové.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">AIT</div>
+          <div class="pos-role">CORE</div>
+          <div class="pos-action action-core">CORE</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>82/100</span></div><div class="progress"><span style="width:82%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Industrial distributor/compounder s kvalitnou kapitálovou disciplínou.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Diverzifikuje mimo techu a financií.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Priemyselný cyklus a prípadné spomalenie firemných investícií.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Prikupovať skôr pri korekcii než naháňať rast.<div class="deep-extra"><span class="deep-tag">MINI REPORT</span> Nemáme uložený plnohodnotný aktuálny deep dive. Investičná téza ostáva: kvalitný priemyselný distributor/compounder, disciplinovaná alokácia kapitálu a dlhodobý rast; hlavné riziko je priemyselný cyklus a príliš vysoká nákupná cena.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">O</div>
+          <div class="pos-role">SATELLITE</div>
+          <div class="pos-action action-hold">HOLD</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>78/100</span></div><div class="progress"><span style="width:78%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Net-lease REIT s pravidelným dividendovým cashflow.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Pridáva real estate a income, ktoré ostatné pozície nemajú.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Úrokové sadzby, cost of capital a rast AFFO.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Atraktívnejšie pri vyššom yield-e / nižšej cene; nechceme prehnať REIT váhu.<div class="deep-extra"><span class="deep-tag">MINI REPORT</span> Net-lease REIT a income prvok portfólia. Sledujeme AFFO, úrokové sadzby a cost of capital. Posledný nákup 7.10.2026 znížil priemernú nákupnú cenu približne z $61,28 na $58,87. <b>Záver:</b> KEEP; nepreháňať váhu REIT.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">ELE</div>
+          <div class="pos-role">SATELLITE</div>
+          <div class="pos-action action-hold">HOLD</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>80/100</span></div><div class="progress"><span style="width:80%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Španielska utility s regulovanými aktívami, FCF a dividendou.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Defenzívny income prvok portfólia.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Regulácia, capex, dlh a vplyv majoritného akcionára Enel.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Po H1 2026 bez dôvodu na exit; nové peniaze až po lepšej valuácii.<div class="deep-extra"><span class="deep-tag">DEEP DIVE</span> <b>H1 2026:</b> čistý zisk €1,470 mld (+41 %), EBITDA €3,240 mld (+20 %), cash flow €2,3 mld, čistý dlh €10,3 mld, net debt/EBITDA 1,6×. 2026 profit guidance zvýšená nad €2,4 mld. <b>Portfólio:</b> defenzívny income, ale ďalšie nákupy zvyšujú Spain/regulatory koncentráciu. <b>Záver:</b> KEEP; nové peniaze až pri lepšej valuácii.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">WM</div>
+          <div class="pos-role">CORE</div>
+          <div class="pos-action action-core">CORE</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>89/100</span></div><div class="progress"><span style="width:89%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Waste management s vysokými bariérami vstupu a opakujúcim sa cashflow.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Jeden z najdefenzívnejších biznisov v portfóliu.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP / CORE</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Najväčší problém býva cena — kvalitný biznis sa často obchoduje draho.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Silný kandidát na prikupovanie pri poklese valuácie.<div class="deep-extra"><span class="deep-tag">DEEP DATA</span> <b>Q2 2026:</b> tržby $6,684 mld, EBITDA $2,03 mld, marža 30,4 %, FCF $1,10 mld (+34,5 %). FY2026 guidance: adj. EBITDA $8,15–8,25 mld a FCF $3,75–3,85 mld. <b>Valuačný kontext 12.8.2026:</b> $227,19 a trailing P/E 32,18. Biznis je výnimočne defenzívny; hlavný problém je cena, nie kvalita.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">AGS</div>
+          <div class="pos-role">SATELLITE</div>
+          <div class="pos-action action-hold">HOLD</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>81/100</span></div><div class="progress"><span style="width:81%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Poisťovňa s diverzifikovaným Life/Non-Life biznisom a silnou kapitálovou pozíciou.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Pridáva insurance expozíciu odlišnú od bankovníctva.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Solvency II, catastrophe losses, UK integrácia a Asian JV cash remittances.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Po H1 2026 bez dôvodu na exit; zatiaľ no-add, kým nedokončíme valuáciu.<div class="deep-extra"><span class="deep-tag">DEEP DIVE</span> <b>H1 2026:</b> inflows €12,1 mld (+17 %), net operating result €776 mil. (+6 %), ROE 15,8 %, operational capital generation €1,1 mld, operational FCG €484 mil., Solvency II 195 %. 2026 upstream cash >€1,4 mld; interim dividenda €1,50 gross. <b>Riziká:</b> catastrophe losses, UK integrácia, capital requirements a Asian JV remittances. <b>Záver:</b> KEEP / satellite; no-add do dokončenia valuácie.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">NDA</div>
+          <div class="pos-role">SATELLITE</div>
+          <div class="pos-action action-hold">HOLD</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>80/100</span></div><div class="progress"><span style="width:80%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Veľká severská banka s dobrou kapitálovou pozíciou a dividendou.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Finančný sektor + severná Európa.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Úrokový cyklus, credit losses a tlak na NIM.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Držať; prikupovať len pri rozumnej valuácii a bez zvyšovania financials nad plán.<div class="deep-extra"><span class="deep-tag">RESULTS</span> <b>Q2/H1 2026:</b> ROE 15,9 %, H1 EPS €0,73 (+4 %), operačný zisk €1,6 mld, AuM rekordných €505 mld, CET1 15,7 %, loan losses 6 bp. Mid-year dividend €0,34/akcia. <b>Záver:</b> kvalitný income satellite; sledujeme NIM, sadzby a credit losses.</div></div>
+        </div>
+      </div>
+    
+      <div class="pos-card">
+        <button class="pos-head" type="button">
+          <div class="pos-ticker">V</div>
+          <div class="pos-role">SATELLITE</div>
+          <div class="pos-action action-hold">HOLD</div>
+          <div class="chev">⌄</div>
+        </button>
+        <div class="pos-body"><div class="score-strip"><div class="score-head"><b>Graham 2.0 skóre</b><span>88/100</span></div><div class="progress"><span style="width:88%"></span></div><div class="label">Pracovné skóre podľa aktuálne dostupnej analýzy; pri novom deep dive ho prepočítame cez 12 modulov.</div></div>
+          <div class="pos-summary">Asset-light globálna platobná sieť s extrémne silným moat.</div>
+          <div class="pos-report-grid">
+            <div class="pos-report-box"><div class="rtitle">Úloha v portfóliu</div><div class="rtext">Quality growth doplnok portfólia.</div></div>
+            <div class="pos-report-box"><div class="rtitle">Aktuálna evaluácia</div><div class="rtext"><b>KEEP</b></div></div>
+            <div class="pos-report-box"><div class="rtitle">Čo sledujeme</div><div class="rtext">Valuácia, regulácia poplatkov a nové payment rails.</div></div>
+          </div>
+          <div class="note-box"><b>Nákupný pohľad:</b> Budovať len pri výrazne lepšom MOS; nemusí byť veľká pozícia.<div class="deep-extra"><span class="deep-tag">DEEP DIVE — INCOMPLETE</span> Máme rozpracovaný deep dive, ale nie všetky finančné a valuačné polia boli spoľahlivo overené. Téza: asset-light globálna platobná sieť s veľmi silným moat. Kľúčové riziká: valuácia, regulácia interchange/poplatkov a alternatívne payment rails. <b>Záver:</b> KEEP; budovať iba s lepším MOS.</div></div>
+        </div>
+      </div>
+    
+    </div>
+  </div></details>
+    <div class="card">
+      <div class="label">Cash</div><div class="metric">453 €</div>
+      <div class="info">2,95 % portfólia</div>
+    </div>
+    <details class="card top-detail-card"><summary><div><div class="label">Pozície</div><div class="metric">12</div><div class="label">2 ETF + 10 akcií · klikni pre detail</div></div><span class="top-chev">⌄</span></summary><div class="top-detail-content">
+      <h2>🏢 Pozície — veľkosť a koncentrácia</h2>
+    <div class="label">Graf ukazuje relatívnu veľkosť každej pozície; tabuľka presnú hodnotu a váhu.</div>
+    <div class="pos-grid">
+      <div class="pos-list">
+        <div class="pos-row"><div class="pos-name">VGWD</div><div class="bar"><span style="width:87.69%"></span></div><div class="pos-val"><b>39.9%</b> · 6 125 €</div></div>
+        <div class="pos-row"><div class="pos-name">SPYD</div><div class="bar"><span style="width:32.88%"></span></div><div class="pos-val"><b>14.9%</b> · 2 296 €</div></div>
+        <div class="pos-row"><div class="pos-name">MSFT</div><div class="bar"><span style="width:23.87%"></span></div><div class="pos-val"><b>10.8%</b> · 1 667 €</div></div>
+        <div class="pos-row"><div class="pos-name">ADI</div><div class="bar"><span style="width:13.04%"></span></div><div class="pos-val"><b>5.9%</b> · 911 €</div></div>
+        <div class="pos-row"><div class="pos-name">SAN</div><div class="bar"><span style="width:12.72%"></span></div><div class="pos-val"><b>5.8%</b> · 888 €</div></div>
+        <div class="pos-row"><div class="pos-name">AIT</div><div class="bar"><span style="width:11.33%"></span></div><div class="pos-val"><b>5.2%</b> · 791 €</div></div>
+        <div class="pos-row"><div class="pos-name">O</div><div class="bar"><span style="width:7.70%"></span></div><div class="pos-val"><b>3.5%</b> · 538 €</div></div>
+        <div class="pos-row"><div class="pos-name">ELE</div><div class="bar"><span style="width:5.73%"></span></div><div class="pos-val"><b>2.6%</b> · 400 €</div></div>
+        <div class="pos-row"><div class="pos-name">WM</div><div class="bar"><span style="width:5.69%"></span></div><div class="pos-val"><b>2.6%</b> · 398 €</div></div>
+        <div class="pos-row"><div class="pos-name">AGS</div><div class="bar"><span style="width:5.29%"></span></div><div class="pos-val"><b>2.4%</b> · 370 €</div></div>
+        <div class="pos-row"><div class="pos-name">NDA</div><div class="bar"><span style="width:5.20%"></span></div><div class="pos-val"><b>2.4%</b> · 363 €</div></div>
+        <div class="pos-row"><div class="pos-name">V</div><div class="bar"><span style="width:2.36%"></span></div><div class="pos-val"><b>1.1%</b> · 165 €</div></div>
+      </div>
+      <div>
+        <table class="position-table">
+          <thead><tr><th>Ticker</th><th>Rola</th><th>Hodnota</th><th>Váha</th></tr></thead>
+          <tbody>
+            <tr><td><b>VGWD</b></td><td>ETF CORE</td><td>6 124.68 €</td><td>39.86%</td></tr><tr><td><b>SPYD</b></td><td>ETF</td><td>2 296.38 €</td><td>14.94%</td></tr><tr><td><b>MSFT</b></td><td>CORE</td><td>1 667.22 €</td><td>10.85%</td></tr><tr><td><b>ADI</b></td><td>CORE</td><td>910.73 €</td><td>5.93%</td></tr><tr><td><b>SAN</b></td><td>CORE</td><td>888.40 €</td><td>5.78%</td></tr><tr><td><b>AIT</b></td><td>CORE</td><td>791.48 €</td><td>5.15%</td></tr><tr><td><b>O</b></td><td>SATELLITE</td><td>538.01 €</td><td>3.50%</td></tr><tr><td><b>ELE</b></td><td>SATELLITE</td><td>400.41 €</td><td>2.61%</td></tr><tr><td><b>WM</b></td><td>CORE</td><td>397.63 €</td><td>2.59%</td></tr><tr><td><b>AGS</b></td><td>SATELLITE</td><td>369.71 €</td><td>2.41%</td></tr><tr><td><b>NDA</b></td><td>SATELLITE</td><td>363.18 €</td><td>2.36%</td></tr><tr><td><b>V</b></td><td>SATELLITE</td><td>164.81 €</td><td>1.07%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div></details>
+  </div>
+
+  <div class="section">
+    <div class="card">
+      <h2>🎯 Progress</h2>
+      <div class="label">Prvý míľnik — 20 000 €</div>
+      <div class="progress"><span style="width:76.83%"></span></div>
+      <div class="kpis"><span>15 366 €</span><span>76,8 %</span><span>20 000 €</span></div>
+      <div style="height:16px"></div>
+      <div class="label">Hlavný cieľ — 300 000 €</div>
+      <div class="progress"><span style="width:5.12%"></span></div>
+      <div class="kpis"><span>15 366 €</span><span>5,1 %</span><span>300 000 €</span></div>
+    </div>
+
+    
+  </div>
+
+
+
+  <div class="section">
+    <div class="card"><h2>📅 Zisk podľa rokov</h2><div class="label">Klikni na rok. Rozlišujeme realizovaný P/L, hodnotu účtu a vklady — preto nevymýšľame mesačný „výnos“, ak nemáme reconciled cashflow.</div><div class="year-box"><div class="year-row year-toggle" onclick="this.parentElement.classList.toggle('open')"><div class="year-label">2025 ▾</div><div class="bar"><span style="width:32%"></span></div><div class="year-value"><b class="good">+258,52 €</b> realizované P/L</div></div><div class="month-ledger"><div class="month-grid"><div class="month-item"><b>Sep 2025</b>Máme dividendové pripísania vrátane EQIX a SPYD; presný mesačný trading P/L nie je v dostupnom reporte oddelený.</div><div class="month-item"><b>Okt 2025</b>VGWD dividendové pripísania; mesačný P/L zatiaľ bez presnej reconciliation.</div><div class="month-item"><b>Dec 2025</b>AGS, ADI, SPYD a VGWD dividendy. Celý rok: realizované P/L +258,52 €; netto dividendy 44,74 €.</div></div></div></div><div class="year-box" style="margin-top:8px"><div class="year-row year-toggle" onclick="this.parentElement.classList.toggle('open')"><div class="year-label">2026 YTD ▾</div><div class="bar"><span style="width:0%"></span></div><div class="year-value"><b class="warn">reconciliation pending</b></div></div><div class="month-ledger"><div class="month-grid"><div class="month-item"><b>Jan</b>XTB približne 7,7k € — starší zachytený snapshot.</div><div class="month-item"><b>Jul</b>XTB približne 14k € — rast účtu zahŕňa aj vklady.</div><div class="month-item"><b>Sep</b>29.9. snapshot 14 588,77 €.</div><div class="month-item"><b>Okt</b>1.10. 14 665,04 € → 10.10. 15 366,11 €. Časť zmeny tvoria vklady/nákupy, nie čistý market return.</div></div></div></div><div class="note-box">Kumulatívne je účet približne <b>+2 649 € / +20,8 %</b> nad čistými vkladmi. Presný mesačný zisk budeme dopĺňať iba z reconciled XTB cashflow, aby sme nemiešali výnos s novými vkladmi.</div></div>
+  </div>
+
+  
+
+
+  
+
+  <div class="section card"><h2>🗓️ Mesačný denník portfólia</h2><div class="label">Krátka história toho, ako sa portfólio vyvíjalo. Kde nemáme presné dáta, radšej to označíme než dopočítame.</div><div class="monthly-grid"><div class="monthly-card"><b>Január 2026</b><span class="good">≈ 7,7k € XTB</span><br><small>Skoršia fáza budovania; portfólio bolo približne polovičné oproti dnešku.</small></div><div class="monthly-card"><b>Júl 2026</b><span class="good">≈ 14k € XTB</span><br><small>Výrazný posun kapitálu; už sa formuje dnešná Graham 2.0 zostava.</small></div><div class="monthly-card"><b>August 2026</b><span>Výsledková sezóna</span><br><small>MSFT, WM, Endesa, Sanofi, Nordea a ADI priniesli nové fundamentálne dáta; dôraz sa presúva na kvalitu + valuáciu.</small></div><div class="monthly-card"><b>September 2026</b><span class="good">14 588,77 €</span><br><small>29.9. zachytený snapshot. Portfólio už je blízko dnešnej štruktúre.</small></div><div class="monthly-card"><b>Október 2026</b><span class="good">15 366,11 €</span><br><small>7.10. prikúpené O ~175 € a SAN ~150 €. Cash po nákupoch 453,47 €. Graham 2.0 sa formalizuje do pevného procesu.</small></div><div class="monthly-card"><b>Ďalšie mesiace</b><span class="warn">doplníme</span><br><small>Budeme ukladať month-end value, vklady, dividendy, P/L, nákupy/predaje a 2–3 vety „čo sa stalo“.</small></div></div></div><div class="section card timeline-card">
+    <h2>🛣️ Časová os — odkiaľ ideme, kde sme, kam smerujeme</h2>
+    <div class="label">Nie je to predikcia trhu. Je to mapa nášho investičného plánu a míľnikov.</div>
+
+    <div class="timeline">
+      <div class="timeline-grid">
+        <div class="tnode past">
+          <div class="tyear">2025</div>
+          <div class="tdot"></div>
+          <div class="tvalue">Začiatky</div>
+          <div class="tdesc">EIC autopilot + prvé experimenty s XTB.</div>
+        </div>
+
+        <div class="tnode done">
+          <div class="tyear">2026</div>
+          <div class="tdot"></div>
+          <div class="tvalue">Graham 2.0</div>
+          <div class="tdesc">XTB ≈ 15,4k €, systém sa mení z experimentu na vedomé portfólio.</div>
+        </div>
+
+        <div class="tnode now">
+          <div class="tyear">TERAZ</div>
+          <div class="tdot"></div>
+          <div class="tvalue">10. 10. 2026</div>
+          <div class="tdesc">15 366 € · +20,8 % vs. čisté vklady · dolaďujeme proces, nie filozofiu.</div>
+        </div>
+
+        <div class="tnode future">
+          <div class="tyear">≈ 2027</div>
+          <div class="tdot"></div>
+          <div class="tvalue">20 000 €</div>
+          <div class="tdesc">Prvý veľký míľnik. Dnes sme na 76,8 %.</div>
+        </div>
+
+        <div class="tnode future">
+          <div class="tyear">≈ 2040</div>
+          <div class="tdot"></div>
+          <div class="tvalue">300 000 €</div>
+          <div class="tdesc">Cieľ približne do 50 rokov pri dostatočných vkladoch a dlhodobom compoundingu.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="milestones" id="milestones">
+      <div class="milestone done" data-title="Začiatok investovania" data-text="Z autopilotu cez EIC si sa postupne dostal k tomu, že dnes už vieš vysvetliť, prečo konkrétnu firmu vlastníš, čo od nej čakáš a kedy ju nechceš kupovať.">
+        <div class="label">Úspech 1</div><div class="mval">START</div><div class="mname">Začal s 366,11 €</span><br><small>7.10. prikúpené O ~175 € a SAN ~150 €. Cash po nákupoch 453,47 €. Graham 2.0 sa formalizuje do pevného procesu.</small></div><div class="monthly-card"><b>Ďalšie mesiace</b><span class="warn">doplníme</span><br><small>Budeme ukladať month-end value, vklady, dividendy, P/L, nákupy/predaje a 2–3 vety „čo sa stalo“.</small></div></div></div>
+
+  <div class="section card">
+    <h2>🧭 Aktuálny smer portfólia</h2>
+    <div class="strategy">
+      <div>
+        <div class="label">CORE</div>
+        <span class="tag core">VGWD</span><span class="tag core">MSFT</span><span class="tag core">ADI</span>
+        <span class="tag core">AIT</span><span class="tag core">WM</span><span class="tag core">SAN</span>
+      </div>
+      <div>
+        <div class="label">SATELLITE / KEEP</div>
+        <span class="tag sat">O</span><span class="tag sat">V</span><span class="tag sat">NDA</span>
+        <span class="tag sat">AGS</span><span class="tag sat">ELE</span>
+      </div>
+      <div>
+        <div class="label">REVIEW</div>
+        <span class="tag review">SPYD</span>
+        <div class="label" style="margin-top:8px">Nič nepredávame len preto, aby bolo portfólio „čistejšie“.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section card"><h2>📜 Current Strategy — Graham 2.0 · rev. 2.1</h2><div class="label">Rev. 2.1 · október 2026. Smer: systematické hodnotenie kvality, normalizovaných ziskov, ceny a portfolio-fit.</div><div class="note-box"><b>Pipeline:</b> reportované čísla → Earnings Quality → normalizovaný zisk/FCF → valuácia → MOS → Portfolio Fit → Investment Checklist → BUY / HOLD / WAIT.</div><h3>12 modulov metodiky</h3><div class="strategy-v2"><div class="strategy-rule"><div class="tick">1</div><div><b>🧠 Rozumiem biznisu</b></div></div><div class="strategy-rule"><div class="tick">2</div><div><b>🏰 Kvalita biznisu & Moat</b></div></div><div class="strategy-rule"><div class="tick">3</div><div><b>🏦 Finančné zdravie</b></div></div><div class="strategy-rule"><div class="tick">4</div><div><b>💵 Cash Flow & tvorba hodnoty</b></div></div><div class="strategy-rule"><div class="tick">5</div><div><b>💰 Dividenda & bezpečnosť</b></div></div><div class="strategy-rule"><div class="tick">6</div><div><b>👔 Manažment & kapitálová disciplína</b></div></div><div class="strategy-rule"><div class="tick">7</div><div><b>📈 Dlhodobý rast</b></div></div><div class="strategy-rule"><div class="tick">8</div><div><b>🧮 Valuácia & Margin of Safety</b></div></div><div class="strategy-rule"><div class="tick">9</div><div><b>⚠️ Riziká & odolnosť</b></div></div><div class="strategy-rule"><div class="tick">10</div><div><b>🧩 Portfolio Fit</b></div></div><div class="strategy-rule"><div class="tick">11</div><div><b>✅ Investment Checklist</b></div></div><div class="strategy-rule"><div class="tick">12</div><div><b>🔎 Kvalita ziskov — Earnings Quality</b></div></div></div><div class="note-box"><b>Skóre ostáva 100/100.</b> Váhy medzi 12 modulov ešte skalibrujeme v rev. 2.2.</div></div><div class="section card">
+    <h2>🏆 Achievement System v2 · Small Wins → Main Quest</h2>
+    <div class="label">Odomknuté úspechy, najbližšie ciele a dlhodobé questy v jednom systéme. Small wins majú motivovať disciplínu, nie naháňanie výnosu.</div>
+
+    <div class="achievements"><div class="achievement done miniwin"><div class="ach-badge">MINI WIN ✓</div><div class="ach-icon">🏆</div><div class="ach-title">60 % CLUB · prvý člen</div><div class="ach-value">ELE +60,23 %</div><div class="ach-desc">Endesa · otvorený zisk +150,51 € · hodnota pozície 400,41 €.</div></div><div class="achievement done miniwin"><div class="ach-badge">MINI WIN ✓</div><div class="ach-icon">⚡</div><div class="ach-title">50 % CLUB · druhý člen</div><div class="ach-value">ADI +55,50 %</div><div class="ach-desc">Analog Devices · otvorený zisk +325,07 € · hodnota pozície 910,73 €.</div></div><div class="achievement done miniwin"><div class="ach-badge">MINI WIN ✓</div><div class="ach-icon">💶</div><div class="ach-title">Najväčší otvorený zisk</div><div class="ach-value">VGWD +772,70 €</div><div class="ach-desc">Najvyšší absolútny otvorený zisk zo súčasných pozícií; +14,44 %.</div></div><div class="achievement done miniwin"><div class="ach-badge">MINI WIN ✓</div><div class="ach-icon">🧠</div><div class="ach-title">Microsoft compounder</div><div class="ach-value">MSFT +35,94 %</div><div class="ach-desc">Otvorený zisk +440,78 € · hodnota pozície 1 667,22 €.</div></div><div class="achievement done miniwin"><div class="ach-badge">MINI WIN ✓</div><div class="ach-icon">🏭</div><div class="ach-title">Priemyselný compounder</div><div class="ach-value">AIT +33,67 %</div><div class="ach-desc">Otvorený zisk +199,38 € · hodnota pozície 791,48 €.</div></div><div class="achievement done miniwin"><div class="ach-badge">MINI WIN ✓</div><div class="ach-icon">🛡️</div><div class="ach-title">Ageas v zelenom</div><div class="ach-value">AGS +23,24 %</div><div class="ach-desc">Otvorený zisk +69,71 €.</div></div><div class="achievement done miniwin"><div class="ach-badge">MINI WIN ✓</div><div class="ach-icon">🏦</div><div class="ach-title">Nordea v zelenom</div><div class="ach-value">NDA +21,02 %</div><div class="ach-desc">Otvorený zisk +63,07 €.</div></div><div class="achievement done miniwin"><div class="ach-badge">MINI WIN ✓</div><div class="ach-icon">🌍</div><div class="ach-title">CORE ETF rastie</div><div class="ach-value">VGWD +14,44 %</div><div class="ach-desc">Hlavný diverzifikačný pilier je zároveň najväčším absolútnym winnerom.</div></div><div class="achievement done miniwin"><div class="ach-badge">MINI WIN ✓</div><div class="ach-icon">📈</div><div class="ach-title">Druhé ETF v pluse</div><div class="ach-value">SPYD +8,89 %</div><div class="ach-desc">Otvorený zisk +187,53 €.</div></div><div class="achievement done miniwin"><div class="ach-badge">MINI WIN ✓</div><div class="ach-icon">💸</div><div class="ach-title">Dividendový rekord 2025</div><div class="ach-value">December · 28,35 €</div><div class="ach-desc">Najvyšší doložený mesačný súčet netto dividend za 2025: AGS, ADI, SPYD a VGWD.</div></div><div class="achievement locked"><div class="ach-badge">LOCKED</div><div class="ach-icon">🔓</div><div class="ach-title">70 % CLUB</div><div class="ach-value">Čaká na víťaza</div><div class="ach-desc">Prvá pozícia, ktorá dosiahne +70 % otvoreného zhodnotenia.</div></div><div class="achievement locked"><div class="ach-badge">LOCKED</div><div class="ach-icon">💯</div><div class="ach-title">100 % CLUB</div><div class="ach-value">Double bagger</div><div class="ach-desc">Prvá pozícia s +100 % otvoreným zhodnotením.</div></div><div class="achievement locked"><div class="ach-badge">LOCKED</div><div class="ach-icon">🏅</div><div class="ach-title">Zisk 1 000 € na pozícii</div><div class="ach-value">1 000 €</div><div class="ach-desc">Prvá pozícia s otvoreným ziskom aspoň 1 000 €.</div></div><div class="achievement locked"><div class="ach-badge">LOCKED</div><div class="ach-icon">💵</div><div class="ach-title">100 € dividend za mesiac</div><div class="ach-value">100 € netto</div><div class="ach-desc">Prvý kalendárny mesiac s aspoň 100 € čistých dividend.</div></div><div class="achievement locked"><div class="ach-badge">LOCKED</div><div class="ach-icon">📅</div><div class="ach-title">500 € dividend za rok</div><div class="ach-value">500 € netto</div><div class="ach-desc">Prvý kalendárny rok s 500 € čistých dividend.</div></div><div class="achievement locked"><div class="ach-badge">LOCKED</div><div class="ach-icon">🏦</div><div class="ach-title">Akcia nad 2 000 €</div><div class="ach-value">2 000 €</div><div class="ach-desc">Prvá individuálna akciová pozícia s hodnotou nad 2 000 €.</div></div>
+      <div class="achievement done">
+        <div class="ach-badge">UNLOCKED ✓</div>
+        <div class="ach-icon">🚀</div>
+        <div class="ach-title">Prvé päťciferné portfólio</div>
+        <div class="ach-value">10 000 €+</div>
+        <div class="ach-desc">XTB prestalo byť experimentom a stalo sa riálnou časťou majetku.</div>
+      </div>
+
+      <div class="achievement done">
+        <div class="ach-badge">UNLOCKED ✓</div>
+        <div class="ach-icon">📈</div>
+        <div class="ach-title">Portfólio nad 15k</div>
+        <div class="ach-value">15 366 €</div>
+        <div class="ach-desc">Ďalší kapitálový level splnený; 20k je už na dohľad.</div>
+      </div>
+
+      <div class="achievement done">
+        <div class="ach-badge">UNLOCKED ✓</div>
+        <div class="ach-icon">💚</div>
+        <div class="ach-title">+20 % nad čistými vkladmi</div>
+        <div class="ach-value">+20,8 %</div>
+        <div class="ach-desc">Účet je dnes približne o 2,65k € vyššie než čisté vložené peniaze.</div>
+      </div>
+
+      <div class="achievement done">
+        <div class="ach-badge">UNLOCKED ✓</div>
+        <div class="ach-icon">💶</div>
+        <div class="ach-title">Prvých 250 € čistých dividend</div>
+        <div class="ach-value">269,51 €</div>
+        <div class="ach-desc">Dividendový cashflow už nie je symbolický — prekonal prvých 250 € netto.</div>
+      </div>
+
+      <div class="achievement done">
+        <div class="ach-badge">UNLOCKED ✓</div>
+        <div class="ach-icon">🧱</div>
+        <div class="ach-title">ETF core nad 5k</div>
+        <div class="ach-value">VGWD 6,1k €</div>
+        <div class="ach-desc">Vybudoval si robustnú diverzifikačnú poistku proti chybám stock-pickingu.</div>
+      </div>
+
+      <div class="achievement done">
+        <div class="ach-badge">UNLOCKED ✓</div>
+        <div class="ach-icon">⭐</div>
+        <div class="ach-title">Prvá individuálna pozícia nad 1k</div>
+        <div class="ach-value">MSFT 1,67k €</div>
+        <div class="ach-desc">Prvý stock pick už má významnú váhu a musí prejsť position-sizing disciplínou.</div>
+      </div>
+
+      <div class="achievement done">
+        <div class="ach-badge">UNLOCKED ✓</div>
+        <div class="ach-icon">🧠</div>
+        <div class="ach-title">Graham 2.0 systém</div>
+        <div class="ach-value">Proces > tipy</div>
+        <div class="ach-desc">Už neriešiš len „čo kúpiť“, ale kvalitu, moat, FCF, valuáciu, riziko a fit portfólia.</div>
+      </div>
+
+      <div class="achievement done">
+        <div class="ach-badge">UNLOCKED ✓</div>
+        <div class="ach-icon">🛡️</div>
+        <div class="ach-title">Cash buffer zavedený</div>
+        <div class="ach-value">~3 %</div>
+        <div class="ach-desc">Nemusíš investovať každé euro okamžite; máš priestor reagovať na príležitosti.</div>
+      </div>
+
+      <div class="achievement next">
+        <div class="ach-badge">NEXT</div>
+        <div class="ach-icon">🎯</div>
+        <div class="ach-title">Prvých 20 000 €</div>
+        <div class="ach-value">76,8 %</div>
+        <div class="ach-desc">Najbližší veľký kapitálový míľnik; chýba približne 4,6k €.</div>
+      </div>
+
+      <div class="achievement locked">
+        <div class="ach-badge">LOCKED</div>
+        <div class="ach-icon">💸</div>
+        <div class="ach-title">500 € netto dividend</div>
+        <div class="ach-value">500 €</div>
+        <div class="ach-desc">Ďalší income checkpoint — sledujeme ho bez naháňania yield-u.</div>
+      </div>
+
+      <div class="achievement locked">
+        <div class="ach-badge">LOCKED</div>
+        <div class="ach-icon">🏦</div>
+        <div class="ach-title">50 000 € portfólio</div>
+        <div class="ach-value">50k €</div>
+        <div class="ach-desc">Bod, kde už aj normálny trhový rok začne robiť citeľné tisíce eur.</div>
+      </div>
+
+      <div class="achievement locked">
+        <div class="ach-badge">LOCKED</div>
+        <div class="ach-icon">🏆</div>
+        <div class="ach-title">Prvých 100 000 €</div>
+        <div class="ach-value">100k €</div>
+        <div class="ach-desc">Najväčší psychologický checkpoint pred finálnou misiou 300k.</div></div>
+      <div class="achievement next"><div class="ach-badge">NEXT · 84,8 %</div><div class="ach-icon">🏦</div><div class="ach-title">15k čistých vkladov</div><div class="ach-value">12 717 / 15 000 €</div><div class="ach-desc">Chýba 2 283 €. Small win, ktorý ovládaš ty, nie trh.</div></div><div class="achievement next"><div class="ach-badge">NEXT · 77,3 %</div><div class="ach-icon">💶</div><div class="ach-title">Prvý +1 000 € winner</div><div class="ach-value">VGWD +772,70 €</div><div class="ach-desc">Chýba 227,30 € otvoreného zisku.</div></div><div class="achievement next"><div class="ach-badge">NEXT · 53,9 %</div><div class="ach-icon">💸</div><div class="ach-title">500 € lifetime dividend</div><div class="ach-value">269,51 / 500 €</div><div class="ach-desc">Chýba 230,49 € netto. Bez yield chasingu.</div></div><div class="achievement locked"><div class="ach-badge">COMMON</div><div class="ach-icon">🌱</div><div class="ach-title">Wealth checkpoints</div><div class="ach-value">25k · 30k · 50k · 75k</div><div class="ach-desc">Menšie kapitálové levely na ceste k 100k.</div></div><div class="achievement locked"><div class="ach-badge">RARE</div><div class="ach-icon">🔥</div><div class="ach-title">Profit Pays</div><div class="ach-value">+5 000 € nad vklady</div><div class="ach-desc">Portfólio je o 5k vyššie než čistý vložený kapitál.</div></div><div class="achievement locked"><div class="ach-badge">RARE</div><div class="ach-icon">🛡️</div><div class="ach-title">Survived the Storm</div><div class="ach-value">Korekcia bez paniky</div><div class="ach-desc">Prežiť výrazný pokles bez panického predaja.</div></div><div class="achievement locked"><div class="ach-badge">RARE</div><div class="ach-icon">🧠</div><div class="ach-title">First No</div><div class="ach-value">Analýza → nekúpiť</div><div class="ach-desc">Odmietnuť firmu, keď cena alebo portfolio-fit nedáva zmysel.</div></div><div class="achievement locked"><div class="ach-badge">RARE</div><div class="ach-icon">➕</div><div class="ach-title">Added, Not Collected</div><div class="ach-value">Quality > nový ticker</div><div class="ach-desc">Posilniť existujúci CORE namiesto zbierania tickerov.</div></div><div class="achievement locked"><div class="ach-badge">EPIC</div><div class="ach-icon">🎯</div><div class="ach-title">MOS Hunter</div><div class="ach-value">MOS 15 % · 25 % · 30 %</div><div class="ach-desc">Nákup podľa vopred stanovenej valuácie.</div></div><div class="achievement locked"><div class="ach-badge">LEGENDARY</div><div class="ach-icon">💎</div><div class="ach-title">Diamond Hands</div><div class="ach-value">1 · 3 · 5 · 10 rokov</div><div class="ach-desc">Čas v kvalitnom biznise pri zdravej téze.</div></div><div class="achievement locked"><div class="ach-badge">RARE</div><div class="ach-icon">💵</div><div class="ach-title">Dividend Machine</div><div class="ach-value">50 · 100 · 250 € / mes.</div><div class="ach-desc">Postupné mesačné dividendové rekordy.</div></div><div class="achievement locked"><div class="ach-badge">LEGENDARY</div><div class="ach-icon">🏰</div><div class="ach-title">Capital Fortress</div><div class="ach-value">200 000 €</div><div class="ach-desc">Compounding robí čoraz väčšiu časť práce.</div></div><div class="achievement locked"><div class="ach-badge">MAIN QUEST</div><div class="ach-icon">👑</div><div class="ach-title">Financial Freedom</div><div class="ach-value">300 000 €</div><div class="ach-desc">Hlavný cieľ Graham 2.0.</div></div></div>
+    </div>
+  </div>
+
+  <div class="section card">
+    <h2>✅ Interaktívny checklist</h2>
+    <div class="checklist" id="checklist">
+
+      <label class="item"><input type="checkbox" data-id="goal" checked>
+        <div><b>300 000 € do približne 50 rokov</b><small>Hlavný dlhodobý cieľ XTB.</small></div>
+        <span class="status done">HOTOVO</span></label>
+
+      <label class="item"><input type="checkbox" data-id="philosophy" checked>
+        <div><b>Graham 2.0 filozofia</b><small>Kvalita, moat, FCF, MOS, dlhodobé držanie; žiadne prekopávanie podľa screenshotov.</small></div>
+        <span class="status done">HOTOVO</span></label>
+
+      <label class="item"><input type="checkbox" data-id="vgwd" checked>
+        <div><b>VGWD = CORE ETF</b><small>Globálna diverzifikácia, dividendy a poistka proti human/AI erroru.</small></div>
+        <span class="status done">HOTOVO</span></label>
+
+      <label class="item"><input type="checkbox" data-id="cash" checked>
+        <div><b>Cash buffer ~3–5 %</b><small>Dnes ~453 € / 2,95 % — nemusíme ho nasilu minúť.</small></div>
+        <span class="status done">HOTOVO</span></label>
+
+      <label class="item"><input type="checkbox" data-id="ageas" checked>
+        <div><b>Ageas evaluácia</b><small>KEEP / satellite; zdravá kapitálová pozícia, bez dôvodu na exit.</small></div>
+        <span class="status done">HOTOVO</span></label>
+
+      <label class="item"><input type="checkbox" data-id="endesa" checked>
+        <div><b>Endesa evaluácia</b><small>KEEP / defensive income; silný FCF a leverage, bez dôvodu na exit.</small></div>
+        <span class="status done">HOTOVO</span></label>
+
+      <label class="item"><input type="checkbox" data-id="spyd">
+        <div><b>SPYD — definitívna úloha</b><small>Rozhodnúť KEEP vs. postupná redukcia vedľa VGWD.</small></div>
+        <span class="status todo">OTVORENÉ</span></label>
+
+      <label class="item"><input type="checkbox" data-id="weights">
+        <div><b>Cieľové váhy pozícií</b><small>Nastaviť max. váhu jednej firmy a CORE vs. satellite limity.</small></div>
+        <span class="status todo">OTVORENÉ</span></label>
+
+      <label class="item"><input type="checkbox" data-id="buyzones">
+        <div><b>Buy zones</b><small>Pre hlavné firmy nastaviť Fair Value / Buy / Buy on Dip / Strong Buy.</small></div>
+        <span class="status todo">OTVORENÉ</span></label>
+
+      <label class="item"><input type="checkbox" data-id="sellrules">
+        <div><b>Predajné pravidlá</b><small>Jasne spísať HOLD / REDUCE / EXIT trigger.</small></div>
+        <span class="status todo">OTVORENÉ</span></label>
+
+      <label class="item"><input type="checkbox" data-id="xirr">
+        <div><b>XIRR + benchmark</b><small>Zmerať anualizovaný výkon a porovnávať s relevantným benchmarkom.</small></div>
+        <span class="status todo">OTVORENÉ</span></label>
+
+      <label class="item"><input type="checkbox" data-id="capital">
+        <div><b>Zvýšiť priemerný mesačný kapitál</b><small>Najväčší bottleneck cieľa 300k; 150 €/mes. nestačí.</small></div>
+        <span class="status critical">PRIORITA</span></label>
+
+    </div>
+  </div>
+
+  <div class="section card">
+    <h2>🚦Stav systému</h2>
+    <div class="label">Portfólio je funkčné. Sme vo fáze <b style="color:var(--text)">optimalizácie procesu, nie prestavby stratégie.</b></div>
+    <div style="height:12px"></div>
+    <div class="progress"><span id="systemProgress" style="width:50%"></span></div>
+    <div class="kpis"><span>Checklist progress</span><span id="progressText">6 / 12</span></div>
+  </div>
+
+  <div class="footer">Pozn.: +20,8 % = rozdiel hodnoty účtu oproti čistým vkladom; nejde o anualizovaný výnos (XIRR). Checkboxes sa ukladajú lokálne v prehliadači.</div>
+</div>
+
+<div class="section card"><h2>📚 Slovník skratiek a pojmov</h2><div class="label">Rýchla pomôcka k výrazom, ktoré používame v Graham 2.0.</div><div class="glossary"><div class="gloss-item"><b>FCF</b>Free Cash Flow — hotovosť, ktorá firme zostane po prevádzke a potrebných investíciách.</div><div class="gloss-item"><b>FCF yield</b>FCF voči trhovej hodnote firmy; orientačne ukazuje, koľko cashflow kupujeme za cenu akcie.</div><div class="gloss-item"><b>Moat</b>Dlhodobá konkurenčná výhoda, ktorá chráni zisky firmy.</div><div class="gloss-item"><b>MOS</b>Margin of Safety — bezpečnostná rezerva medzi naším odhadom hodnoty a nákupnou cenou.</div><div class="gloss-item"><b>P/E</b>Price/Earnings — koľkonásobok ročného zisku platíme za akciu.</div><div class="gloss-item"><b>EPS</b>Earnings Per Share — zisk pripadajúci na jednu akciu.</div><div class="gloss-item"><b>ROE</b>Return on Equity — výnosnosť vlastného kapitálu.</div><div class="gloss-item"><b>EBITDA</b>Prevádzkový zisk pred úrokmi, daňami a odpismi; používame opatrne, lebo nie je cashflow.</div><div class="gloss-item"><b>AFFO</b>Adjusted Funds From Operations — dôležitá metrika cashflow pri REIT, napr. Realty Income.</div><div class="gloss-item"><b>NIM</b>Net Interest Margin — rozdiel medzi úrokmi, ktoré banka zarába a platí.</div><div class="gloss-item"><b>CET1</b>Najkvalitnejší bankový kapitál; ukazovateľ odolnosti banky.</div><div class="gloss-item"><b>Solvency II</b>Kapitálová primeranosť poisťovne voči regulatórnym požiadavkám.</div><div class="gloss-item"><b>DCF</b>Discounted Cash Flow — odhad hodnoty firmy zo súčasnej hodnoty budúcich cashflow.</div><div class="gloss-item"><b>DDM</b>Dividend Discount Model — valuácia cez súčasnú hodnotu budúcich dividend.</div><div class="gloss-item"><b>YTD</b>Year To Date — od začiatku aktuálneho roka po dnešok.</div><div class="gloss-item"><b>TTM</b>Trailing Twelve Months — posledných 12 mesiacov.</div><div class="gloss-item"><b>YoY / QoQ</b>Medziročná / medzikvartálna zmena.</div><div class="gloss-item"><b>CORE / SATELLITE</b>CORE = hlavné dlhodobé piliere; satellite = menšie doplnkové pozície.</div><div class="gloss-item"><b>UCITS</b>Európsky regulačný rámec fondov/ETF; relevantný pri výbere ETF pre európskeho investora.</div><div class="gloss-item"><b>XIRR</b>Ročný výnos účtu zohľadňujúci presné dátumy vkladov a výberov.</div><div class="gloss-item"><b>WHT</b>Withholding Tax — zrážková daň strhnutá pri výplate dividendy.</div></div></div><script>
+const boxes=[...document.querySelectorAll('input[type="checkbox"][data-id]')];
+boxes.forEach(b=>{
+  const saved=localStorage.getItem('xtb-'+b.dataset.id);
+  if(saved!==null) b.checked=saved==='1';
+  b.addEventListener('change',()=>{
+    localStorage.setItem('xtb-'+b.dataset.id,b.checked?'1':'0');
+    update();
+  });
+});
+function update(){
+  const done=boxes.filter(b=>b.checked).length;
+  const pct=Math.round(done/boxes.length*100);
+  document.getElementById('systemProgress').style.width=pct+'%';
+  document.getElementById('progressText').textContent=done+' / '+boxes.length+' ('+pct+' %)';
+}
+
+const milestones=[...document.querySelectorAll('.milestone')];
+const md=document.getElementById('milestoneDetail');
+milestones.forEach(m=>{
+  m.addEventListener('click',()=>{
+    milestones.forEach(x=>x.classList.remove('active'));
+    m.classList.add('active');
+    md.innerHTML='<b>'+m.dataset.title+'</b><br><span>'+m.dataset.text+'</span>';
+  });
+});
+
+
+document.querySelectorAll('.pos-card .pos-head').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const card=btn.closest('.pos-card');
+    card.classList.toggle('open');
+  });
+});
+
+update();
+</script>
+</body>
+</html>
