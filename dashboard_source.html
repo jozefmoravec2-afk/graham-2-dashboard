@@ -209,6 +209,8 @@ button.tnode:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .journal-table th{color:var(--muted)}.journal-ledger{margin-top:12px;border:1px solid var(--border);border-radius:10px}
 .journal-ledger>summary{padding:10px;cursor:pointer;font-weight:700;font-size:12px}
 @media(max-width:560px){.journal-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.position-single{grid-template-columns:minmax(0,1fr)}
 </style>
 </head>
 <body>
@@ -467,8 +469,8 @@ button.tnode:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
     </div>
     <details class="card top-detail-card"><summary><div><div class="label">Pozície</div><div class="metric">12</div><div class="label">2 ETF + 10 akcií · klikni pre detail</div></div><span class="top-chev">⌄</span></summary><div class="top-detail-content">
       <h2>🏢 Pozície — veľkosť a koncentrácia</h2>
-    <div class="label">Klikni na pozíciu v grafe alebo na ticker v tabuľke. Zobrazí sa Graham skóre a krátky prehľad firmy či ETF.</div>
-    <div class="pos-grid">
+    <div class="label">Klikni na pozíciu. Zobrazí sa Graham skóre a krátky prehľad firmy či ETF.</div>
+    <div class="pos-grid position-single">
       <div class="pos-list">
         <details class="position-expand" id="position-VGWD"><summary class="pos-row"><div class="pos-name">VGWD<span class="position-chevron" aria-hidden="true">⌄</span></div><div class="bar"><span style="width:87.69%"></span></div><div class="pos-val"><b>39.9%</b> · 6 125 €</div></summary><div class="position-overview"><div class="position-overview-head"><b>Vanguard · globálne dividendové ETF</b><span class="tag sat">ETF CORE</span></div><div class="position-score"><span>Graham 2.0</span><b>88/100</b></div><div class="progress"><span style="width:88%"></span></div><p>Globálne dividendové ETF; hlavná diverzifikačná poistka XTB.</p><p class="position-risk"><b>Čo sledujeme:</b> Sledujeme len váhu v portfóliu a či sa zbytočne neprekrýva s ďalšími ETF.</p><div class="label">Existujúce pracovné skóre; prehľad podľa poslednej uloženej analýzy.</div></div></details>
         <details class="position-expand" id="position-SPYD"><summary class="pos-row"><div class="pos-name">SPYD<span class="position-chevron" aria-hidden="true">⌄</span></div><div class="bar"><span style="width:32.88%"></span></div><div class="pos-val"><b>14.9%</b> · 2 296 €</div></summary><div class="position-overview"><div class="position-overview-head"><b>US dividendové ETF</b><span class="tag sat">ETF</span></div><div class="position-score"><span>Graham 2.0</span><b>72/100</b></div><div class="progress"><span style="width:72%"></span></div><p>US dividendové ETF; dopĺňa income časť, ale má väčší overlap s VGWD.</p><p class="position-risk"><b>Čo sledujeme:</b> Otázka je, či ho dlhodobo potrebujeme vedľa VGWD; zatiaľ bez impulzívneho predaja.</p><div class="label">Existujúce pracovné skóre; prehľad podľa poslednej uloženej analýzy.</div></div></details>
@@ -483,14 +485,7 @@ button.tnode:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
         <details class="position-expand" id="position-NDA"><summary class="pos-row"><div class="pos-name">NDA<span class="position-chevron" aria-hidden="true">⌄</span></div><div class="bar"><span style="width:5.20%"></span></div><div class="pos-val"><b>2.4%</b> · 363 €</div></summary><div class="position-overview"><div class="position-overview-head"><b>Nordea</b><span class="tag sat">SATELLITE</span></div><div class="position-score"><span>Graham 2.0</span><b>80/100</b></div><div class="progress"><span style="width:80%"></span></div><p>Veľká severská banka s dobrou kapitálovou pozíciou a dividendou.</p><p class="position-risk"><b>Čo sledujeme:</b> Úrokový cyklus, credit losses a tlak na NIM.</p><div class="label">Existujúce pracovné skóre; prehľad podľa poslednej uloženej analýzy.</div></div></details>
         <details class="position-expand" id="position-V"><summary class="pos-row"><div class="pos-name">V<span class="position-chevron" aria-hidden="true">⌄</span></div><div class="bar"><span style="width:2.36%"></span></div><div class="pos-val"><b>1.1%</b> · 165 €</div></summary><div class="position-overview"><div class="position-overview-head"><b>Visa</b><span class="tag sat">SATELLITE</span></div><div class="position-score"><span>Graham 2.0</span><b>88/100</b></div><div class="progress"><span style="width:88%"></span></div><p>Asset-light globálna platobná sieť s extrémne silným moat.</p><p class="position-risk"><b>Čo sledujeme:</b> Valuácia, regulácia poplatkov a nové payment rails.</p><div class="label">Existujúce pracovné skóre; prehľad podľa poslednej uloženej analýzy.</div></div></details>
       </div>
-      <div>
-        <table class="position-table">
-          <thead><tr><th>Ticker</th><th>Rola</th><th>Hodnota</th><th>Váha</th></tr></thead>
-          <tbody>
-            <tr><td><button class="position-table-toggle" type="button" data-position-target="VGWD" aria-controls="position-VGWD" aria-expanded="false">VGWD <span aria-hidden="true">⌄</span></button></td><td>ETF CORE</td><td>6 124.68 €</td><td>39.86%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="SPYD" aria-controls="position-SPYD" aria-expanded="false">SPYD <span aria-hidden="true">⌄</span></button></td><td>ETF</td><td>2 296.38 €</td><td>14.94%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="MSFT" aria-controls="position-MSFT" aria-expanded="false">MSFT <span aria-hidden="true">⌄</span></button></td><td>CORE</td><td>1 667.22 €</td><td>10.85%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="ADI" aria-controls="position-ADI" aria-expanded="false">ADI <span aria-hidden="true">⌄</span></button></td><td>CORE</td><td>910.73 €</td><td>5.93%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="SAN" aria-controls="position-SAN" aria-expanded="false">SAN <span aria-hidden="true">⌄</span></button></td><td>CORE</td><td>888.40 €</td><td>5.78%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="AIT" aria-controls="position-AIT" aria-expanded="false">AIT <span aria-hidden="true">⌄</span></button></td><td>CORE</td><td>791.48 €</td><td>5.15%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="O" aria-controls="position-O" aria-expanded="false">O <span aria-hidden="true">⌄</span></button></td><td>SATELLITE</td><td>538.01 €</td><td>3.50%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="ELE" aria-controls="position-ELE" aria-expanded="false">ELE <span aria-hidden="true">⌄</span></button></td><td>SATELLITE</td><td>400.41 €</td><td>2.61%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="WM" aria-controls="position-WM" aria-expanded="false">WM <span aria-hidden="true">⌄</span></button></td><td>CORE</td><td>397.63 €</td><td>2.59%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="AGS" aria-controls="position-AGS" aria-expanded="false">AGS <span aria-hidden="true">⌄</span></button></td><td>SATELLITE</td><td>369.71 €</td><td>2.41%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="NDA" aria-controls="position-NDA" aria-expanded="false">NDA <span aria-hidden="true">⌄</span></button></td><td>SATELLITE</td><td>363.18 €</td><td>2.36%</td></tr><tr><td><button class="position-table-toggle" type="button" data-position-target="V" aria-controls="position-V" aria-expanded="false">V <span aria-hidden="true">⌄</span></button></td><td>SATELLITE</td><td>164.81 €</td><td>1.07%</td></tr>
-          </tbody>
-        </table>
-      </div>
+
     </div>
   </div></details>
   </div>
@@ -905,15 +900,6 @@ document.querySelectorAll('[data-close-diary]').forEach(btn=>btn.addEventListene
   yearButtons.find(b=>b.dataset.diaryYear===btn.dataset.closeDiary).focus();
 }));
 
-const positionLinks=[...document.querySelectorAll('[data-position-target]')];
-positionLinks.forEach(btn=>btn.addEventListener('click',()=>{
- const detail=document.getElementById('position-'+btn.dataset.positionTarget);
- detail.open=!detail.open;
- if(detail.open){detail.scrollIntoView({behavior:'smooth',block:'nearest'});}
-}));
-document.querySelectorAll('.position-expand').forEach(detail=>detail.addEventListener('toggle',()=>{
- positionLinks.filter(btn=>'position-'+btn.dataset.positionTarget===detail.id).forEach(btn=>btn.setAttribute('aria-expanded',String(detail.open)));
-}));
 
 update();
 </script>
