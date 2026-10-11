@@ -160,6 +160,25 @@ border-radius:16px;padding:14px;min-height:132px;position:relative}
 .top-detail-card{padding:0!important}.top-detail-card>summary{list-style:none;cursor:pointer;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:12px}.top-detail-card>summary::-webkit-details-marker{display:none}.top-detail-card[open]{grid-column:1/-1}.top-detail-card[open] .top-chev{transform:rotate(180deg)}.top-chev{font-size:20px;transition:.2s}.top-detail-content{padding:0 18px 18px;border-top:1px solid rgba(255,255,255,.08);margin-top:2px}.top-detail-content h2{margin-top:18px}
 .score-strip{margin:0 0 14px;padding:12px 14px;background:var(--card2);border:1px solid var(--border);border-radius:12px}.score-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}.score-head span{font-weight:800;color:var(--green);font-size:16px}.score-strip .label{margin-top:7px}.strategy-rule .tick{font-size:11px}
 .score-strip{margin:0 0 14px;padding:12px 14px;background:var(--card2);border:1px solid var(--border);border-radius:12px}.score-head{display:flex;justify-content:space-between}.achievements{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}@media(max-width:900px){.achievements{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:600px){.achievements{grid-template-columns:1fr!important}}
+/* Denník pod časovou osou */
+button.tnode{font:inherit;background:transparent;border:0;padding:8px 4px;border-radius:12px;cursor:pointer}
+button.tnode:hover,button.tnode[aria-expanded="true"]{background:rgba(93,169,255,.08)}
+button.tnode:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.topen{display:block;font-size:11px;margin-top:8px;color:var(--blue)}
+.year-diary{margin-top:18px;padding:16px;background:var(--card2);border:1px solid var(--border);border-radius:14px}
+.year-diary[hidden]{display:none}
+.diary-heading{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}
+.diary-heading h3{margin:0;font-size:17px}
+.diary-close{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:8px;padding:7px 10px;cursor:pointer}
+.diary-months{display:grid;gap:8px}
+.diary-month{border:1px solid var(--border);border-radius:11px;background:var(--card);overflow:hidden}
+.diary-month summary{cursor:pointer;padding:12px;font-size:13px;font-weight:700}
+.diary-month summary span{font-weight:400;color:var(--muted);font-size:11px;margin-left:8px}
+.diary-month[open] summary{border-bottom:1px solid var(--border);color:var(--blue)}
+.diary-entry{padding:12px;font-size:13px;line-height:1.6}
+.diary-entry p{margin:0 0 8px}.diary-entry p:last-child{margin-bottom:0}
+.diary-entry .label{font-size:12px}
+
 </style>
 </head>
 <body>
@@ -472,25 +491,21 @@ border-radius:16px;padding:14px;min-height:132px;position:relative}
 
   
 
-  <div class="section card"><h2>🗓️ Mesačný denník portfólia</h2><div class="label">Krátka história toho, ako sa portfólio vyvíjalo. Kde nemáme presné dáta, radšej to označíme než dopočítame.</div><div class="monthly-grid"><div class="monthly-card"><b>Január 2026</b><span class="good">≈ 7,7k € XTB</span><br><small>Skoršia fáza budovania; portfólio bolo približne polovičné oproti dnešku.</small></div><div class="monthly-card"><b>Júl 2026</b><span class="good">≈ 14k € XTB</span><br><small>Výrazný posun kapitálu; už sa formuje dnešná Graham 2.0 zostava.</small></div><div class="monthly-card"><b>August 2026</b><span>Výsledková sezóna</span><br><small>MSFT, WM, Endesa, Sanofi, Nordea a ADI priniesli nové fundamentálne dáta; dôraz sa presúva na kvalitu + valuáciu.</small></div><div class="monthly-card"><b>September 2026</b><span class="good">14 588,77 €</span><br><small>29.9. zachytený snapshot. Portfólio už je blízko dnešnej štruktúre.</small></div><div class="monthly-card"><b>Október 2026</b><span class="good">15 366,11 €</span><br><small>7.10. prikúpené O ~175 € a SAN ~150 €. Cash po nákupoch 453,47 €. Graham 2.0 sa formalizuje do pevného procesu.</small></div><div class="monthly-card"><b>Ďalšie mesiace</b><span class="warn">doplníme</span><br><small>Budeme ukladať month-end value, vklady, dividendy, P/L, nákupy/predaje a 2–3 vety „čo sa stalo“.</small></div></div></div><div class="section card timeline-card">
+  <div class="section card timeline-card">
     <h2>🛣️ Časová os — odkiaľ ideme, kde sme, kam smerujeme</h2>
     <div class="label">Nie je to predikcia trhu. Je to mapa nášho investičného plánu a míľnikov.</div>
 
     <div class="timeline">
       <div class="timeline-grid">
-        <div class="tnode past">
-          <div class="tyear">2025</div>
+        <button class="tnode past" type="button" data-diary-year="2025" aria-expanded="false" aria-controls="diary-2025"><div class="tyear">2025</div>
           <div class="tdot"></div>
           <div class="tvalue">Začiatky</div>
-          <div class="tdesc">EIC autopilot + prvé experimenty s XTB.</div>
-        </div>
+          <div class="tdesc">EIC autopilot + prvé experimenty s XTB.</div><span class="topen">Mesačný denník ⌄</span></button>
 
-        <div class="tnode done">
-          <div class="tyear">2026</div>
+        <button class="tnode done" type="button" data-diary-year="2026" aria-expanded="false" aria-controls="diary-2026"><div class="tyear">2026</div>
           <div class="tdot"></div>
           <div class="tvalue">Graham 2.0</div>
-          <div class="tdesc">XTB ≈ 15,4k €, systém sa mení z experimentu na vedomé portfólio.</div>
-        </div>
+          <div class="tdesc">XTB ≈ 15,4k €, systém sa mení z experimentu na vedomé portfólio.</div><span class="topen">Mesačný denník ⌄</span></button>
 
         <div class="tnode now">
           <div class="tyear">TERAZ</div>
@@ -499,26 +514,125 @@ border-radius:16px;padding:14px;min-height:132px;position:relative}
           <div class="tdesc">15 366 € · +20,8 % vs. čisté vklady · dolaďujeme proces, nie filozofiu.</div>
         </div>
 
-        <div class="tnode future">
-          <div class="tyear">≈ 2027</div>
+        <button class="tnode future" type="button" data-diary-year="2027" aria-expanded="false" aria-controls="diary-2027"><div class="tyear">≈ 2027</div>
           <div class="tdot"></div>
           <div class="tvalue">20 000 €</div>
-          <div class="tdesc">Prvý veľký míľnik. Dnes sme na 76,8 %.</div>
-        </div>
+          <div class="tdesc">Prvý veľký míľnik. Dnes sme na 76,8 %.</div><span class="topen">Mesačný denník ⌄</span></button>
 
-        <div class="tnode future">
-          <div class="tyear">≈ 2040</div>
+        <button class="tnode future" type="button" data-diary-year="2040" aria-expanded="false" aria-controls="diary-2040"><div class="tyear">≈ 2040</div>
           <div class="tdot"></div>
           <div class="tvalue">300 000 €</div>
-          <div class="tdesc">Cieľ približne do 50 rokov pri dostatočných vkladoch a dlhodobom compoundingu.</div>
-        </div>
+          <div class="tdesc">Cieľ približne do 50 rokov pri dostatočných vkladoch a dlhodobom compoundingu.</div><span class="topen">Mesačný denník ⌄</span></button>
       </div>
     </div>
 
 
+    <section class="year-diary" id="diary-2025" hidden aria-labelledby="diary-title-2025">
+<div class="diary-heading"><h3 id="diary-title-2025">📓 Mesačný denník portfólia · 2025</h3><button class="diary-close" type="button" data-close-diary="2025" aria-label="Zavrieť denník 2025">Zavrieť ×</button></div>
+<div class="diary-months"><details class="diary-month"><summary>Január 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Február 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Marec 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Apríl 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Máj 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Jún 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Júl 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>August 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>September 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Október 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>November 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>December 2025<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details></div></section>
+<section class="year-diary" id="diary-2026" hidden aria-labelledby="diary-title-2026">
+<div class="diary-heading"><h3 id="diary-title-2026">📓 Mesačný denník portfólia · 2026</h3><button class="diary-close" type="button" data-close-diary="2026" aria-label="Zavrieť denník 2026">Zavrieť ×</button></div>
+<div class="diary-months"><details class="diary-month"><summary>Január 2026<span>1 záznam</span></summary><div class="diary-entry"><span class="good">≈ 7,7k € XTB</span><br><small>Skoršia fáza budovania; portfólio bolo približne polovičné oproti dnešku.</small></div></details>
+<details class="diary-month"><summary>Február 2026<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Marec 2026<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Apríl 2026<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Máj 2026<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Jún 2026<span>Bez doplnených záznamov</span></summary><div class="diary-entry label">Historické záznamy za tento mesiac zatiaľ nie sú doplnené.</div></details>
+<details class="diary-month"><summary>Júl 2026<span>1 záznam</span></summary><div class="diary-entry"><span class="good">≈ 14k € XTB</span><br><small>Výrazný posun kapitálu; už sa formuje dnešná Graham 2.0 zostava.</small></div></details>
+<details class="diary-month"><summary>August 2026<span>1 záznam</span></summary><div class="diary-entry"><span>Výsledková sezóna</span><br><small>MSFT, WM, Endesa, Sanofi, Nordea a ADI priniesli nové fundamentálne dáta; dôraz sa presúva na kvalitu + valuáciu.</small></div></details>
+<details class="diary-month"><summary>September 2026<span>1 záznam</span></summary><div class="diary-entry"><span class="good">14 588,77 €</span><br><small>29.9. zachytený snapshot. Portfólio už je blízko dnešnej štruktúre.</small></div></details>
+<details class="diary-month"><summary>Október 2026<span>1 záznam</span></summary><div class="diary-entry"><span class="good">15 366,11 €</span><br><small>7.10. prikúpené O ~175 € a SAN ~150 €. Cash po nákupoch 453,47 €. Graham 2.0 sa formalizuje do pevného procesu.</small></div></details>
+<details class="diary-month"><summary>November 2026<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>December 2026<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details></div></section>
+<section class="year-diary" id="diary-2027" hidden aria-labelledby="diary-title-2027">
+<div class="diary-heading"><h3 id="diary-title-2027">📓 Mesačný denník portfólia · 2027</h3><button class="diary-close" type="button" data-close-diary="2027" aria-label="Zavrieť denník 2027">Zavrieť ×</button></div>
+<div class="diary-months"><details class="diary-month"><summary>Január 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Február 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Marec 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Apríl 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Máj 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Jún 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Júl 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>August 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>September 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Október 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>November 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>December 2027<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details></div></section>
+<section class="year-diary" id="diary-2040" hidden aria-labelledby="diary-title-2040">
+<div class="diary-heading"><h3 id="diary-title-2040">📓 Mesačný denník portfólia · 2040</h3><button class="diary-close" type="button" data-close-diary="2040" aria-label="Zavrieť denník 2040">Zavrieť ×</button></div>
+<div class="diary-months"><details class="diary-month"><summary>Január 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Február 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Marec 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Apríl 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Máj 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Jún 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Júl 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>August 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>September 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>Október 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>November 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details>
+<details class="diary-month"><summary>December 2040<span>Plánované</span></summary><div class="diary-entry label">Budúci mesiac — denník sa doplní po zaznamenaní udalostí.</div></details></div></section>
+
     <div class="milestones" id="milestones">
       <div class="milestone done" data-title="Začiatok investovania" data-text="Z autopilotu cez EIC si sa postupne dostal k tomu, že dnes už vieš vysvetliť, prečo konkrétnu firmu vlastníš, čo od nej čakáš a kedy ju nechceš kupovať.">
-        <div class="label">Úspech 1</div><div class="mval">START</div><div class="mname">Začal s 366,11 €</span><br><small>7.10. prikúpené O ~175 € a SAN ~150 €. Cash po nákupoch 453,47 €. Graham 2.0 sa formalizuje do pevného procesu.</small></div><div class="monthly-card"><b>Ďalšie mesiace</b><span class="warn">doplníme</span><br><small>Budeme ukladať month-end value, vklady, dividendy, P/L, nákupy/predaje a 2–3 vety „čo sa stalo“.</small></div></div></div>
+        <div class="label">Úspech 1</div><div class="mval">START</div><div class="mname">Začal si investovať systematicky</div><div class="mstatus">SPLNENÉ ✓</div>
+      </div>
+
+      <div class="milestone done" data-title="Prvých 10 000 €" data-text="Prvý veľký kapitálový míľnik. Portfólio prestalo byť len experiment a začalo byť reálnou súčasťou tvojho majetku.">
+        <div class="label">Úspech 2</div><div class="mval">10k €</div><div class="mname">Prvé päťciferné portfólio</div><div class="mstatus">SPLNENÉ ✓</div>
+      </div>
+
+      <div class="milestone done" data-title="15 000 €+" data-text="XTB prekonalo hranicu 15 000 €. Dnes je hodnota približne 15 366 €, takže tento míľnik už nie je cieľ, ale hotová vec.">
+        <div class="label">Úspech 3</div><div class="mval">15k €+</div><div class="mname">Portfólio naberá hmotnosť</div><div class="mstatus">SPLNENÉ ✓</div>
+      </div>
+
+      <div class="milestone done" data-title="+20 % nad čistými vkladmi" data-text="Aktuálne je účet približne +20,8 % nad čistými vkladmi. Nie je to anualizovaný výnos, ale je to reálny dôkaz, že doterajší proces vytvoril hodnotu.">
+        <div class="label">Úspech 4</div><div class="mval">+20,8 %</div><div class="mname">Zelené čísla a rast kapitálu</div><div class="mstatus">SPLNENÉ ✓</div>
+      </div>
+
+      <div class="milestone done" data-title="Graham 2.0" data-text="Najväčší nefinančný míľnik: už nehľadáš len 'akú akciu kúpiť', ale riešiš kvalitu biznisu, valuáciu, cashflow, moat, pozíciu v portfóliu a alternatívy.">
+        <div class="label">Úspech 5</div><div class="mval">G2.0</div><div class="mname">Z experimentu vznikol systém</div><div class="mstatus">SPLNENÉ ✓</div>
+      </div>
+
+      <div class="milestone next" data-title="20 000 €" data-text="Najbližší finančný míľnik. Dnes sme približne na 76,8 % tejto cesty.">
+        <div class="label">Najbližšie</div><div class="mval">20k €</div><div class="mname">Prvý veľký checkpoint</div><div class="mstatus">NA DOHĽAD</div>
+      </div>
+
+      <div class="milestone future" data-title="50 000 €" data-text="Míľnik, pri ktorom už bude compounding citeľnejší aj bez nových vkladov a portfólio bude mať úplne inú finančnú váhu.">
+        <div class="label">Ďalší level</div><div class="mval">50k €</div><div class="mname">Portfólio pracuje citeľne</div><div class="mstatus">BUDÚCI CIEĽ</div>
+      </div>
+
+      <div class="milestone future" data-title="100 000 €" data-text="Prvé šesťciferné investičné portfólio — jeden z najväčších psychologických aj finančných míľnikov na ceste k 300k.">
+        <div class="label">Veľký cieľ</div><div class="mval">100k €</div><div class="mname">Šesťciferné portfólio</div><div class="mstatus">BUDÚCI CIEĽ</div>
+      </div>
+
+      <div class="milestone future" data-title="300 000 €" data-text="Hlavná misia: kapitál, ktorý už má reálnu schopnosť meniť tvoje možnosti, mieru slobody a rozhodovanie o práci.">
+        <div class="label">Mission</div><div class="mval">300k €</div><div class="mname">Finančná sloboda má reálny tvar</div><div class="mstatus">HLAVNÝ CIEĽ</div>
+      </div>
+    </div>
+
+    <div class="milestone-detail" id="milestoneDetail">
+      <b>Tvoje investičné úspechy</b><br><span>Klikni na ľubovoľný míľnik. Časová os teraz ukazuje nielen kam smerujeme, ale hlavne čo už máš reálne za sebou.</span>
+    </div>
+
+    <div class="timeline-note">
+      <div><b>Štart:</b> autopilot + učenie</div>
+      <div><b>Dnes:</b> fungujúce XTB, ktoré profesionalizujeme</div>
+      <div><b>Najbližšie:</b> 20k → 50k → 100k → 300k</div>
+      <div><b>Motor:</b> vklady + čas + 7 % plánovací výnos</div>
+    </div>
+  </div>
 
   <div class="section card">
     <h2>🧭 Aktuálny smer portfólia</h2>
@@ -714,10 +828,10 @@ border-radius:16px;padding:14px;min-height:132px;position:relative}
 <div class="section card"><h2>📚 Slovník skratiek a pojmov</h2><div class="label">Rýchla pomôcka k výrazom, ktoré používame v Graham 2.0.</div><div class="glossary"><div class="gloss-item"><b>FCF</b>Free Cash Flow — hotovosť, ktorá firme zostane po prevádzke a potrebných investíciách.</div><div class="gloss-item"><b>FCF yield</b>FCF voči trhovej hodnote firmy; orientačne ukazuje, koľko cashflow kupujeme za cenu akcie.</div><div class="gloss-item"><b>Moat</b>Dlhodobá konkurenčná výhoda, ktorá chráni zisky firmy.</div><div class="gloss-item"><b>MOS</b>Margin of Safety — bezpečnostná rezerva medzi naším odhadom hodnoty a nákupnou cenou.</div><div class="gloss-item"><b>P/E</b>Price/Earnings — koľkonásobok ročného zisku platíme za akciu.</div><div class="gloss-item"><b>EPS</b>Earnings Per Share — zisk pripadajúci na jednu akciu.</div><div class="gloss-item"><b>ROE</b>Return on Equity — výnosnosť vlastného kapitálu.</div><div class="gloss-item"><b>EBITDA</b>Prevádzkový zisk pred úrokmi, daňami a odpismi; používame opatrne, lebo nie je cashflow.</div><div class="gloss-item"><b>AFFO</b>Adjusted Funds From Operations — dôležitá metrika cashflow pri REIT, napr. Realty Income.</div><div class="gloss-item"><b>NIM</b>Net Interest Margin — rozdiel medzi úrokmi, ktoré banka zarába a platí.</div><div class="gloss-item"><b>CET1</b>Najkvalitnejší bankový kapitál; ukazovateľ odolnosti banky.</div><div class="gloss-item"><b>Solvency II</b>Kapitálová primeranosť poisťovne voči regulatórnym požiadavkám.</div><div class="gloss-item"><b>DCF</b>Discounted Cash Flow — odhad hodnoty firmy zo súčasnej hodnoty budúcich cashflow.</div><div class="gloss-item"><b>DDM</b>Dividend Discount Model — valuácia cez súčasnú hodnotu budúcich dividend.</div><div class="gloss-item"><b>YTD</b>Year To Date — od začiatku aktuálneho roka po dnešok.</div><div class="gloss-item"><b>TTM</b>Trailing Twelve Months — posledných 12 mesiacov.</div><div class="gloss-item"><b>YoY / QoQ</b>Medziročná / medzikvartálna zmena.</div><div class="gloss-item"><b>CORE / SATELLITE</b>CORE = hlavné dlhodobé piliere; satellite = menšie doplnkové pozície.</div><div class="gloss-item"><b>UCITS</b>Európsky regulačný rámec fondov/ETF; relevantný pri výbere ETF pre európskeho investora.</div><div class="gloss-item"><b>XIRR</b>Ročný výnos účtu zohľadňujúci presné dátumy vkladov a výberov.</div><div class="gloss-item"><b>WHT</b>Withholding Tax — zrážková daň strhnutá pri výplate dividendy.</div></div></div><script>
 const boxes=[...document.querySelectorAll('input[type="checkbox"][data-id]')];
 boxes.forEach(b=>{
-  const saved=localStorage.getItem('xtb-'+b.dataset.id);
+  let saved=null; try { saved=localStorage.getItem('xtb-'+b.dataset.id); } catch (_) {}
   if(saved!==null) b.checked=saved==='1';
   b.addEventListener('change',()=>{
-    localStorage.setItem('xtb-'+b.dataset.id,b.checked?'1':'0');
+    try { localStorage.setItem('xtb-'+b.dataset.id,b.checked?'1':'0'); } catch (_) {}
     update();
   });
 });
@@ -745,6 +859,20 @@ document.querySelectorAll('.pos-card .pos-head').forEach(btn=>{
     card.classList.toggle('open');
   });
 });
+
+const yearButtons=[...document.querySelectorAll('[data-diary-year]')];
+function toggleDiary(year,open){
+  yearButtons.forEach(btn=>{
+    const active=open&&btn.dataset.diaryYear===year;
+    btn.setAttribute('aria-expanded',String(active));
+    document.getElementById('diary-'+btn.dataset.diaryYear).hidden=!active;
+  });
+}
+yearButtons.forEach(btn=>btn.addEventListener('click',()=>toggleDiary(btn.dataset.diaryYear,btn.getAttribute('aria-expanded')!=='true')));
+document.querySelectorAll('[data-close-diary]').forEach(btn=>btn.addEventListener('click',()=>{
+  toggleDiary(btn.dataset.closeDiary,false);
+  yearButtons.find(b=>b.dataset.diaryYear===btn.dataset.closeDiary).focus();
+}));
 
 update();
 </script>
