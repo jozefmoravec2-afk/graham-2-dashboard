@@ -270,6 +270,8 @@ button.tnode:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .capital-ladder .ladder-step.active{background:rgba(57,217,138,.09);border:2px solid var(--green);box-shadow:0 0 0 3px rgba(57,217,138,.06)}.capital-ladder .ladder-step.active:before{background:var(--green)}
 .capital-ladder .ladder-here{display:inline-block;padding:4px 8px;border-radius:7px;background:var(--green);color:#081a11;font-size:11px;font-weight:900;margin-bottom:8px}
 @media(max-width:650px){.capital-inflow-nested>.capital-kpis{grid-template-columns:1fr}.inflow-month-row{grid-template-columns:75px minmax(30px,1fr) 100px;gap:8px}.inflow-month-value small{font-size:9px}.monthly-inflow>.capital-kpis{grid-template-columns:1fr}}
+
+.achievement-counter{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}.achievement-counter-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.achievement-counter-head h3{margin:0;font-size:15px}.achievement-counter-value{margin:10px 0 13px}.achievement-counter-value>b{font-size:34px;color:var(--green)}.achievement-counter-value>span{font-size:16px;color:var(--muted)}.achievement-counter>.label{font-size:11px;line-height:1.5;margin-bottom:0}
 </style>
 </head>
 <body>
@@ -340,7 +342,7 @@ button.tnode:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
       <div class="label">Hlavný cieľ — 300 000 €</div>
       <div class="progress"><span style="width:5.14%"></span></div>
       <div class="kpis"><span>15 406,99 €</span><span>5,14 %</span><span>300 000 €</span></div>
-    </div>
+    <div class="achievement-counter"><div class="achievement-counter-head"><h3>🏆 Odomknuté úspechy</h3><span class="tag core" id="achievementCounterPercent">43,9 %</span></div><div class="achievement-counter-value"><b id="achievementCounterDone">18</b><span> / <b id="achievementCounterTotal">41</b> odomknutých</span></div><div class="progress"><span id="achievementCounterBar" style="width:43.9%"></span></div><div class="kpis"><span>Najbližšie ciele: <b id="achievementCounterNext">4</b></span><span>Zamknuté: <b id="achievementCounterLocked">19</b></span></div><p class="label">Počíta karty v Achievement Systeme; investičný checklist a kapitálové míľniky sa nepripočítavajú druhýkrát.</p></div></div>
 
     
   </div>
@@ -815,6 +817,21 @@ capitalBoxes.forEach(b=>{
  b.addEventListener('change',()=>{try{localStorage.setItem('g2-capital-'+b.dataset.capitalId,b.checked?'1':'0');}catch(_){}updateCapitalChecklist();});
 });
 updateCapitalChecklist();
+
+function updateAchievementCounter(){
+ const cards=[...document.querySelectorAll('.achievements .achievement')];
+ const done=cards.filter(c=>c.classList.contains('done')).length;
+ const next=cards.filter(c=>c.classList.contains('next')).length;
+ const locked=cards.filter(c=>c.classList.contains('locked')).length;
+ const pct=cards.length?done/cards.length*100:0;
+ document.getElementById('achievementCounterDone').textContent=done;
+ document.getElementById('achievementCounterTotal').textContent=cards.length;
+ document.getElementById('achievementCounterNext').textContent=next;
+ document.getElementById('achievementCounterLocked').textContent=locked;
+ document.getElementById('achievementCounterPercent').textContent=pct.toFixed(1).replace('.',',')+' %';
+ document.getElementById('achievementCounterBar').style.width=pct+'%';
+}
+updateAchievementCounter();
 
 update();
 </script>
