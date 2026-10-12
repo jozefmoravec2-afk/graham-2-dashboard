@@ -281,7 +281,7 @@ button.tnode:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 <body>
 <div class="wrap">
   <h1>📊 XTB — Graham 2.0 Dashboard</h1>
-  <div class="sub">Stav k 12. 10. 2026 o 10:20 <details class="snapshot-status" id="snapshotStatus" data-snapshot-date="2026-10-12" data-level="unknown"><summary id="snapshotStatusLabel">Aktuálnosť údajov</summary><div class="snapshot-help"><p><b>Vek snapshotu účtu</b> sa počíta automaticky v kalendárnych dňoch podľa času Bratislavy.</p><ul><li class="fresh">0–7 dní · Super aktuálne</li><li class="recent">8–30 dní · Ešte čerstvé</li><li class="aging">31–60 dní · Potrebuje aktualizáciu</li><li class="stale">61–90 dní · Zastarané údaje</li><li class="dead">Nad 90 dní · Dead data</li></ul><p style="margin-top:8px">Indikátor hodnotí vek stavu účtu. Cashflow export je overený do 9. 10. 2026; aktuálnosť evaluácií sledujeme samostatne pri tickeroch.</p></div></details> · cieľ: 300 000 € približne do 50 rokov · filozofiu nemeníme, iba dolaďujeme systém</div>
+  <div class="sub">Stav k 12. 10. 2026 o 10:20 <details class="snapshot-status" id="snapshotStatus" data-snapshot-date="2026-10-12" data-level="unknown"><summary id="snapshotStatusLabel">Aktuálnosť údajov</summary><div class="snapshot-help"><p><b>Vek snapshotu účtu</b> sa počíta automaticky v kalendárnych dňoch podľa času Bratislavy.</p><ul><li class="fresh">0–3 dni · Super aktuálne</li><li class="recent">4–7 dní · Ešte čerstvé</li><li class="aging">8–14 dní · Potrebuje aktualizáciu</li><li class="stale">15–29 dní · Zastarané údaje</li><li class="dead">Od 30 dní · Dead data</li></ul><p style="margin-top:8px">Indikátor hodnotí vek stavu účtu. Cashflow export je overený do 9. 10. 2026; aktuálnosť evaluácií sledujeme samostatne pri tickeroch.</p></div></details> · cieľ: 300 000 € približne do 50 rokov · filozofiu nemeníme, iba dolaďujeme systém</div>
 
   <div class="grid" style="grid-template-columns:repeat(3,1fr)">
     <div class="card">
@@ -844,10 +844,10 @@ updateAchievementCounter();
 
 function snapshotFreshness(days){
  if(!Number.isFinite(days)||days<0)return {level:'unknown',text:'Dátum treba overiť'};
- if(days<=7)return {level:'fresh',text:'Super aktuálne'};
- if(days<=30)return {level:'recent',text:'Ešte čerstvé'};
- if(days<=60)return {level:'aging',text:'Potrebuje aktualizáciu'};
- if(days<=90)return {level:'stale',text:'Zastarané údaje'};
+ if(days<=3)return {level:'fresh',text:'Super aktuálne'};
+ if(days<=7)return {level:'recent',text:'Ešte čerstvé'};
+ if(days<=14)return {level:'aging',text:'Potrebuje aktualizáciu'};
+ if(days<=29)return {level:'stale',text:'Zastarané údaje'};
  return {level:'dead',text:'Dead data'};
 }
 function updateSnapshotFreshness(now=new Date()){
