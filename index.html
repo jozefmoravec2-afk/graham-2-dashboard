@@ -56,7 +56,7 @@ async function loadDashboard(){
     const bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));
     const html=new TextDecoder('utf-8').decode(bytes);
     const msftUpdate=await fetch('msft_fy2026_update.html',{cache:'no-store'}).then(r=>r.ok?r.text():'').catch(()=>'');
-    const enriched=msftUpdate?html.replace('</body>',msftUpdate+'</body>'):html;
+    const enriched=msftUpdate?html.replace('<div class="position-overview report-mount" data-position-report="MSFT"></div>','<div class="position-overview report-mount" data-position-report="MSFT">'+msftUpdate+'</div>'):html;
     document.open();
     document.write(enriched);
     document.close();
