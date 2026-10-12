@@ -55,8 +55,10 @@ async function loadDashboard(){
     const raw=atob(b64);
     const bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));
     const html=new TextDecoder('utf-8').decode(bytes);
+    const msftUpdate=await fetch('msft_fy2026_update.html',{cache:'no-store'}).then(r=>r.ok?r.text():'').catch(()=>'');
+    const enriched=msftUpdate?html.replace('</body>',msftUpdate+'</body>'):html;
     document.open();
-    document.write(html);
+    document.write(enriched);
     document.close();
   }catch(err){
     document.body.innerHTML='<div class="login-card"><h1>Dashboard sa nepodarilo načítať</h1><div class="sub">'+err.message+'</div></div>';
