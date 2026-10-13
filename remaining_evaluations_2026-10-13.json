@@ -1,0 +1,998 @@
+{
+  "as_of": "2026-10-13",
+  "company_evaluations": {
+    "WM": {
+      "name": "Waste Management",
+      "currency": "USD",
+      "price": 211.14,
+      "weight": 2.58,
+      "target": 4,
+      "old_score": 89,
+      "due": "2026-10-28",
+      "review": "po výsledkoch 27.10. a konferencii 28.10.",
+      "method": "Equity cashflow DCF",
+      "scenarios": [
+        {
+          "name": "Bear",
+          "anchor": 3.0,
+          "shares": 0.4024,
+          "growth_first5": 0.04,
+          "growth_last5": 0.03,
+          "discount": 0.105,
+          "terminal_growth": 0.02,
+          "value": 100.08907933655729,
+          "flows": [
+            3.12,
+            3.2448,
+            3.3745920000000003,
+            3.50957568,
+            3.6499587072,
+            3.759457468416,
+            3.87224119246848,
+            3.9884084282425345,
+            4.10806068108981,
+            4.231302501522505
+          ],
+          "terminal_share": 0.46450230570253415
+        },
+        {
+          "name": "Base",
+          "anchor": 3.28,
+          "shares": 0.4024,
+          "growth_first5": 0.08,
+          "growth_last5": 0.05,
+          "discount": 0.095,
+          "terminal_growth": 0.025,
+          "value": 163.02591457131558,
+          "flows": [
+            3.5424,
+            3.8257920000000003,
+            4.13185536,
+            4.4624037888000005,
+            4.819396091904001,
+            5.060365896499201,
+            5.313384191324161,
+            5.579053400890369,
+            5.858006070934888,
+            6.150906374481632
+          ],
+          "terminal_share": 0.5539991938883481
+        },
+        {
+          "name": "Bull",
+          "anchor": 3.5,
+          "shares": 0.4024,
+          "growth_first5": 0.105,
+          "growth_last5": 0.06,
+          "discount": 0.085,
+          "terminal_growth": 0.03,
+          "value": 249.23586076305543,
+          "flows": [
+            3.8674999999999997,
+            4.2735875,
+            4.722314187499999,
+            5.218157177187499,
+            5.766063680792186,
+            6.112027501639718,
+            6.478749151738101,
+            6.867474100842387,
+            7.279522546892931,
+            7.716293899706507
+          ],
+          "terminal_share": 0.6372611047194069
+        }
+      ],
+      "reported": {
+        "FY2026_FCF_guidance_bn": [
+          3.75,
+          3.85
+        ],
+        "disposal_proceeds_guidance_bn": [
+          0.1,
+          0.15
+        ],
+        "H1_SBC_bn": 0.098,
+        "H1_finance_leases_and_other_repayments_bn": 0.098,
+        "debt_bn_including_finance_leases": 23.356,
+        "cash_bn": 0.557,
+        "Q2_diluted_weighted_shares_bn": 0.4024,
+        "ending_shares_24July": 399715184,
+        "quarterly_DPS": 0.945
+      },
+      "facts": "FY2026 guidance FCF 3,75–3,85 mld. USD zahŕňa odpredaje 0,10–0,15 mld.; bez nich 3,65–3,70 mld. Dlh 30.6. je 23,356 mld. vrátane finančných lízingov, cash 0,557 mld.; čistý dlh 22,799 mld. H1 akciové odmeny 98 mil. a financujúce lízingové/ostatné splátky 98 mil. Q2 diluted priemer 402,4 mil. používame ako konzervatívny proxy; koncových 399,715 mil. k 24.7. nie je diluted priemer. Kvartálna dividenda 0,945 USD.",
+      "normalization": "Base kotva 2026: 3,800 − 0,125 odpredaje − 0,196 odhad ročného ekonomického SBC − 0,196 proxy ročných financujúcich lízingových/ostatných splátok − 0,003 rezerva = 3,280 mld. USD. Obe sumy 0,196 sú odhady 2×H1, nie vykázaný celý rok. Splátky 98 mil. podľa 10-Q zahŕňajú financujúce lízingy a ostatné dlhové položky; použitie celého annualizovaného súčtu je konzervatívne, presné rozdelenie nie je potvrdené. Celý udržiavací aj rastový CapEx ostáva odpočítaný, výnosy z predajov nevydávame za opakovateľný tok.",
+      "risks": "Stericycle môže priniesť úspory, ale integrácia, objemy odpadu a environmentálne záväzky sú rizikom. Úvery a refinancovanie tlmia odolnosť aj pri stabilnom biznise. Base nezapočítava okamžité dokonalé synergie ani odstránenie všetkých investícií.",
+      "dividend": "Annualizovaných 3,78 USD predstavuje 1,79% pri referenčnom close. Približný nárok 1,521 mld. USD je 46,4% Base kotvy; používame diluted proxy, nie presný počet dividendových akcií.",
+      "cross": "Mechanicky očistené guidance FCF 3,675 / 0,4024 = 9,13 USD/akciu; pri 211,14 USD je P/FCF 23,12×. Násobok 18–22× tejto kotvy dá 164–201 USD pred ďalšou ekonomickou normalizáciou, nie samostatnú istú hodnotu.",
+      "points": [
+        10,
+        9,
+        9,
+        6,
+        8,
+        8,
+        8,
+        8,
+        4,
+        7
+      ],
+      "reasons": [
+        "Zber a spracovanie odpadu sú čitateľné.",
+        "Opakujúci sa nevyhnutný servis.",
+        "Siete, povolenia a skládky vytvárajú bariéry.",
+        "Stericycle zvýšil dlh a nároky na refinancovanie.",
+        "Silný tok, upravujeme predaje aktív a odmeny.",
+        "Rozumné modelové krytie.",
+        "Disciplína vyžaduje úspešnú integráciu.",
+        "Ceny, produktivita a investície, objemy sú citlivé.",
+        "Close je nad konzervatívnym Base; veľká rezerva chýba.",
+        "Odolný dopyt, no dlh a environmentálne záväzky."
+      ],
+      "explanation": "WM boduje za nevyhnutné služby, hustú sieť a bariéry vstupu. Cena však zostáva náročná aj po očistení FCF o predaje aktív a ekonomický náklad odmien. Body znižuje dlh a integrácia Stericycle, preto model nepočíta s dokonalými synergiami. Existujúcu pozíciu držíme, podváha sama osebe neodôvodňuje ďalší nákup.",
+      "sources": {
+        "Q2 výsledky a guidance": "https://www.sec.gov/Archives/edgar/data/823768/000110465926087575/tm2621414d1_ex99-1.htm",
+        "Q2 10-Q": "https://www.sec.gov/Archives/edgar/data/823768/000110465926088016/wm-20260630x10q.htm",
+        "Termín revízie": "https://investors.wm.com/news-releases/news-release-details/wm-sets-date-third-quarter-2026-earnings-conference-call",
+        "Referenčný close": "https://stockanalysis.com/stocks/wm/history/"
+      },
+      "as_of": "2026-10-13",
+      "reference_close_date": "2026-10-12",
+      "score": 77,
+      "scope": "Completed scenario evaluation v1, not external audit; estimates explicitly separated from reported figures",
+      "MOS": -0.295131516699064,
+      "buy_bands": {
+        "0.2": 130.42,
+        "0.25": 122.26,
+        "0.3": 114.11
+      },
+      "decision": "HOLD existujúcu pozíciu; nový nákup iba po revízii tézy a v pásme s MOS."
+    },
+    "ADI": {
+      "name": "Analog Devices",
+      "currency": "USD",
+      "price": 406.25,
+      "weight": 5.85,
+      "target": 5,
+      "old_score": 86,
+      "due": "2026-11-12",
+      "review": "po FY2026 výsledkoch alebo najneskôr 12.11. znovu skontrolovať dostupnosť dát",
+      "method": "Equity cashflow DCF",
+      "scenarios": [
+        {
+          "name": "Bear",
+          "anchor": 3.4,
+          "shares": 0.488837,
+          "growth_first5": 0.04,
+          "growth_last5": 0.03,
+          "discount": 0.11,
+          "terminal_growth": 0.02,
+          "value": 88.055218549699,
+          "flows": [
+            3.536,
+            3.6774400000000003,
+            3.8245376,
+            3.977519104,
+            4.13661986816,
+            4.260718464204801,
+            4.388540018130945,
+            4.520196218674873,
+            4.65580210523512,
+            4.795476168392174
+          ],
+          "terminal_share": 0.44467267400850713
+        },
+        {
+          "name": "Base",
+          "anchor": 4.3,
+          "shares": 0.488837,
+          "growth_first5": 0.085,
+          "growth_last5": 0.05,
+          "discount": 0.1,
+          "terminal_growth": 0.025,
+          "value": 166.95512669979885,
+          "flows": [
+            4.6655,
+            5.0620674999999995,
+            5.492343237499999,
+            5.959192412687499,
+            6.465723767765937,
+            6.789009956154234,
+            7.128460453961946,
+            7.484883476660044,
+            7.859127650493046,
+            8.252084033017699
+          ],
+          "terminal_share": 0.5327648484823132
+        },
+        {
+          "name": "Bull",
+          "anchor": 5.1,
+          "shares": 0.488837,
+          "growth_first5": 0.12,
+          "growth_last5": 0.07,
+          "discount": 0.09,
+          "terminal_growth": 0.03,
+          "value": 300.170619758687,
+          "flows": [
+            5.712,
+            6.3974400000000005,
+            7.165132800000001,
+            8.024948736000002,
+            8.987942584320004,
+            9.617098565222404,
+            10.290295464787974,
+            11.010616147323132,
+            11.781359277635753,
+            12.606054427070257
+          ],
+          "terminal_share": 0.6229711297963981
+        }
+      ],
+      "reported": {
+        "TTM_CFO_bn": 5.545325,
+        "TTM_capex_bn": 0.60783,
+        "TTM_FCF_bn": 4.937495,
+        "FY2025_FCF_bn": 4.27865,
+        "FY2024_FCF_bn_rounded": 3.1,
+        "9M_SBC_bn": 0.263651,
+        "Q3_diluted_weighted_shares_bn": 0.488837,
+        "debt_bn": 9.121583,
+        "cash_and_short_investments_bn": 2.324934,
+        "quarterly_DPS": 1.1
+      },
+      "facts": "TTM do 1.8.2026: CFO 5,545 mld., CapEx 0,608 a FCF 4,937 mld. USD. FY2025 FCF 4,279 mld.; FY2024 približne 3,1 mld. Q3 diluted priemer 488,837 mil. Akciové odmeny za 9 mesiacov 263,651 mil. Dlh vrátane commercial paper 9,122 mld., cash a krátke investície 2,325 mld. Q3 GAAP EPS 2,74 verzus adjusted 3,45; kvartálna dividenda 1,10 USD.",
+      "normalization": "TTM 4,937 − 0,352 odhad SBC (9M×4/3) − 0,285 cyklická a reinvestičná rezerva = Base 4,300 mld. USD. Bear 3,4 a Bull 5,1 predstavujú cyklický rozsah, nie firemné guidance. Porovnávame slabší FY2024, FY2025 a aktuálny TTM; neannualizujeme rekordný Q3. CapEx ostáva v cashflow, akvizícia Empower nie je označená za každoročne opakovanú, potreba ďalších nákupov je riziko.",
+      "risks": "Priemyselný a automobilový dopyt, zásoby a marže sú cyklické. Dáta centier podporujú rast, ale neodstraňujú priemyselný cyklus. Nepripisujeme všetky účtovné úpravy automaticky vyššiemu opakovateľnému zisku.",
+      "dividend": "Annualizovaných 4,40 USD je 1,08% pri close. Modelový dividendový nárok 2,151 mld. je približne 50% Base kotvy; dividenda je krytá lepšie než vysoká nákupná cena.",
+      "cross": "TTM FCF/akcia 10,10 USD; close znamená približne 40,22× pred SBC normalizáciou. Ilustratívnych 20–25× Base cashflow/akcia dá 176–220 USD. Rozdiel oproti rastovému DCF ukazuje citlivosť na očakávaný rast.",
+      "points": [
+        9,
+        9,
+        9,
+        7,
+        8,
+        8,
+        8,
+        8,
+        2,
+        6
+      ],
+      "reasons": [
+        "Analógové čipy prepájajú fyzické signály a elektroniku.",
+        "Dlhý život produktov a silné marže.",
+        "Know-how a integrácia u zákazníkov.",
+        "Cashflow podporuje dlh, ďalšie akvizície pridávajú nároky.",
+        "Normalizácia cyklu a SBC znižuje rekordný tok.",
+        "Dobrý cashflow payout.",
+        "Buybacky posudzujeme aj voči cene.",
+        "Priemysel a dáta centier, bez extrapolácie rekordného kvartálu.",
+        "Cena je výrazne nad Base, rezervu nemáme.",
+        "Cyklickosť a technologické zmeny."
+      ],
+      "explanation": "ADI získava vysoké body za analógové know-how, marže a dlhý život produktov. Cashflow sme porovnali so slabším rokom a očistili o odmeny aj cyklickú rezervu. Najväčšou brzdou skóre je vysoká cena, ktorá predpokladá silný budúci rast. Držíme existujúcu pozíciu, pri váhe nad cieľom ju teraz nenavyšujeme.",
+      "sources": {
+        "Q3 FY2026": "https://investor.analog.com/news-releases/news-release-details/analog-devices-reports-record-fiscal-third-quarter-2026",
+        "FY2025": "https://investor.analog.com/news-releases/news-release-details/analog-devices-reports-strong-fourth-quarter-and-fiscal-2025",
+        "FY2024": "https://investor.analog.com/news-releases/news-release-details/analog-devices-reports-fourth-quarter-and-fiscal-2024-financial",
+        "Referenčný close": "https://stockanalysis.com/stocks/adi/history/"
+      },
+      "as_of": "2026-10-13",
+      "reference_close_date": "2026-10-12",
+      "score": 74,
+      "scope": "Completed scenario evaluation v1, not external audit; estimates explicitly separated from reported figures",
+      "MOS": -1.4332885610064316,
+      "buy_bands": {
+        "0.2": 133.56,
+        "0.25": 125.21,
+        "0.3": 116.86
+      },
+      "decision": "HOLD existujúcu pozíciu; nový nákup iba po revízii tézy a v pásme s MOS. Váha už je nad cieľom, nenavyšovať iba pre výnos dividendy."
+    },
+    "AIT": {
+      "name": "Applied Industrial Technologies",
+      "currency": "USD",
+      "price": 333.81,
+      "weight": 5.07,
+      "target": 4,
+      "old_score": 82,
+      "due": "2026-10-28",
+      "review": "po Q1 FY2027 výsledkoch 27.10.",
+      "method": "Equity cashflow DCF",
+      "scenarios": [
+        {
+          "name": "Bear",
+          "anchor": 0.37,
+          "shares": 0.037409,
+          "growth_first5": 0.03,
+          "growth_last5": 0.025,
+          "discount": 0.11,
+          "terminal_growth": 0.02,
+          "value": 118.47405679258172,
+          "flows": [
+            0.3811,
+            0.392533,
+            0.40430899000000003,
+            0.41643825970000004,
+            0.42893140749100006,
+            0.439654692678275,
+            0.45064605999523183,
+            0.4619122114951126,
+            0.47346001678249033,
+            0.4852965172020525
+          ],
+          "terminal_share": 0.4370545945956935
+        },
+        {
+          "name": "Base",
+          "anchor": 0.43,
+          "shares": 0.037409,
+          "growth_first5": 0.07,
+          "growth_last5": 0.045,
+          "discount": 0.1,
+          "terminal_growth": 0.025,
+          "value": 201.8231403486071,
+          "flows": [
+            0.4601,
+            0.49230700000000005,
+            0.52676849,
+            0.5636422843000001,
+            0.6030972442010001,
+            0.630236620190045,
+            0.658597268098597,
+            0.6882341451630338,
+            0.7192046816953703,
+            0.7515688923716619
+          ],
+          "terminal_share": 0.5245144874335171
+        },
+        {
+          "name": "Bull",
+          "anchor": 0.49,
+          "shares": 0.037409,
+          "growth_first5": 0.105,
+          "growth_last5": 0.06,
+          "discount": 0.09,
+          "terminal_growth": 0.03,
+          "value": 342.19102799704683,
+          "flows": [
+            0.54145,
+            0.5983022499999999,
+            0.6611239862499999,
+            0.7305420048062499,
+            0.8072489153109061,
+            0.8556838502295605,
+            0.9070248812433341,
+            0.9614463741179342,
+            1.0191331565650104,
+            1.080281145958911
+          ],
+          "terminal_share": 0.6119459627439996
+        }
+      ],
+      "reported": {
+        "FY2026_CFO_bn": 0.484082,
+        "capex_bn": 0.023565,
+        "FCF_bn": 0.460517,
+        "FY2025_FCF_bn": 0.465198,
+        "FY2026_SAR_and_SBC_bn": 0.012904,
+        "debt_bn": 0.2623,
+        "cash_bn": 0.12713,
+        "Q4_diluted_weighted_shares_bn": 0.037409,
+        "FY2026_EPS": 10.95,
+        "FY2027_EPS_guidance": [
+          11.65,
+          12.15
+        ],
+        "quarterly_DPS": 0.51
+      },
+      "facts": "FY2026 CFO 484,082 mil., CapEx 23,565 a FCF 460,517 mil. USD; FY2025 FCF 465,198 mil. EPS FY2026 10,95; guidance FY2027 11,65–12,15. FY2026 SAR a ostatné akciové odmeny spolu 12,904 mil. Dlh 262,3 mil. a cash 127,130 mil. Q4 diluted priemer 37,409 mil. Dividenda potvrdená v júlovom oznámení 0,51 USD kvartálne.",
+      "normalization": "Base 0,460517 − 0,012904 ekonomické odmeny − 0,017613 rezerva na cyklus, working capital a priebežné dopĺňanie portfólia = 0,430 mld. USD. FCF je po úrokoch a prevádzkových nákladoch; pravidelné operating leases znovu neodpočítavame. Bear 0,37, Bull 0,49. Predchádzajúce akvizície nie sú zamlčané: FY2026 cash akvizície 11,424 mil. verzus FY2025 293,406 mil.; scenár nepredpokladá bezplatné trvalé rozširovanie firmy veľkými akvizíciami.",
+      "risks": "MRO servis podporuje opakovaný dopyt, ale zákazníci závisia od priemyselného cyklu. Rast tržieb nie je rovnaký ako rast cashflow; FY2026 FCF mierne klesol. Akvizičná disciplína a nákupné ceny vlastných akcií zostávajú predmetom revízie.",
+      "dividend": "Annualizovaných 2,04 USD je 0,61% pri close. Približný nárok 76,31 mil. USD tvorí 17,7% Base kotvy, takže hlavným limitom nie je dividendové krytie, ale cena.",
+      "cross": "Stred guidance EPS FY2027 11,90 USD × ilustračných 16/20/24 dá 190,40/238,00/285,60 USD. Guidance nie je garantovaný zisk a násobky sú naše predpoklady. Close 333,81 je približne 28,05× stred guidance.",
+      "points": [
+        9,
+        8,
+        8,
+        8,
+        8,
+        7,
+        8,
+        7,
+        3,
+        6
+      ],
+      "reasons": [
+        "Distribúcia a technický servis priemyslu.",
+        "Opakujúci sa MRO dopyt.",
+        "Vzťahy a technická expertíza, nižšie bariéry než patenty.",
+        "Nízky jednoduchý čistý dlh.",
+        "Tok dobrý, nerastie automaticky s tržbami.",
+        "Nízky payout, nízky aktuálny výnos.",
+        "Akvizície a buybacky sledujeme voči cene.",
+        "Guidance podporuje rast, cyklus ostáva.",
+        "Veľká bezpečnostná rezerva chýba.",
+        "Priemyselný cyklus a integrácia nákupov."
+      ],
+      "explanation": "AIT je kvalitný servisný a distribučný biznis s opakovaným dopytom a nízkym jednoduchým čistým dlhom. Dobré dividendové krytie a technické vzťahy so zákazníkmi podporujú skóre. FY2026 cashflow však mierne klesol a dnešná cena je vyššia než náš Base rámec. Pri existujúcej nadváhe ponechávame HOLD a počkáme na lepšiu cenu.",
+      "sources": {
+        "FY2026 a FY2027 guidance": "https://ir.applied.com/news/news-details/2026/Applied-Industrial-Technologies-Reports-Fiscal-2026-Fourth-Quarter-and-Full-Year-Results-Issues-Fiscal-2027-Guidance-Increases-Intermediate-Financial-Targets/default.aspx",
+        "Dividenda": "https://ir.applied.com/news/news-details/2026/Applied-Industrial-Technologies-Declares-Quarterly-Dividend/default.aspx",
+        "Termín výsledkov": "https://ir.applied.com/news/news-details/2026/Applied-Industrial-Technologies-to-Report-Fiscal-First-Quarter-Earnings-and-Conduct-Conference-Call-on-October-27-2026/default.aspx",
+        "Referenčný close": "https://stockanalysis.com/stocks/ait/history/"
+      },
+      "as_of": "2026-10-13",
+      "reference_close_date": "2026-10-12",
+      "score": 72,
+      "scope": "Completed scenario evaluation v1, not external audit; estimates explicitly separated from reported figures",
+      "MOS": -0.6539728765661526,
+      "buy_bands": {
+        "0.2": 161.45,
+        "0.25": 151.36,
+        "0.3": 141.27
+      },
+      "decision": "HOLD existujúcu pozíciu; nový nákup iba po revízii tézy a v pásme s MOS. Váha už je nad cieľom, nenavyšovať iba pre výnos dividendy."
+    },
+    "V": {
+      "name": "Visa",
+      "currency": "USD",
+      "price": 389.27,
+      "weight": 1.07,
+      "target": 2,
+      "old_score": 88,
+      "due": "2026-10-28",
+      "review": "po FY2026 výsledkoch 27.10.; termín pred nákupom znovu overiť",
+      "method": "Equity cashflow DCF",
+      "scenarios": [
+        {
+          "name": "Bear",
+          "anchor": 16,
+          "shares": 1.9,
+          "growth_first5": 0.06,
+          "growth_last5": 0.04,
+          "discount": 0.105,
+          "terminal_growth": 0.025,
+          "value": 130.5768447325406,
+          "flows": [
+            16.96,
+            17.977600000000002,
+            19.056256000000005,
+            20.199631360000005,
+            21.411609241600008,
+            22.268073611264008,
+            23.15879655571457,
+            24.085148417943152,
+            25.04855435466088,
+            26.050496528847315
+          ],
+          "terminal_share": 0.4956867757064335
+        },
+        {
+          "name": "Base",
+          "anchor": 18.5,
+          "shares": 1.9,
+          "growth_first5": 0.1,
+          "growth_last5": 0.06,
+          "discount": 0.095,
+          "terminal_growth": 0.03,
+          "value": 228.76570554020574,
+          "flows": [
+            20.35,
+            22.385000000000005,
+            24.623500000000007,
+            27.08585000000001,
+            29.794435000000014,
+            31.582101100000017,
+            33.47702716600002,
+            35.485648795960024,
+            37.614787723717626,
+            39.871674987140686
+          ],
+          "terminal_share": 0.5865467548209006
+        },
+        {
+          "name": "Bull",
+          "anchor": 21,
+          "shares": 1.9,
+          "growth_first5": 0.13,
+          "growth_last5": 0.075,
+          "discount": 0.085,
+          "terminal_growth": 0.035,
+          "value": 396.04984097368924,
+          "flows": [
+            23.729999999999997,
+            26.814899999999994,
+            30.30083699999999,
+            34.23994580999999,
+            38.69113876529998,
+            41.59297417269748,
+            44.71244723564979,
+            48.065880778323525,
+            51.67082183669779,
+            55.54613347445012
+          ],
+          "terminal_share": 0.675808037837382
+        }
+      ],
+      "reported": {
+        "9M_CFO_bn": 16.342,
+        "9M_capex_bn": 1.178,
+        "9M_SBC_bn": 0.728,
+        "9M_dividends_paid_bn": 3.852,
+        "9M_accrued_litigation_change_bn": -1.758,
+        "Q3_diluted_class_A_equivalent_shares_bn_rounded": 1.9,
+        "debt_bn": 23.858,
+        "cash_and_investments_bn": 13.942,
+        "quarterly_DPS": 0.67
+      },
+      "facts": "FY2026 deväť mesiacov: CFO 16,342 mld., CapEx 1,178 a SBC 0,728 mld. USD; CFO−CapEx = 15,164 mld. Zmena accrued litigation −1,758 mld. už vstupuje do CFO. Q3 diluted priemer 1,90 mld. class-A ekvivalentov zahŕňa konverznú ekonomiku tried, nie iba 1,702 mld. vydaných class-A akcií. Dlh 23,858 mld., cash a investície približne 13,942 mld.; restricted escrow nepovažujeme za voľný cash. Dividenda 0,670 USD kvartálne.",
+      "normalization": "(16,342 − 1,178 − 0,728)×4/3 = 19,248 mld. USD je iba mechanická ročná proxy po SBC, nie vykázaný TTM ani FY2026 guidance. Base ju znižuje o 0,748 mld. rezervy na sezónnosť, working capital, ďalšie reinvestície a právne cash riziká na 18,500. Už zaplatenú litigáciu z CFO znovu neodpočítavame; ani ju automaticky nepridávame späť. Bear 16, Bull 21. Nepridávame hodnotu buybackov cez nižší budúci počet akcií.",
+      "risks": "Regulácia interchange, protimonopolné spory, alternatívne platby a stimuly klientom môžu zhoršiť marže. Rast cross-border podporuje kvalitu, no nemožno ho považovať za bezrizikový. Model nezamieňa klientsky collateral a restricted escrow za prebytočnú hotovosť akcionárov.",
+      "dividend": "Annualizovaných 2,68 USD predstavuje 0,69% pri close. Približný nárok 5,092 mld. je 27,5% Base kotvy; veľká časť návratnosti ostáva v raste a odkúpení akcií, nie v aktuálnom výnose.",
+      "cross": "Base cashflow/akcia 9,74 USD; close je približne 39,98×. Ilustratívnych 25–30× dá 243–292 USD. Rozdiel oproti rastovému DCF potvrdzuje, že ocenenie stojí na pokračovaní rastu.",
+      "points": [
+        10,
+        10,
+        10,
+        8,
+        9,
+        7,
+        8,
+        9,
+        4,
+        6
+      ],
+      "reasons": [
+        "Platobná infraštruktúra, nie úverovanie držiteľov kariet.",
+        "Vysoké marže a nízky fyzický CapEx.",
+        "Globálny sieťový efekt.",
+        "Cashflow podporuje refinancovanie dlhu.",
+        "Tok normalizovaný po SBC, právne cash riziko ostáva.",
+        "Nízky payout, nízky príjmový výnos.",
+        "Buybacky nie sú bezplatný valuačný bonus.",
+        "Platby, cross-border a nové služby.",
+        "Close nad Base, 25% rezerva chýba.",
+        "Regulácia a konkurencia alternatívnych platieb."
+      ],
+      "explanation": "Visa má najvyššie body za sieťový efekt, marže a nenáročnosť na fyzické aktíva. Rast platieb podporuje dlhodobú tézu, cashflow sme však očistili o akciové odmeny a rezervu na právne či pracovné cash riziká. Skóre obmedzuje dnešná cena a regulácia. Podváha voči cieľu je priestorom pre budúci nákup, nie dôvodom nakupovať bez MOS.",
+      "sources": {
+        "Q3 FY2026 a výkazy": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000103/q32026earningsrelease.htm",
+        "Termín výsledkov": "https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22841.html",
+        "Referenčný close": "https://stockanalysis.com/stocks/v/history/"
+      },
+      "as_of": "2026-10-13",
+      "reference_close_date": "2026-10-12",
+      "score": 81,
+      "scope": "Completed scenario evaluation v1, not external audit; estimates explicitly separated from reported figures",
+      "MOS": -0.701609946651665,
+      "buy_bands": {
+        "0.2": 183.01,
+        "0.25": 171.57,
+        "0.3": 160.13
+      },
+      "decision": "HOLD existujúcu pozíciu; nový nákup iba po revízii tézy a v pásme s MOS."
+    },
+    "O": {
+      "name": "Realty Income",
+      "currency": "USD",
+      "price": 54.7,
+      "weight": 3.48,
+      "target": 3,
+      "old_score": 78,
+      "due": "2026-11-03",
+      "review": "po výsledkoch 2.11.",
+      "method": "AFFO násobky; dividendový cross-check",
+      "scenarios": [
+        {
+          "name": "Bear",
+          "affo": 4.1,
+          "multiple": 11,
+          "value": 45.099999999999994
+        },
+        {
+          "name": "Base",
+          "affo": 4.4,
+          "multiple": 14,
+          "value": 61.60000000000001
+        },
+        {
+          "name": "Bull",
+          "affo": 4.7,
+          "multiple": 17,
+          "value": 79.9
+        }
+      ],
+      "reported": {
+        "FY2026_AFFO_per_share_guidance": [
+          4.44,
+          4.45
+        ],
+        "H1_AFFO_per_share": 2.22,
+        "Q2_diluted_weighted_shares_m": 937.344,
+        "net_debt_June30_bn": 30.437904,
+        "net_debt_to_adjusted_EBITDAre": 5.4,
+        "occupancy_pct": 98.8,
+        "H1_SBC_m": 20.651,
+        "monthly_DPS_Sep8": 0.2715,
+        "August_convertible_issue_bn": 1.0
+      },
+      "facts": "Guidance FY2026 AFFO/akcia 4,44–4,45 USD; H1 2,22. Q2 diluted priemer 937,344 mil.; H1 SBC add-back 20,651 mil. Čistý dlh 30.6. 30,438 mld., Net debt/annualized pro forma EBITDAre 5,4×; obsadenosť 98,8%. Septembrová dividenda 0,2715 mesačne, annualizovaných 3,258 USD. Augustová emisia 1 mld. USD konvertibilných dlhopisov 3,75% so splatnosťou 2031 prináša aj riziko riedenia. Júlová emisia EUR má splatnosť 2032.",
+      "normalization": "Stred guidance 4,445 − približne 0,044 USD ekonomický SBC/akcia (2×H1 SBC / Q2 diluted proxy) ≈ Base 4,40 USD. Nejde o presnú FY2026 úpravu: H1 odmeny ani budúce ATM a konvertibilné emisie nie sú celý rok. Bear 4,1 a Bull 4,7 sú naše normalizované per-share scenáre. Volíme 11/14/17×; nie historicky garantované násobky. Per-share rast musí byť po riedení a financovaní, neoceňujeme rast celkového portfólia ako rast akcie.",
+      "risks": "Refinancovanie, nájomcovia a nové emisie sú podstatné. Čistý dlh 30.6. nie je aktuálny dlh po augustovej emisii; nepripočítame k nemu celý nový dlh bez príslušného cash a splátok. KKR joint venture zo septembra môže priniesť platformový rast, ale bez overeného cash dopadu ju neoceňujeme ako istý bonus. Pri nákupe treba z Q3 doplniť presný debt maturity ladder a celkový zriedený share count.",
+      "dividend": "3,258 / 54,70 = 5,96% hrubý annualizovaný výnos. Voči Base AFFO 4,40 je payout 74,05%. Nie je to GAAP EPS payout; dividenda nie je garantovaná.",
+      "cross": "Dividendový Gordon cross-check: 3,258×1,02/(0,085−0,02)=51,13 USD pri raste 2% a nároku 8,5%; pri raste 3% a nároku 8% je 67,11 USD. Veľká citlivosť na sadzby podporuje konzervatívnejšie pásma.",
+      "points": [
+        10,
+        8,
+        7,
+        6,
+        8,
+        9,
+        7,
+        6,
+        7,
+        6
+      ],
+      "reasons": [
+        "Nájomný net-lease model.",
+        "Diverzifikované nájmy a vysoká obsadenosť.",
+        "Rozsah a kapitálový prístup, slabší moat než sieťové firmy.",
+        "Páka 5,4× a refinancovanie.",
+        "AFFO upravujeme o ekonomické odmeny.",
+        "Vysoký výnos a modelové krytie.",
+        "Financovanie a riedenie preverujeme.",
+        "Mierny per-share rast, nie rast aktív za každú cenu.",
+        "Cena pod Base, rezerva približne 11%.",
+        "Sadzby, nájomcovia a potreba externého kapitálu."
+      ],
+      "explanation": "Realty Income boduje za zrozumiteľné nájmy, obsadenosť a pravidelnú dividendu. Ocenenie vychádza z AFFO na akciu po ekonomickom SBC, nie z nízkeho účtovného zisku. Body znižujú zadlženie, refinancovanie a riedenie pri externom financovaní rastu. Cena je mierne pod Base, ale váha nad cieľom a neúplná cenová rezerva podporujú HOLD.",
+      "sources": {
+        "Q2 a guidance": "https://www.realtyincome.com/sites/realty-income/files/realty-income/press-releases/08%2005%2026%20Realty%20Income%20Announces%20Operating%20Results%20for%20the%20Three%20and%20Six%20Months%20Ended%20June%2030,%202026.pdf",
+        "Septembrová dividenda": "https://www.realtyincome.com/investors/press-releases/136th-common-stock-monthly-dividend-increase-declared-realty-income",
+        "Augustová emisia": "https://www.realtyincome.com/investors/press-releases/realty-income-announces-closing-10-billion-convertible-senior-notes",
+        "KKR JV": "https://www.realtyincome.com/investors/press-releases/realty-income-and-kkr-establish-euro-denominated-joint-venture-advancing",
+        "Termín výsledkov": "https://www.realtyincome.com/investors/press-releases/realty-income-announces-third-quarter-2026-earnings-release-date",
+        "Referenčný close": "https://stockanalysis.com/stocks/o/history/"
+      },
+      "as_of": "2026-10-13",
+      "reference_close_date": "2026-10-12",
+      "score": 74,
+      "scope": "Completed scenario evaluation v1, not external audit; estimates explicitly separated from reported figures",
+      "MOS": 0.11201298701298712,
+      "buy_bands": {
+        "0.2": 49.28,
+        "0.25": 46.2,
+        "0.3": 43.12
+      },
+      "decision": "HOLD existujúcu pozíciu; nový nákup iba po revízii tézy a v pásme s MOS. Váha už je nad cieľom, nenavyšovať iba pre výnos dividendy."
+    },
+    "AGS": {
+      "name": "Ageas",
+      "currency": "EUR",
+      "price": 72.5,
+      "weight": 2.38,
+      "target": 2,
+      "old_score": 81,
+      "due": "2026-11-12",
+      "review": "po najbližších výsledkoch, najneskôr kontrola dát 12.11.",
+      "method": "Normalizované operating EPS × P/E; dividendová kontrola",
+      "scenarios": [
+        {
+          "name": "Bear",
+          "eps": 7,
+          "multiple": 7,
+          "value": 49
+        },
+        {
+          "name": "Base",
+          "eps": 9,
+          "multiple": 9,
+          "value": 81
+        },
+        {
+          "name": "Bull",
+          "eps": 10,
+          "multiple": 11,
+          "value": 110
+        }
+      ],
+      "reported": {
+        "H1_net_operating_result_m": 776,
+        "H1_net_operating_EPS": 3.94,
+        "FY2025_net_operating_EPS": 8.8,
+        "FY2026_net_operating_result_guidance_bn_lower": 1.95,
+        "ending_shares_m_rounded": 209,
+        "H1_average_shares_m_rounded": 197,
+        "Solvency_II_pct": 195,
+        "cash_upstream_guidance_bn_lower": 1.4,
+        "general_account_liquid_assets_bn": 1.2,
+        "FY2025_DPS": 3.75,
+        "FY2026_interim_DPS": 1.5
+      },
+      "facts": "H1 operating result 776 mil. EUR a operating EPS 3,94; FY2025 operating EPS 8,80. FY2026 guidance operating result nad 1,95 mld.; koncový počet 209 mil. akcií verzus H1 priemer 197 mil. Solvency II 195%; liquid assets General Account 1,2 mld. Očakávaný cash upstream nad 1,4 mld. FY2025 dividenda 3,75 EUR; interim FY2026 1,50 nie je dodatočný trvalý ročný bonus. Komplexné equity 94,33 EUR/akcia zahŕňa CSM, nie likvidnú hodnotu.",
+      "normalization": "Guidance 1,95 mld. / 209 mil. koncových akcií ≈ 9,33 EUR/akcia. Base 9,00 je konzervatívny odhad pod týmto proxy, nie vydané EPS guidance; Bear 7 a Bull 10. Používame koncový vyšší počet, neannualizujeme H1 3,94 mechanicky a nepoužívame starší nižší priemer na nový zisk. Násobky 7/9/11× sú analytické predpoklady. CSM, predaj Malajzie a surplus kapitál nepridávame znovu ako istý samostatný bonus.",
+      "risks": "Poistné škody, počasie, investičné portfólio a ázijské minority limitujú istotu. Solvency II nie je hotovosť akcionárov. Dokončenie predaja Malajzie a remittance z dcér musia byť potvrdené; dôsledky nových transakcií na počet akcií a dividendy treba aktualizovať.",
+      "dividend": "Posledná potvrdená celoročná dividenda 3,75 EUR dá 5,17% pri close a 41,7% Base operating EPS. DDM kontrola pri DPS 3,75, raste 4% a nároku 10% dá 65 EUR, čo je pod EPS Base 81 EUR. Rozdiel upozorňuje na dostupnosť cash pre matku a neistú budúcu distribúciu.",
+      "cross": "Equity akcionárov 10,223 mld. / 209 mil. ≈ 48,91 EUR; close P/B približne 1,48×. Comprehensive equity 94,33 s CSM nepovažujeme za klasickú book value ani garantovanú likvidáciu.",
+      "points": [
+        8,
+        8,
+        7,
+        7,
+        7,
+        8,
+        7,
+        7,
+        6,
+        6
+      ],
+      "reasons": [
+        "Poisťovňa má viac účtovných odhadov.",
+        "Ziskové životné a neživotné portfólio.",
+        "Distribúcia a lokálne vzťahy.",
+        "195% Solvency II, transakcie menia kapitál.",
+        "Upstream cash nie je všetok skupinový výsledok.",
+        "Rozumný EPS payout, cash dostupnosť sledujeme.",
+        "Transformácia prináša aj exekučné riziko.",
+        "Rast guidance, bez automatického cash bonusu.",
+        "EPS Base nad cenou, DDM konzervatívnejší.",
+        "Počasie, Ázia a kapitálová regulácia."
+      ],
+      "explanation": "Ageas získava body za ziskové poistenie, kapitálovú rezervu a primeraný dividendový payout. Zohľadnili sme vyšší koncový počet akcií a rozlíšili výsledok skupiny od cash dostupného matke. EPS ocenenie je priaznivejšie než dividendový cross-check, takže rezerva nie je jednoznačne potvrdená. Pri váhe nad cieľom držíme pozíciu a nové nákupy nechávame až na výraznejší pokles.",
+      "sources": {
+        "H1 2026 oficiálny report": "https://assets.ctfassets.net/o6mf177wvfka/jsIannFgcsMGy3NXmTtwF/360babc1751208cc7a83f95cb4e1a4a7/EN_Results_HY2026_FINAL.pdf",
+        "Stránka výsledkov": "https://www.ageas.com/en/newsroom/ageas-reports-first-half-year-results-2026-3351770",
+        "Referenčný close": "https://stockanalysis.com/quote/ebr/AGS/history/"
+      },
+      "as_of": "2026-10-13",
+      "reference_close_date": "2026-10-12",
+      "score": 71,
+      "scope": "Completed scenario evaluation v1, not external audit; estimates explicitly separated from reported figures",
+      "MOS": 0.1049382716049383,
+      "buy_bands": {
+        "0.2": 64.8,
+        "0.25": 60.75,
+        "0.3": 56.7
+      },
+      "decision": "HOLD existujúcu pozíciu; nový nákup iba po revízii tézy a v pásme s MOS. Váha už je nad cieľom, nenavyšovať iba pre výnos dividendy."
+    },
+    "NDA": {
+      "name": "Nordea Bank",
+      "currency": "EUR",
+      "price": 16.86,
+      "weight": 2.34,
+      "target": 2,
+      "old_score": 80,
+      "due": "2026-10-16",
+      "review": "po Q3 výsledkoch 15.10. — pred novým nákupom povinná revízia",
+      "method": "Justified P/B cez udržateľné ROE; EPS a dividenda ako kontrola",
+      "scenarios": [
+        {
+          "name": "Bear",
+          "book": 9.17,
+          "roe": 0.12,
+          "discount": 0.11,
+          "growth": 0.015,
+          "value": 10.135263157894737
+        },
+        {
+          "name": "Base",
+          "book": 9.17,
+          "roe": 0.15,
+          "discount": 0.1,
+          "growth": 0.03,
+          "value": 15.719999999999999
+        },
+        {
+          "name": "Bull",
+          "book": 9.17,
+          "roe": 0.17,
+          "discount": 0.09,
+          "growth": 0.04,
+          "value": 23.842000000000002
+        }
+      ],
+      "reported": {
+        "book_per_share": 9.17,
+        "TTM_reported_EPS": 1.38,
+        "TTM_adjusted_EPS": 1.43,
+        "H1_reported_EPS": 0.68,
+        "H1_adjusted_EPS": 0.73,
+        "CET1_company_pct": 15.7,
+        "CET1_regulatory_pct": 15.4,
+        "CET1_requirement_pct": 13.8,
+        "Q2_credit_loss_bp": 6,
+        "midyear_DPS": 0.34,
+        "payout_policy_pct": [
+          60,
+          70
+        ]
+      },
+      "facts": "Book/akcia 30.6. 9,17 EUR. Vykázané TTM EPS 1,38 a H1 0,68; po vylúčení reštrukturalizácie TTM 1,43 a H1 0,73. CET1 spoločnosti 15,7%, regulačne vykazovaný 15,4% voči požiadavke 13,8%. Q2 loan losses 6 bp. Interim 0,34 EUR je prvá časť ročnej dividendy, politika 60–70% celoročného zisku; nejde o 0,34 plus celá stará dividenda každý rok.",
+      "normalization": "Normalizované ROE 12/15/17%, dlhodobý rast book a zisku 1,5/3/4%, požadovaný equity výnos 11/10/9%. V = book × (ROE−g)/(r−g). Base udržateľné ROE 15% je predpoklad blízky aktuálnej ziskovosti, nie garancia. ROE a g musia dlhodobo odrážať reinvestovanie potrebného kapitálu; surplus a buybacky neoceňujeme druhýkrát. Vklady klientov neodpočítavame ako podnikový dlh a bankový CFO nepoužívame ako FCFE.",
+      "risks": "Pokles sadzieb, depozitné marže a úverové straty môžu znížiť ROE. Spomalenie ekonomiky sa môže prejaviť so sklzom; nízke aktuálne straty nie sú dlhodobá garancia. Regulačný buffer podľa 15,4−13,8 je 1,6 percentuálneho bodu, nie neobmedzená distribučná rezerva.",
+      "dividend": "Base kontrola EPS 1,40×65% = odhad 0,91 EUR ročne; nejde o vyhlásenú FY2026 dividendu. DDM 0,91×1,03/(0,10−0,03)=13,39 EUR je konzervatívnejší než P/B model. Rozhodnutie o konečnej dividende zostáva na firme a regulácii.",
+      "cross": "EPS 1,20/1,40/1,60 × 8/11/13 = 9,60/15,40/20,80 EUR. Close P/B 1,84×; Base justified P/B 1,71×. Model je normalizovaný long-run rámec, nie detailná simulácia jednotlivých úverov.",
+      "points": [
+        8,
+        8,
+        7,
+        8,
+        7,
+        8,
+        8,
+        6,
+        5,
+        6
+      ],
+      "reasons": [
+        "Banka s jasným úrokovým a poplatkovým modelom.",
+        "Ziskovosť a efektivita.",
+        "Vzťahy a rozsah, konkurenčný trh.",
+        "Regulačný CET1 buffer, nie prebytok bez obmedzení.",
+        "Tvorba distribučného kapitálu namiesto bankového CFO.",
+        "Payout politika a interim, bez dvojitého započítania.",
+        "Distribúcie sledujeme oproti kapitálu.",
+        "Citlivosť na sadzby limituje rast.",
+        "Close nad Base, rezerva chýba.",
+        "Úvery, sadzby a regulačné požiadavky."
+      ],
+      "explanation": "Nordea boduje za ziskovosť, efektivitu a regulačný kapitálový buffer. Pri banke hodnotíme udržateľné ROE a kapitál, nepoužívame bežný podnikový cashflow model. Skóre obmedzuje citlivosť na sadzby a cena mierne nad Base. HOLD platí pre dnešný rámec; po výsledkoch 15.10. je potrebná okamžitá revízia pred nákupom.",
+      "sources": {
+        "H1 2026 a kapitál": "https://www.nordea.com/en/press/2026-07-16/half-year-results-2026-and-decision-on-mid-year-dividend",
+        "Referenčný close": "https://stockanalysis.com/quote/hel/NDA.FI/history/"
+      },
+      "as_of": "2026-10-13",
+      "reference_close_date": "2026-10-12",
+      "score": 71,
+      "scope": "Completed scenario evaluation v1, not external audit; estimates explicitly separated from reported figures",
+      "MOS": -0.0725190839694656,
+      "buy_bands": {
+        "0.2": 12.57,
+        "0.25": 11.79,
+        "0.3": 11.0
+      },
+      "decision": "HOLD existujúcu pozíciu; nový nákup iba po revízii tézy a v pásme s MOS. Váha už je nad cieľom, nenavyšovať iba pre výnos dividendy."
+    },
+    "ELE": {
+      "name": "Endesa",
+      "currency": "EUR",
+      "price": 42.7,
+      "weight": 2.59,
+      "target": 2,
+      "old_score": 80,
+      "due": "2026-11-12",
+      "review": "po najbližších výsledkoch, najneskôr kontrola dát 12.11.",
+      "method": "Normalizované EPS × P/E; dividendový cross-check",
+      "scenarios": [
+        {
+          "name": "Bear",
+          "eps": 1.9,
+          "multiple": 11,
+          "value": 20.9
+        },
+        {
+          "name": "Base",
+          "eps": 2.3,
+          "multiple": 14,
+          "value": 32.199999999999996
+        },
+        {
+          "name": "Bull",
+          "eps": 2.6,
+          "multiple": 17,
+          "value": 44.2
+        }
+      ],
+      "reported": {
+        "H1_net_profit_bn": 1.47,
+        "H1_EBITDA_bn": 3.24,
+        "H1_operating_cashflow_bn_rounded": 2.3,
+        "H1_capex_bn_rounded": 1.1,
+        "net_debt_bn_rounded": 10.3,
+        "FY2026_net_profit_guidance_bn_lower": 2.4,
+        "FY2025_DPS": 1.584,
+        "payout_policy_min_pct": 70,
+        "FY2028_EPS_target": [
+          2.5,
+          2.6
+        ]
+      },
+      "facts": "H1 net profit 1,470 mld. a EBITDA 3,240 mld. EUR. Prevádzkový cashflow približne 2,3 mld., investície 1,1 mld., čistý dlh 10,3 mld.; ND/EBITDA približne 1,6×. FY2026 výhľad zisku nad 2,4 mld. Strategický plán uvádza EPS 2025 približne 2,3 a cieľ 2028 2,5–2,6; dividendová politika 2026–28 minimálne 70% payout. FY2025 DPS 1,584 EUR. Buyback a rušenie akcií neznamenajú automaticky rovnaký rast zisku.",
+      "normalization": "Base EPS 2,30 ostáva konzervatívne pri plánovej kotve, Bear 1,90 a Bull 2,60 využíva horný cieľ až 2028 bez tvrdenia, že ide o dnešný vykázaný zisk. Násobky 11/14/17× sú predpoklady pre utility. H1 CFO−investície ≈1,2 mld. je mechanický rozdiel, nie presné normalizované FCFE ani ročný FCF. Zisk a payout rámec používame pre stabilnejší sektorový cross-check; nemeníme dlh na voľný cash pre dividendu.",
+      "risks": "Regulované výnosy sietí, ceny elektriny, dane, investičné nároky a kontrolujúci akcionár Enel ovplyvňujú menšinových akcionárov. Rekordný H1 nie je garantovaný rovnaký druhý polrok. Presný koncový diluted počet po buybacku treba obnoviť z ďalšieho výkazu; model je per-share a nevymýšľa ho z počtu zrušených akcií.",
+      "dividend": "1,584 / 42,70 = 3,71% výnos poslednej potvrdenej ročnej dividendy. Base EPS×70% = modelová DPS 1,61, nie vyhlásená dividenda. Gordon pri 1,61, raste 3% a nároku 8,5% dá 30,15 EUR. Sadzby aj payout majú výrazný dopad na hodnotu.",
+      "cross": "Base EPS 2,30 × 14 = 32,20 EUR; DDM cross-check 30,15 je blízko. Close je približne 18,57× Base EPS, takže dobrý výsledkový rast sám o sebe nedáva MOS.",
+      "points": [
+        9,
+        8,
+        7,
+        7,
+        7,
+        7,
+        7,
+        6,
+        3,
+        6
+      ],
+      "reasons": [
+        "Elektrina, siete a predaj sú zrozumiteľné.",
+        "Regulované siete podporujú stabilitu.",
+        "Sieťové aktíva s regulačnými limitmi.",
+        "Primeraná aktuálna páka, rastúci investičný plán.",
+        "Veľké investície; H1 tok neannualizujeme.",
+        "Payout vysoký, výplata závisí od cash a stratégie.",
+        "Kontrolujúci akcionár a buyback disciplína.",
+        "Plán podporuje mierny per-share rast.",
+        "Cena nad Base aj DDM kontrolou.",
+        "Regulácia, ceny elektriny a investície."
+      ],
+      "explanation": "Endesa boduje za regulované sieťové aktíva a dobré aktuálne výsledky. Pri ocenení neannualizujeme rekordný polrok a neodpočítavame investície iba symbolicky. Body znižujú regulácia, vysoké investičné nároky a cena nad oboma Base kontrolami. Pri váhe nad cieľom ponechávame HOLD bez navýšenia.",
+      "sources": {
+        "H1 2026": "https://www.endesa.com/en/press/press-room/news/economic-information/results-first-half-2026",
+        "FY2025 a plán 2026–28": "https://www.cnmv.es/webservices/verdocumento/ver?t=%7B197bd2f3-97c7-4146-98a0-d4f91b2b44f4%7D",
+        "Referenčný close": "https://stockanalysis.com/quote/bme/ELE/history/"
+      },
+      "as_of": "2026-10-13",
+      "reference_close_date": "2026-10-12",
+      "score": 67,
+      "scope": "Completed scenario evaluation v1, not external audit; estimates explicitly separated from reported figures",
+      "MOS": -0.32608695652173947,
+      "buy_bands": {
+        "0.2": 25.76,
+        "0.25": 24.15,
+        "0.3": 22.53
+      },
+      "decision": "HOLD existujúcu pozíciu; nový nákup iba po revízii tézy a v pásme s MOS. Váha už je nad cieľom, nenavyšovať iba pre výnos dividendy."
+    }
+  },
+  "ETF_reviews": {
+    "VGWD": {
+      "name": "Vanguard FTSE All-World High Dividend Yield UCITS ETF · USD Distributing",
+      "isin": "IE00B8GKDB10",
+      "score": 88,
+      "weight": 39.41,
+      "target": 50,
+      "cost": 0.29,
+      "stocks": 2364,
+      "composition_date": "2026-08-31",
+      "sources": {
+        "Oficiálny fond": "https://www.vanguard.co.uk/professional/product/etf/equity/9506/ftse-all-world-high-dividend-yield-ucits-etf-usd-distributing"
+      },
+      "facts": "Irish UCITS; fyzický reprezentatívny sampling, USD distributing trieda; OCF 0,29%. K 31.8.2026 2 364 akcií, USA 40,08%, Japonsko 9,44%, UK 6,88%; P/E 16,4× a P/B 2,3×. Index zahŕňa rozvinuté aj rozvíjajúce sa trhy a vylučuje REIT. Trojročný annualized tracking error 0,11%. EUR listing nemení menovú expozíciu podkladových akcií.",
+      "decision": "KEEP / ETF CORE · cieľ 50% zachovaný. Fond je pod cieľom a môže prijímať pravidelný kapitál podľa plánu, pri rešpektovaní rezervy a hotovosti. Nemá potvrdenú firemnú intrinsic value ani automatické 25% MOS pásmo.",
+      "reason": "Fond podporuje globálnu diverzifikáciu a znižuje závislosť od jednej firmy. Náklady a fyzické sledovanie indexu sú vhodné pre dlhodobý základ portfólia. Dividendový filter však vynecháva časť rastových spoločností a REIT, takže nejde o neutrálne celé akciové trhy. Zachovaných 88/100 je pôvodné orientačné ETF hodnotenie, nie nové firemné Graham skóre s DCF.",
+      "as_of": "2026-10-13",
+      "scope": "Completed fund role review; no corporate DCF or newly calculated comparable Graham score",
+      "overlap": "Prekrytie je potvrdené kvalitatívne, nie plným holdings auditom: Exxon a Chevron sú v oboch oficiálnych top zoznamoch. Súčet miním z ich váh je približne 2,36% (1,50207% + 0,85814%); zoznamy sú z rôznych dní, takže ide len o ilustračnú spodnú hranicu z viditeľných spoločných pozícií, nie aktuálny presný overlap. Realty Income v SPYD tvorí 1,97%, čo pri našej váhe SPYD 14,86% pridáva približne 0,293 percentuálneho bodu k priamej O váhe 3,48%. VGWD podľa indexu REIT vylučuje. Úplný rovnakodňový holdings overlap zostáva voliteľným doplnkom pred zmenou ETF alokácie; kontrolu terajšej úlohy fondu neblokuje.",
+      "next_review": "2026-11-12"
+    },
+    "SPYD": {
+      "name": "State Street SPDR S&P U.S. Dividend Aristocrats UCITS ETF · Dist",
+      "isin": "IE00B6YX5D40",
+      "score": 72,
+      "weight": 14.86,
+      "target": 10,
+      "cost": 0.35,
+      "stocks": 155,
+      "composition_date": "2026-10-12",
+      "sources": {
+        "Oficiálny fond": "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-sp-us-dividend-aristocrats-ucits-etf-dist-spyd-gy"
+      },
+      "facts": "Irish UCITS, fyzická replikácia; TER 0,35%, USD distributing trieda, kvartálne výplaty. SPYD na Deutsche Börse je ISIN IE00B6YX5D40, nie americký SPYD ETF. S&P Composite 1500 akcie so zvýšením dividend aspoň 20 rokov. K 12.10.2026 155 holdings; najväčší Accenture 3,59%, Realty Income 1,97%; priemysel 18,44%, staples 15,78%, utility 13,05%. Trojročný tracking error 0,08%; distribution yield 2,10% nie je index yield 3,01%.",
+      "decision": "KEEP / dividendový doplnok · cieľ 10% potvrdený pre súčasný plán. US dividendový filter dopĺňa globálny fond, nepridáva druhé nezávislé globálne jadro. Pri váhe 14,86% nové vklady smerovať prednostne do podváženého core; nadváha nie je povinný predaj.",
+      "reason": "SPYD dopĺňa portfólio o americké firmy s dlhou históriou rastu dividend. Jeho 155 pozícií diverzifikuje jednotlivé akcie, no geograficky je podstatne užší než globálny fond. Vyššie náklady a prekrytie dividendového štýlu s VGWD obmedzujú jeho prínos aj orientačné hodnotenie. Zachovaných 72/100 nie je výsledok nového firemného DCF; cieľ 10% obmedzuje koncentráciu doplnku.",
+      "as_of": "2026-10-13",
+      "scope": "Completed fund role review; no corporate DCF or newly calculated comparable Graham score",
+      "overlap": "Prekrytie je potvrdené kvalitatívne, nie plným holdings auditom: Exxon a Chevron sú v oboch oficiálnych top zoznamoch. Súčet miním z ich váh je približne 2,36% (1,50207% + 0,85814%); zoznamy sú z rôznych dní, takže ide len o ilustračnú spodnú hranicu z viditeľných spoločných pozícií, nie aktuálny presný overlap. Realty Income v SPYD tvorí 1,97%, čo pri našej váhe SPYD 14,86% pridáva približne 0,293 percentuálneho bodu k priamej O váhe 3,48%. VGWD podľa indexu REIT vylučuje. Úplný rovnakodňový holdings overlap zostáva voliteľným doplnkom pred zmenou ETF alokácie; kontrolu terajšej úlohy fondu neblokuje.",
+      "next_review": "2026-11-12"
+    }
+  },
+  "notes": [
+    "Reported figures separated from analyst estimates. Prices are confirmed Oct12 closes, not live quotes.",
+    "Graham stock scores use ten subjective areas of ten points; prior working scores not identically calibrated.",
+    "ETF legacy scores retained as orientation, no fabricated new corporate valuation.",
+    "Scenario completion is not an independent audit. Optional precise finance-lease schedules/full ETF overlap do not become verified facts.",
+    "Portfolio targets, account snapshot, cash, contributions and all existing MSFT/SAN reports preserved."
+  ]
+}
