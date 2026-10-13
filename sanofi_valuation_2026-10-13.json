@@ -1,0 +1,187 @@
+{
+  "as_of": "2026-10-13",
+  "version": "Sanofi scenario valuation v2 audited",
+  "currency": "EUR ordinary Sanofi share, not SNY ADR",
+  "reference_close_date": "2026-10-12",
+  "reference_close_eur": 71.6,
+  "valuation_shares_bn": 1.2055,
+  "share_definition": "H1 2026 diluted weighted average; not current ending shares",
+  "reported_inputs": {
+    "FY2025_FCF_continuing_bn": 8.089,
+    "Opella_discontinued_cash_outside_FCF_bn": 0.136,
+    "FY2025_Dren_acquisition_outside_FCF_bn": 0.539,
+    "FY2025_IFRS_continuing_CFO_bn": 10.561,
+    "FY2025_cash_capex_bn": 1.858,
+    "FY2025_lease_repayments_bn": 0.333,
+    "FY2025_FCF_restructuring_bn": 0.785,
+    "FY2025_FCF_small_acquisitions_bn": 1.761,
+    "FY2025_FCF_disposal_proceeds_bn": 0.744,
+    "H1_2026_FCF_bn": 3.724,
+    "H1_2026_basic_weighted_shares_bn": 1.2004,
+    "H1_2026_diluted_weighted_shares_bn": 1.2055,
+    "H1_2026_net_debt_ex_leases_bn": 15.513,
+    "H1_2026_lease_liabilities_bn": 1.904,
+    "H1_2026_cash_bn": 6.35,
+    "H1_2026_undrawn_credit_bn": 7.85,
+    "H1_restricted_share_expense_bn": 0.138,
+    "H1_employee_purchase_plan_expense_bn": 0.046,
+    "dividend_eur": 4.12
+  },
+  "normalization": {
+    "Base_anchor": "8.089 reported +0.411 assumed operating improvement -0.350 assumed economic SBC -0.350 assumed reserve for cash quality, disposals, litigation and ongoing product replacement =7.800. Not reported FY2026 guidance. Existing small acquisitions/restructuring and lease repayment are already in reported FCF and not deducted twice. Large historic strategic transactions are not treated as annual repeating costs; new incremental pipeline costs are risks in the scenario."
+  },
+  "upfront_reserve_eur_bn": 1.0,
+  "upfront_note": "Announced USD1bn Regeneron upfront. EUR1bn is an analyst cash reserve, not a claimed FX conversion or confirmed payment. Deduct at valuation date once; do not also deduct in recurring FCF.",
+  "method": "Equity cashflow DCF, after interest and lease costs, ten end-year cashflows labelled 2027-2036 from 2026 normalized anchor. Four pre-LOE growth years, six post-LOE years. End-year discount convention is simplified relative to October valuation date. Debt rolls without net new borrowing; no balance cash/debt bridge, no separate Opella stake value, no buyback uplift; fixed diluted shares. Economic SBC cost embedded in anchor, no additional future dilution.",
+  "scenarios": [
+    {
+      "name": "Bear",
+      "anchor_bn": 6.8,
+      "growth_2027_2030": 0.02,
+      "growth_2031_2036": -0.045,
+      "discount": 0.105,
+      "terminal_growth": 0.005,
+      "flows_bn": [
+        6.936,
+        7.07472,
+        7.2162144,
+        7.360538688,
+        7.02931444704,
+        6.7129952969232,
+        6.410910508561656,
+        6.122419535676381,
+        5.846910656570944,
+        5.583799677025251
+      ],
+      "pv_explicit_bn": 40.68997483789486,
+      "pv_terminal_bn": 20.676313612482545,
+      "value_eur": 50.07572662826827,
+      "terminal_share": 0.3369327709822637
+    },
+    {
+      "name": "Base",
+      "anchor_bn": 7.8,
+      "growth_2027_2030": 0.065,
+      "growth_2031_2036": -0.01,
+      "discount": 0.095,
+      "terminal_growth": 0.015,
+      "flows_bn": [
+        8.306999999999999,
+        8.846954999999998,
+        9.422007074999996,
+        10.034437534874996,
+        9.934093159526247,
+        9.834752227930984,
+        9.736404705651674,
+        9.639040658595157,
+        9.542650252009205,
+        9.447223749489112
+      ],
+      "pv_explicit_bn": 58.98678183880313,
+      "pv_terminal_bn": 48.365876754299684,
+      "value_eur": 88.22286071597081,
+      "terminal_share": 0.4505326406271888
+    },
+    {
+      "name": "Bull",
+      "anchor_bn": 8.7,
+      "growth_2027_2030": 0.09,
+      "growth_2031_2036": 0.025,
+      "discount": 0.09,
+      "terminal_growth": 0.02,
+      "flows_bn": [
+        9.483,
+        10.336470000000002,
+        11.266752300000004,
+        12.280760007000005,
+        12.587779007175003,
+        12.902473482354377,
+        13.225035319413236,
+        13.555661202398566,
+        13.894552732458529,
+        14.241916550769991
+      ],
+      "pv_explicit_bn": 77.1255700230674,
+      "pv_terminal_bn": 87.66083215986936,
+      "value_eur": 135.86594955034155,
+      "terminal_share": 0.5319664183368307
+    }
+  ],
+  "base_MOS": 0.18841897192029744,
+  "MOS_bands": {
+    "0.1": 79.40057464437373,
+    "0.15": 74.98943160857519,
+    "0.2": 70.57828857277666,
+    "0.25": 66.16714553697811,
+    "0.3": 61.756002501179566
+  },
+  "sources": {
+    "FY2025 FCF": "https://www.sec.gov/Archives/edgar/data/1121404/000112140426000001/pressreleaseq42025english.htm",
+    "Q2/H1 2026": "https://www.sec.gov/Archives/edgar/data/1121404/000112140426000008/pressreleaseq22026english.htm",
+    "H1 akcie, dlh a likvidita": "https://www.sec.gov/Archives/edgar/data/1121404/000162828026050803/sny-20260630_d2.htm",
+    "Patenty Regeneron 10-K": "https://www.sec.gov/Archives/edgar/data/872589/000087258926000008/regn-20251231.htm",
+    "Nová Regeneron aliancia": "https://www.sanofi.com/en/media-room/press-releases/2026/2026-10-01-05-00-00-3372517",
+    "Dividenda": "https://www.sanofi.com/en/investors/sanofi-share-and-adrs/dividend",
+    "Historická cena SAN Paris": "https://stockanalysis.com/quote/epa/SAN/history/"
+  },
+  "score": 81,
+  "score_points": [
+    [
+      "Rozumiem biznisu",
+      10,
+      "Lieky a vakcíny; vývoj je komplexný, zdroje príjmu sú identifikované."
+    ],
+    [
+      "Kvalita biznisu",
+      9,
+      "Silná produkcia liekov a cashflow, regulačné bariéry."
+    ],
+    [
+      "Moat",
+      8,
+      "Patenty a biologické lieky; výhoda nie je trvalá bez nových produktov."
+    ],
+    [
+      "Finančné zdravie",
+      7,
+      "Dlh vzrástol; dostupná likvidita a cashflow ho zmierňujú."
+    ],
+    [
+      "Cashflow",
+      8,
+      "Silný pokračujúci biznis; normalizácia a R&D náklady zostávajú neisté."
+    ],
+    [
+      "Dividenda",
+      9,
+      "Silný výnos a rozumné pokrytie, bez garancie budúcej výplaty."
+    ],
+    [
+      "Manažment",
+      8,
+      "Transformácia a nové produkty, akvizície vyžadujú disciplínu."
+    ],
+    [
+      "Rast",
+      8,
+      "Dupixent a launch produkty, pipeline oceňujeme scenármi."
+    ],
+    [
+      "Valuácia / MOS",
+      8,
+      "Base rezerva približne19 %, ale cena je nad Bear hodnotou."
+    ],
+    [
+      "Riziká / odolnosť",
+      6,
+      "Koncentrácia Dupixentu, patenty, vývoj liekov a záväzky partnerstvám."
+    ]
+  ],
+  "limitations": [
+    "Maintenance R&D, pipeline success, future licensing/milestone cash needs and exact biosimilar entry uncertain.",
+    "Aggregate FCF paths approximate combined Dupixent erosion and product replacement; not a product-level probability-weighted model.",
+    "Company FCF is a non-IFRS adjusted measure; some litigation and large transactions excluded, so reserve explicitly estimated.",
+    "Borrowing refinancing assumed, material changes in debt or refinancing cost require revision.",
+    "Retained Opella stake not assigned separate value; possible upside not monetized as certain cashflow."
+  ]
+}
