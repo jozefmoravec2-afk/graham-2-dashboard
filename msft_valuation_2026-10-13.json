@@ -1,0 +1,199 @@
+{
+  "as_of": "2026-10-13",
+  "version": "MSFT scenario evaluation v1",
+  "currency": "USD",
+  "units": "billions except price and percentages",
+  "reference_close_usd": 541.15,
+  "reference_close_date": "2026-10-12",
+  "valuation_shares_bn": 7.453,
+  "reported_inputs": {
+    "OCF": 182.935,
+    "cash_capex": 115.948,
+    "simple_FCF": 66.987,
+    "lease_principal": 3.101,
+    "SBC": 12.405,
+    "finance_lease_additions": 24.608,
+    "finance_lease_liabilities": 66.594,
+    "operating_lease_liabilities": 21.925,
+    "uncommenced_leases_undiscounted": 329.1,
+    "purchase_commitments_undiscounted": 194.06,
+    "construction_commitments_undiscounted": 34.566,
+    "liquid_assets": 76.843,
+    "restricted_short_term_investments": 3.8,
+    "financial_debt_book": 40.294
+  },
+  "sources": {
+    "financials": "https://www.microsoft.com/en-us/investor/earnings/fy-2026-q4/press-release-webcast",
+    "leases": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R23.htm",
+    "debt": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R20.htm",
+    "equity": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R25.htm",
+    "segments": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R28.htm",
+    "policies": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R29.htm",
+    "commitments": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+    "dividend": "https://news.microsoft.com/source/2026/09/15/microsoft-announces-quarterly-dividend-increase-7/",
+    "price": "https://stockanalysis.com/stocks/msft/history/",
+    "guidance": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4"
+  },
+  "scenarios": [
+    {
+      "name": "Bear",
+      "first_year_bridge": {
+        "OCF": 200,
+        "cash_capex": 125,
+        "finance_lease_principal": 8,
+        "SBC_economic_cost": 14,
+        "supplier_reserve": 8
+      },
+      "first_year_FCFE_bn": 45,
+      "growth_years_2_5": 0.1,
+      "growth_years_6_10": 0.05,
+      "discount_rate": 0.11,
+      "terminal_growth": 0.025,
+      "flows": [
+        45,
+        49.50000000000001,
+        54.45000000000001,
+        59.89500000000002,
+        65.88450000000003,
+        69.17872500000004,
+        72.63766125000005,
+        76.26954431250006,
+        80.08302152812506,
+        84.08717260453132
+      ],
+      "pv_explicit_bn": 365.0714793600978,
+      "pv_terminal_bn": 357.1123762556369,
+      "value_usd": 96.8984107897135,
+      "terminal_share": 0.4944895589657879
+    },
+    {
+      "name": "Base",
+      "first_year_bridge": {
+        "OCF": 210,
+        "cash_capex": 120,
+        "finance_lease_principal": 7,
+        "SBC_economic_cost": 14,
+        "supplier_reserve": 4
+      },
+      "first_year_FCFE_bn": 65,
+      "growth_years_2_5": 0.2,
+      "growth_years_6_10": 0.1,
+      "discount_rate": 0.1,
+      "terminal_growth": 0.03,
+      "flows": [
+        65,
+        78.0,
+        93.6,
+        112.32,
+        134.784,
+        148.2624,
+        163.08864000000003,
+        179.39750400000005,
+        197.33725440000006,
+        217.0709798400001
+      ],
+      "pv_explicit_bn": 772.7344133224875,
+      "pv_terminal_bn": 1231.442391363161,
+      "value_usd": 268.9087353663825,
+      "terminal_share": 0.6144380019188529
+    },
+    {
+      "name": "Bull",
+      "first_year_bridge": {
+        "OCF": 230,
+        "cash_capex": 120,
+        "finance_lease_principal": 6,
+        "SBC_economic_cost": 15,
+        "supplier_reserve": 4
+      },
+      "first_year_FCFE_bn": 85,
+      "growth_years_2_5": 0.25,
+      "growth_years_6_10": 0.12,
+      "discount_rate": 0.09,
+      "terminal_growth": 0.035,
+      "flows": [
+        85,
+        106.25,
+        132.8125,
+        166.015625,
+        207.51953125,
+        232.42187500000003,
+        260.31250000000006,
+        291.55000000000007,
+        326.5360000000001,
+        365.7203200000002
+      ],
+      "pv_explicit_bn": 1254.583876611731,
+      "pv_terminal_bn": 2907.1120547413975,
+      "value_usd": 558.3920476792068,
+      "terminal_share": 0.6985402352055506
+    }
+  ],
+  "method": "10-year equity cashflow DCF, year-end convention. Cashflow after interest, cash CapEx, finance-lease principal and economic SBC. No cash/debt/lease balance bridge; no repurchase uplift; fixed diluted share count. Debt maturities rolled without net new borrowing. Future investment and lease cash costs must be covered in the scenario cashflow path; no double deduction of lease assets and lease principal.",
+  "reported_cash_bridge": 51.48100000000001,
+  "limitations": [
+    "Maintenance/growth CapEx split, AI-specific cash economics and full OpenAI contract terms undisclosed; scenario assumptions are not reported facts.",
+    "Supplier component financing cash outflows are not all captured by simple FCF; reserve is explicitly assumed.",
+    "Large terminal-value share and broad Bear/Bull range limit confidence; these are scenario values, not an audited valuation.",
+    "No liquidation value of net cash or equity investments added; avoids mixed FCFF/FCFE balance adjustments."
+  ],
+  "mos_bands": {
+    "0.15": 228.5724250614251,
+    "0.25": 201.68155152478687,
+    "0.3": 188.2361147564677
+  },
+  "score_method": "Previously used 10 areas, each /10; portfolio fit and earnings quality assessed separately. Heuristic subjective rubric; former 91 was working without auditable comparable breakdown.",
+  "score_points": [
+    [
+      "Rozumiem biznisu",
+      10,
+      "Predplatné, softvér a cloud sú zrozumiteľné."
+    ],
+    [
+      "Kvalita biznisu",
+      9,
+      "Silné marže; rastúca kapitálová náročnosť."
+    ],
+    [
+      "Moat",
+      10,
+      "Ekosystém a náklady zákazníka na zmenu dodávateľa."
+    ],
+    [
+      "Finančné zdravie",
+      8,
+      "Silné OCF, ale lízingy a budúce záväzky sú významné."
+    ],
+    [
+      "Cashflow",
+      7,
+      "Silná prevádzka; hotovosť po celkových investíciách je citlivá na AI."
+    ],
+    [
+      "Dividenda",
+      8,
+      "Krytá cashflow; pri cene nízky výnos."
+    ],
+    [
+      "Manažment",
+      8,
+      "Silná exekúcia, návratnosť AI investícií ešte treba potvrdiť."
+    ],
+    [
+      "Rast",
+      9,
+      "Azure a podnikový softvér; monetizácia AI je neistá."
+    ],
+    [
+      "Valuácia / MOS",
+      2,
+      "Cena je nad základným scenárom, blízko optimistického."
+    ],
+    [
+      "Riziká / odolnosť",
+      6,
+      "Investičné záväzky, konkurencia, OpenAI a regulácia."
+    ]
+  ],
+  "score": 77
+}
