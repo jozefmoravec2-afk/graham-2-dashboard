@@ -1,0 +1,10 @@
+{
+  "change": "clarity-v1",
+  "date": "2026-10-21",
+  "baseline_commit": "0a207d6e5818f58c40a76a069fca980af3db4cb8",
+  "baseline_tree": "563d626368db1a3016f42a798f5f09487780526d",
+  "backup_branch": "backup/before-clarity-20261021-0a207d6e",
+  "original_view_query": "?layout=original",
+  "restore": "For a complete rollback, create a new commit on the current main head restoring dashboard_source.html and all six dashboard_b64/part*.txt from baseline_commit together. Validate reconstructed source before and after deploying. Never force-reset main; preserve later unrelated updates unless the user requests exact baseline restoration.",
+  "scope": "Presentation only. Values, source report templates and localStorage keys unchanged."
+}

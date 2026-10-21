@@ -283,7 +283,33 @@ button.tnode:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .score-strip .score-head span{color:var(--score-color,var(--text))!important}.score-strip .progress>span{background:var(--score-color,var(--green))!important}.evaluation-body .progress>span{background:var(--score-color,var(--green))!important;transition:width .2s,background-color .2s}
 
 .daily-feed{margin:12px 0 22px;padding:16px;border:1px solid var(--border);border-radius:16px;background:var(--card)}.daily-feed-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.daily-feed-head h2{margin:0;font-size:16px}.daily-feed-date{font-size:11px;color:var(--muted)}.daily-feed-summary{font-size:13px;line-height:1.6;margin:10px 0 12px}.daily-feed-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.daily-news-item{border:1px solid var(--border);border-radius:11px;padding:12px;background:var(--card2)}.daily-news-item h3{font-size:13px;margin:7px 0}.daily-news-item p{font-size:12px;line-height:1.55;margin:6px 0;color:var(--muted)}.daily-news-kind{font-size:10px;font-weight:700;color:var(--blue)}.daily-news-item a{font-size:11px;color:var(--blue)}.daily-feed-footer{margin-top:10px;font-size:11px;color:var(--muted);line-height:1.5}@media(max-width:760px){.daily-feed-items{grid-template-columns:1fr}}
-.quality-price-split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0 8px}.quality-price-card{background:var(--card2);border:1px solid var(--border);border-top:3px solid var(--split-color);border-radius:12px;padding:14px}.split-value{font-size:30px;font-weight:800;color:var(--split-color);margin:6px 0}.split-value small{font-size:14px;color:var(--muted);margin-left:3px}.quality-price-card p{margin:8px 0 0}.quality-price-help{line-height:1.6;margin-bottom:12px}.legacy-graham-score{margin-bottom:12px}@media(max-width:520px){.quality-price-split{grid-template-columns:1fr}}.news-source-group{margin-top:10px;border:1px solid var(--border);border-radius:12px;padding:0 12px;background:var(--card2)}.news-source-group>summary{cursor:pointer;padding:13px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none}.news-source-group>summary:before{content:"▸";color:var(--blue)}.news-source-group[open]>summary:before{content:"▾"}.news-source-group>summary b{flex:1;font-size:14px}.news-source-group>summary span{font-size:11px;color:var(--muted)}.news-source-group>.daily-feed-items{padding-bottom:12px}.news-placeholder{opacity:.6;border-style:dashed}@media(max-width:520px){.news-source-group>summary{flex-wrap:wrap}.news-source-group>summary span{width:100%;padding-left:17px}}.upcoming-events{margin:14px 0}.portfolio-events-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.portfolio-event{border:1px solid var(--border);border-radius:12px;background:var(--card2);padding:13px}.portfolio-event h3{font-size:14px;margin:8px 0}.portfolio-event p{font-size:12px;line-height:1.55}.portfolio-event a,.event-countdown{font-size:11px;color:var(--blue)}.event-date{font-size:11px;font-weight:700;color:var(--muted)}@media(max-width:650px){.portfolio-events-grid{grid-template-columns:1fr}}</style>
+.quality-price-split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0 8px}.quality-price-card{background:var(--card2);border:1px solid var(--border);border-top:3px solid var(--split-color);border-radius:12px;padding:14px}.split-value{font-size:30px;font-weight:800;color:var(--split-color);margin:6px 0}.split-value small{font-size:14px;color:var(--muted);margin-left:3px}.quality-price-card p{margin:8px 0 0}.quality-price-help{line-height:1.6;margin-bottom:12px}.legacy-graham-score{margin-bottom:12px}@media(max-width:520px){.quality-price-split{grid-template-columns:1fr}}.news-source-group{margin-top:10px;border:1px solid var(--border);border-radius:12px;padding:0 12px;background:var(--card2)}.news-source-group>summary{cursor:pointer;padding:13px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none}.news-source-group>summary:before{content:"▸";color:var(--blue)}.news-source-group[open]>summary:before{content:"▾"}.news-source-group>summary b{flex:1;font-size:14px}.news-source-group>summary span{font-size:11px;color:var(--muted)}.news-source-group>.daily-feed-items{padding-bottom:12px}.news-placeholder{opacity:.6;border-style:dashed}@media(max-width:520px){.news-source-group>summary{flex-wrap:wrap}.news-source-group>summary span{width:100%;padding-left:17px}}.upcoming-events{margin:14px 0}.portfolio-events-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.portfolio-event{border:1px solid var(--border);border-radius:12px;background:var(--card2);padding:13px}.portfolio-event h3{font-size:14px;margin:8px 0}.portfolio-event p{font-size:12px;line-height:1.55}.portfolio-event a,.event-countdown{font-size:11px;color:var(--blue)}.event-date{font-size:11px;font-weight:700;color:var(--muted)}@media(max-width:650px){.portfolio-events-grid{grid-template-columns:1fr}}
+/* Clarity layout v1: presentation only; original layout via ?layout=original. */
+.clarity-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:-8px 0 20px;padding:10px 0;border-bottom:1px solid var(--border)}
+.clarity-toolbar button{font:inherit;font-size:12px;color:var(--text);background:var(--card2);border:1px solid var(--border);border-radius:9px;padding:8px 11px;cursor:pointer}
+.clarity-toolbar button:hover{border-color:var(--blue)}
+.clarity-toolbar button:focus-visible,.clarity-fold>summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.clarity-enabled .position-expand>.pos-row{grid-template-columns:minmax(0,1fr) minmax(105px,145px);gap:16px;padding:13px 12px;align-items:start}
+.clarity-enabled .position-expand>.pos-row>.bar{display:none}
+.clarity-enabled .pos-name{font-size:14px;line-height:1.45;min-width:0}
+.clarity-position-description{display:block;margin-top:4px;font-size:12px;font-weight:400;color:var(--muted);line-height:1.45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.clarity-position-status{display:inline-block;margin-top:7px;font-size:11px;font-weight:600;color:var(--text);background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:3px 7px;max-width:100%}
+.clarity-enabled .pos-val{line-height:1.8;font-size:12px;padding-top:1px}
+.clarity-decision{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:12px;margin:12px 0}
+.clarity-decision>.note-box{margin:0;min-width:0;background:var(--card2);border-style:solid}
+.clarity-fold{border:1px solid var(--border);border-radius:11px;margin:12px 0;background:var(--card)}
+.clarity-fold>summary{padding:12px;cursor:pointer;font-size:12px;font-weight:700;color:var(--blue);line-height:1.5}
+.clarity-fold-body{padding:0 12px 12px;min-width:0}
+.clarity-fold .clarity-fold{background:var(--card2)}
+.clarity-zones{margin:12px 0}
+.clarity-enabled .quality-price-split{margin-top:14px}
+.clarity-check-heading{font-size:15px;margin:14px 0 8px}
+.clarity-task-list{gap:9px;min-width:0}
+.clarity-completed>.clarity-task-list{padding:0 12px 12px}
+.clarity-enabled .item>div{min-width:0}
+@media(max-width:560px){.clarity-enabled .position-expand>.pos-row{grid-template-columns:minmax(0,1fr) 105px;gap:10px;padding:12px 8px}.clarity-toolbar button{max-width:100%;text-align:left}.clarity-decision{grid-template-columns:minmax(0,1fr)}.clarity-fold-body{padding:0 9px 10px}.clarity-enabled .evaluation-group>summary.item{padding:10px}.clarity-enabled .position-overview{padding:12px 8px}}
+
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -724,6 +750,143 @@ document.querySelectorAll('[data-position-report]').forEach(mount=>{
  if(template) mount.replaceChildren(template.content.cloneNode(true));
 });
 
+// Presentation-only enhancement. Original nodes, values and storage keys stay intact.
+const clarityOriginal = new URLSearchParams(location.search).get('layout') === 'original';
+const clarityTasks = [];
+function clarityElement(tag, cls, text) {
+  const node = document.createElement(tag); if (cls) node.className = cls;
+  if (text !== undefined) node.textContent = text; return node;
+}
+function clarityFold(title, nodes) {
+  const fold = clarityElement('details', 'clarity-fold');
+  fold.append(clarityElement('summary', '', title));
+  const body = clarityElement('div', 'clarity-fold-body');
+  nodes.forEach(n => body.append(n)); fold.append(body); return fold;
+}
+function clarityTaskDone(node) {
+  const parent = node.querySelector('[data-evaluation-parent]');
+  const input = parent || node.querySelector('input[data-id]');
+  return Boolean(input && input.checked);
+}
+function refreshClarityChecklist() {
+  if (clarityOriginal) return;
+  const pending = document.getElementById('clarityPending');
+  const completed = document.getElementById('clarityCompletedBody');
+  if (!pending || !completed) return;
+  let done = 0;
+  clarityTasks.forEach(task => {
+    const complete = clarityTaskDone(task); if (complete) done++;
+    if (task.matches('label.item')) {
+      const status = task.querySelector('.status');
+      if (status) {
+        if (!task.dataset.pendingStatus) task.dataset.pendingStatus = status.textContent === 'HOTOVO' ? 'OTVORENÉ' : status.textContent;
+        status.textContent = complete ? 'HOTOVO' : task.dataset.pendingStatus;
+        status.className = 'status ' + (complete ? 'done' : 'todo');
+      }
+    }
+    const target = complete ? completed : pending;
+    // Reappend only when the group changes, so focus and reading order remain stable.
+    if (task.parentElement !== target) target.append(task);
+  });
+  document.getElementById('clarityPendingCount').textContent = String(clarityTasks.length - done);
+  document.getElementById('clarityCompletedCount').textContent = String(done);
+  document.getElementById('clarityPendingEmpty').hidden = done !== clarityTasks.length;
+}
+function initClarity() {
+  const wrap = document.querySelector('.wrap'); if (!wrap) return;
+  const toolbar = clarityElement('div', 'clarity-toolbar');
+  toolbar.append(clarityElement('span', 'label', clarityOriginal ? 'Pôvodné zobrazenie' : 'Prehľadné zobrazenie'));
+  const toggle = clarityElement('button', '', clarityOriginal ? 'Vyskúšať nové zobrazenie' : 'Zobraziť pôvodné rozloženie');
+  toggle.type = 'button';
+  toggle.addEventListener('click', () => {
+    const url = new URL(location.href);
+    if (clarityOriginal) url.searchParams.delete('layout'); else url.searchParams.set('layout', 'original');
+    location.assign(url.href);
+  });
+  toolbar.append(toggle);
+  const sub = wrap.querySelector(':scope > .sub');
+  if (sub) sub.after(toolbar); else wrap.prepend(toolbar);
+  if (clarityOriginal) return;
+  document.documentElement.classList.add('clarity-enabled');
+  document.querySelectorAll('.position-expand').forEach(position => {
+    const report = position.querySelector('.unified-report'); if (!report) return;
+    if (position.id === 'position-SPYD') {
+      const target = position.querySelector('.target-weight');
+      if (target) target.textContent = 'Plán: odpredaj → cash';
+    }
+    const name = position.querySelector('.pos-name');
+    const description = report.querySelector('.ticker-plain-summary');
+    const action = report.querySelector('.buy-action');
+    if (name && description) {
+      const plain = description.textContent.replace(/^Čo vlastníš:\s*/, '').trim();
+      const shortDescription = clarityElement('span', 'clarity-position-description', plain.split(/\.\s/)[0] + '.');
+      shortDescription.title = plain; name.append(shortDescription);
+    }
+    if (name && action) {
+      const status = action.querySelector(':scope > p > b');
+      if (status) {
+        const fullStatus = status.textContent;
+        const shortStatus = /odpredaj/i.test(fullStatus) ? '🟠 Odpredaj plánovaný' : /Dopĺňame/.test(fullStatus) ? '🟢 Dopĺňame ETF jadro' : /nedokupujeme/.test(fullStatus) ? '🟡 Držíme / nedokupujeme' : '🟡 Držíme / čakáme';
+        const badge = clarityElement('span', 'clarity-position-status', shortStatus);
+        badge.title = fullStatus; name.append(badge);
+      }
+    }
+    const overview = clarityElement('div', 'clarity-decision');
+    const price = report.querySelector('.price-zone-snapshot');
+    if (price) {
+      const paragraphs = [...price.children].filter(n => n.tagName === 'P');
+      const keep = paragraphs.filter(n => /^(Posledná overená cena:|Čas kotácie:|K 25 % MOS pásmu:)/.test(n.textContent) || n.classList.contains('warn'));
+      const more = paragraphs.filter(n => !keep.includes(n));
+      if (more.length) price.append(clarityFold('Zdroj ceny, obmedzenia a ďalší kontext', more));
+      overview.append(price);
+    }
+    if (action) {
+      const paragraphs = [...action.children].filter(n => n.tagName === 'P');
+      const keep = paragraphs.filter((n, i) => i === 0 || /^(Prečo:|Pozícia vs\.)/.test(n.textContent));
+      const more = paragraphs.filter(n => !keep.includes(n));
+      if (more.length) action.append(clarityFold('Podmienky ďalšieho kroku a predaja', more));
+      overview.append(action);
+    }
+    const zones = report.querySelector('.buy-zones');
+    if (zones) {
+      zones.open = false; zones.classList.add('clarity-zones');
+      zones.querySelector('summary').textContent = '🎯 Buy zones — cenové pásma a pravidlá';
+    }
+    const keepClasses = ['position-overview-head','ticker-plain-summary','position-snapshot','quality-price-split','score-strip'];
+    const analysis = [...report.children].filter(n => !keepClasses.some(c => n.classList.contains(c)));
+    const anchor = report.querySelector(':scope > .position-snapshot');
+    if (anchor && overview.children.length) anchor.after(overview); else if (overview.children.length) report.append(overview);
+    if (zones) overview.after(zones);
+    if (analysis.length) report.append(clarityFold('Detail evaluácie, riziká, scenáre a zdroje', analysis));
+  });
+  const checklist = document.getElementById('checklist');
+  if (checklist) {
+    const intro = checklist.querySelector(':scope > .evaluation-checklist-intro');
+    if (intro) checklist.prepend(clarityFold('Ako čítať checklist a evaluácie', [intro]));
+    [...checklist.children].forEach(node => {
+      if (node.matches('label.item, details.evaluation-group')) clarityTasks.push(node);
+    });
+    const heading = clarityElement('h3', 'clarity-check-heading', 'Otvorené úlohy · ');
+    const count = clarityElement('span', '', '0'); count.id = 'clarityPendingCount'; heading.append(count);
+    const pending = clarityElement('div', 'checklist clarity-task-list'); pending.id = 'clarityPending';
+    const empty = clarityElement('p', 'label', 'Všetky úlohy v tomto checkliste sú dokončené.'); empty.id = 'clarityPendingEmpty'; empty.hidden = true;
+    const done = clarityElement('details', 'clarity-fold clarity-completed');
+    const summary = clarityElement('summary', '', 'Dokončené úlohy · ');
+    const doneCount = clarityElement('span', '', '0'); doneCount.id = 'clarityCompletedCount'; summary.append(doneCount);
+    const doneBody = clarityElement('div', 'checklist clarity-task-list'); doneBody.id = 'clarityCompletedBody'; done.append(summary, doneBody);
+    checklist.append(heading, pending, empty, done);
+  }
+}
+try {
+  initClarity();
+} catch (error) {
+  // If enhancement fails, reload the same dashboard in its original layout.
+  if (!clarityOriginal) {
+    const fallback = new URL(location.href); fallback.searchParams.set('layout', 'original');
+    location.replace(fallback.href);
+  }
+}
+
 const boxes=[...document.querySelectorAll('input[type="checkbox"][data-id]')];
 boxes.forEach(b=>{
   if(b.hasAttribute('data-evaluation-parent'))return;
@@ -758,6 +921,7 @@ function update(){
   const pct=Math.round(done/boxes.length*100);
   document.getElementById('systemProgress').style.width=pct+'%';
   document.getElementById('progressText').textContent=done+' / '+boxes.length+' ('+pct+' %)';
+  refreshClarityChecklist();
 }
 
 const milestones=[...document.querySelectorAll('.milestone')];
