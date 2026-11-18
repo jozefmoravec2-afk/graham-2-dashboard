@@ -57,8 +57,22 @@ async function loadDashboard(){
     const html=new TextDecoder('utf-8').decode(bytes);
     const msftUpdate=await fetch('msft_fy2026_update.html',{cache:'no-store'}).then(r=>r.ok?r.text():'').catch(()=>'');
     const enriched=msftUpdate?html.replace('<div class="position-overview report-mount" data-position-report="MSFT"></div>','<div class="position-overview report-mount" data-position-report="MSFT">'+msftUpdate+'</div>'):html;
+    const marketRadar = `<section id="g2-market-radar-20261118" style="max-width:1180px;margin:24px auto;padding:22px;border:1px solid #2a313c;border-radius:18px;background:#171a21;color:#f3f5f7;font-family:Inter,system-ui,Arial,sans-serif">
+<h2 style="margin:0 0 6px;font-size:22px">📡 Graham 2.0 | Market radar · 18. 11. 2026</h2>
+<p style="color:#9da7b3;margin:0 0 16px">Investičný komentár k novinkám. Nie je to aktualizácia cien, počtu kusov ani valuácií; bez nového XTB výpisu zostávajú existujúce hodnoty nedotknuté.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px"><span style="padding:7px 11px;border-radius:20px;background:#2c3440">🟡 Portfólio: HOLD</span><span style="padding:7px 11px;border-radius:20px;background:#203c32">ETF jadro: disciplinované DCA</span><span style="padding:7px 11px;border-radius:20px;background:#3c3225">Nové tituly: zatiaľ nie</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+<div style="padding:14px;border-radius:12px;background:#1d222b"><b>AI / polovodiče</b><p style="color:#bdc7d1">MSFT a ADI: sledovať monetizáciu AI, investičné náklady, marže a cashflow. Nepovažovať rast sektora automaticky za Margin of Safety.</p></div>
+<div style="padding:14px;border-radius:12px;background:#1d222b"><b>Sadzby a dlhopisy</b><p style="color:#bdc7d1">Realty Income: preverovať náklady refinancovania a AFFO. Nordea, Ageas, Endesa: rozdielna citlivosť na sadzby a ekonomický cyklus.</p></div>
+<div style="padding:14px;border-radius:12px;background:#1d222b"><b>Defenzívne jadro</b><p style="color:#bdc7d1">WM, Sanofi, VGWD a SPYD: kontrolovať valuáciu, dividendovú bezpečnosť, duplicity a sektorové váhy.</p></div>
+</div>
+<h3 style="margin:18px 0 8px">Checklist pred ďalším nákupom</h3>
+<p style="color:#bdc7d1">□ Porovnať s existujúcimi pozíciami &nbsp; □ Skontrolovať cenu a Margin of Safety &nbsp; □ Overiť váhy a koncentráciu &nbsp; □ Chrániť rezervu na Podhradovú 2029 &nbsp; □ Zohľadniť FX, poplatky a dane</p>
+<p style="font-size:12px;color:#9da7b3;margin:12px 0 0">Zdroj komentára: Market Briefs 15.–16. 11. 2026 a Graham 2.0. Mimoriadne tvrdenia z newsletterov (napr. personálne udalosti Nvidia) nie sú v tejto aktualizácii prezentované ako nezávisle overené fakty. Dátum zápisu: 18. 11. 2026.</p>
+</section>`;
+    const withRadar=enriched.includes('g2-market-radar-20261118')?enriched:enriched.replace(/<\/body>/i,marketRadar+'</body>');
     document.open();
-    document.write(enriched);
+    document.write(withRadar);
     document.close();
   }catch(err){
     document.body.innerHTML='<div class="login-card"><h1>Dashboard sa nepodarilo načítať</h1><div class="sub">'+err.message+'</div></div>';
